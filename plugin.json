@@ -1,0 +1,48 @@
+{
+    "version": "1.0.0",
+    "name": "EkomiFeedback",
+    "marketplaceName": {
+        "de": "EkomiFeedback",
+        "en": "EkomiFeedback"
+    },
+    "license": "AGPL-3.0",
+    "pluginIcon": "icon_plugin.jpg",
+    "price": 0.00,
+    "description": "The eKomi product review container allows an easy integration of eKomi Reviews and ratings into your webshop. This allows you to collect verified reviews, display eKomi seal on your website and get your seller ratings on Google and individual positioning of product reviews and includes the Google rich snippet functionality.",
+    "shortDescription": {
+        "de": "Diese plugin erlaubt es Ihnen Ihren Plentymarkets Store eShop ganz einfach im eKomi System zu integrieren um verifizierte Rezensionen zu sammeln.",
+        "en": "The eKomi product review container allows an easy integration of eKomi Reviews and ratings into your webshop. This allows you to collect verified reviews, display eKomi seal on your website and get your seller ratings on Google and individual positioning of product reviews and includes the Google rich snippet functionality."
+    },
+    "categories": ["3521","3527"],
+    "author": "eKomi Ltd",
+    "authorIcon": "icon_author.jpg",
+    "email": "support@ekomi.zendesk.com",
+    "phone": "+49 3047376382",
+    "keywords": ["plugins", "orders export", "ekomi", "integration","reviews container","feedback","prc"],
+    "isClosedSource": true,
+    "namespace": "EkomiFeedback",
+    
+    "type": "general",
+    
+    "serviceProvider": "EkomiFeedback\\Providers\\EkomiFeedbackServiceProvider",
+    
+    "runOnBuild":["EkomiFeedback\\Migrations\\CreateReviewsTable"],
+    "dataProviders"         :
+    [
+        {
+            "key"           :"EkomiFeedback\\Containers\\EkomiFeedbackMiniStarsCounter",
+            "name"          :"Mini Stars Counter",
+            "description"   :"eKomi Mini Stars Counter"
+        },
+        {
+            "key"           :"EkomiFeedback\\Containers\\EkomiFeedbackReviewsContainerTab",
+            "name"          :"Reviews Container Tab",
+            "description"   :"eKomi Product Review Container Tab"
+        },
+        {
+            "key"           :"EkomiFeedback\\Containers\\EkomiFeedbackReviewsContainer",
+            "name"          :"Reviews Container",
+            "description"   :"eKomi Product Review Container"
+        }
+    ]
+}
