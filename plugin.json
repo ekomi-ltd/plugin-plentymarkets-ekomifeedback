@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "name": "EkomiFeedback",
     "marketplaceName": {
         "de": "EkomiFeedback",
@@ -8,10 +8,10 @@
     "license": "AGPL-3.0",
     "pluginIcon": "icon_plugin.jpg",
     "price": 0.00,
-    "description": "The eKomi product review container allows an easy integration of eKomi Reviews and ratings into your webshop. This allows you to collect verified reviews, display eKomi seal on your website and get your seller ratings on Google and individual positioning of product reviews and includes the Google rich snippet functionality.",
+    "description": "Ekomi FeedBack allows to read the necessary order details automatically from your shop system database which will enable eKomi to send a review request to your client, determine which order status should trigger the review request, contact your clients via email or SMS, request both seller and product reviews from your clients, display product reviews and ratings automatically on the corresponding product pages through our Product Review Container (PRC). If you have any questions regarding the plugin, please get in touch! Email us at support@ekomi.de, call us on +1 844-356-6487, or fill out our contact form.",
     "shortDescription": {
-        "de": "Das eKomi Feedback Plug erlaubt eine einfache Integration von eKomi Reviews and ratings in Ihrem Webshop. Dies erlaubt es Ihnen verifizierte Rezensionen zu sammeln, das eKomi Siegel auf Ihrer Webseite darzustellen und Ihre Google Verkäuferbewertung und individuelle Positionen für Produktbewertungen zu erhalten außerdem enthält es die Google rich snippet Funktionalität.",
-        "en": "The eKomi product review container allows an easy integration of eKomi Reviews and ratings into your webshop. This allows you to collect verified reviews, display eKomi seal on your website and get your seller ratings on Google and individual positioning of product reviews and includes the Google rich snippet functionality."
+        "de": "Ekomi FeedBack allows to read the necessary order details automatically from your shop system database which will enable eKomi to send a review request to your client, determine which order status should trigger the review request, contact your clients via email or SMS, request both seller and product reviews from your clients, display product reviews and ratings automatically on the corresponding product pages through our Product Review Container (PRC). If you have any questions regarding the plugin, please get in touch! Email us at support@ekomi.de, call us on +1 844-356-6487, or fill out our contact form.",
+        "en": "Ekomi FeedBack allows to read the necessary order details automatically from your shop system database which will enable eKomi to send a review request to your client, determine which order status should trigger the review request, contact your clients via email or SMS, request both seller and product reviews from your clients, display product reviews and ratings automatically on the corresponding product pages through our Product Review Container (PRC). If you have any questions regarding the plugin, please get in touch! Email us at support@ekomi.de, call us on +1 844-356-6487, or fill out our contact form."
     },
     "categories": ["3521","3527"],
     "author": "eKomi Ltd",

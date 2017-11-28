@@ -1,32 +1,39 @@
 # plugin-plentymarkets-ekomifeedback
 
-The eKomi product review container allows an easy integration of eKomi Reviews and ratings into your webshop. This allows you to collect verified reviews, display eKomi seal on your website and get your seller ratings on Google and individual positioning of product reviews and includes the Google rich snippet functionality.
+Ekomi is the leading third-party review service, specializing in the collection, management and publishing of seller and product ratings for businesses. Thanks to our constant innovation and market-leading technology, we offer the most flexible review generation methods, allowing you to reach all your clients, both online and offline to request their feedback. The more ratings you get for your business, the more traffic you drive to your site, the more trust you create among current and potential clients, and the more you will boost your sales and ROI.
+
+With our official eKomi Plugin for Plentymarkets you can now seamlessly integrate our eKomi review collection and display technology with your shop system and website. Automatically trigger the sending of a review request the moment an order has reached a predefined stat us, and display any product reviews received automatically on the corresponding product pages with our review container. This allows you to generate and display genuine client reviews, all while we syndicate your seller ratings to Google, Bing and Yahoo.
+Please note that you will need an eKomi account to use the plugin, and our standard packages start at $49 monthly. For a live demonstration of our product, feel free to book your most convenient time slot here, or alternatively email us at support@ekomi.de.
+
 <p>
-<strong>eKomi Feedback Features:</strong>
+<strong>Key features of the plugin:</strong>
 </p>
 <ul>
-
-<li>Collect order and/or product base Reviews</li>
-<li>Supports Simple, Configurable, Grouped and Bundle products</li>
-<li>Manage Reviews: our team of Customer Feedback Managers, reviews each and every review for any terms which are not allowed and also put all negative reviews in moderation.</li>
-<li>Publish reviews on search engines: Google, Bing, Yahoo!</li>
-<li>Easy Integration with eKomi.</li>
-<li>Get Google Seller Ratings.</li>
-<li>Increase Click through Rate by over 17%</li>
-<li>Increase conversion Rate</li>
-<li>Product total reviews</li>
-<li>Product avg reviews (star rating)</li>
-<li>List of reviews with pagination and sorting options</li>
-<li>Rating schema for google structured data</li>
-<li>Mini star ratings</li>
-<li>The parent /child review display</li>
+<li>The necessary order details are automatically read in from your shop system database which will enable eKomi to send your client a review request.</li>
+<li>Determine which order status should trigger the review request  </li>
+<li>Contact your clients via email or SMS.*</li>
+<li>Request both seller and product* reviews from your clients.</li>
+<li>Display product reviews and ratings automatically on the corresponding product pages through our Product Review Container (PRC)</li>
 
 </ul>
 
-<p>eKomi is available in English, French, German, Spanish, Dutch, Italian, Russian and Polish<br />If you have any questions regarding the plugin, please contact your eKomi Account Manager.</p>
+<strong>Working with eKomi allows your to:</strong>
+- Collect authentic seller and product ratings and reviews. 
+Sign up for simple, configurable, grouped and bundle products.
+- Personalize every aspect of your communication with your customers, from the email / SMS templates, to the look, contents and feel of the review form. 
+- Boost customer loyalty and incentivise return purchases with our coupon feature.
+- Manage your reviews with the help of our dedicated Customer Feedback Management team, who checks each and every review to make sure it is third-party compliant.  
+- React to your feedback publicly, or moderate it privately through our dialogue feature to improve your customer service and feedback.
+- Syndicate all of your seller ratings and reviews automatically to Google, Bing and Yahoo.   
+- Activate your Seller Rating Extension to display stars on your Ads and increase your Click-through-rate by 17%. 
+- Enable Review Rich Snippets and show stars next to your organic results to enhance your visibility and drive more relevant traffic to your site.  
+- Display your eKomi Seal and Review Widget on your webpage to build trust and confidence among your website visitors, turning more browsers into   buyers and increasing sales.  
+- Feature all of your reviews on your business Certificate Page, to help clients with their purchasing decision.
 
-<p><b>Please note</b> that you will need an eKomi account to use the plugin. To create an eKomi account, go to 
-<a href='http://eKomi.com'>eKomi.com</a>
+eKomi is available in English, French, German, Spanish, Dutch, Italian, Portuguese, Polish, Russian, Swedish, Finnish, Norwegian, Czech, Hungarian, Turkish, Hebrew, Arabic, Thai, Japanese and Korean.
+
+If you have any questions regarding the plugin, please get in touch! Email us at support@ekomi.de, call us on +1 844-356-6487, or fill out our contact form.
+
 
 ## Requirements
 
@@ -38,7 +45,7 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 - Not any known issue  
 
 ## Guides
-1. [User Guide](https://ekomi01.atlassian.net/wiki/display/PD/Plentymarkets+-+Official+eKomi+Plugins)
+1. [User Guide](https://ekomi01.atlassian.net/wiki/spaces/PD/pages/101450083/Documentation+-+eKomi+Feedback+Plugin+-+Plentymarkets)
 
 ### Installation
 
@@ -113,10 +120,10 @@ Follow these steps to install the plugin.
   
   
   - Activate Reviews Container Tab
-  	>Find **Reviews Container Tab (EkomiFeedback)**<br>
+    >Find **Reviews Container Tab (EkomiFeedback)**<br>
         Select container **_Single Item: Add detail tabs_**
   - Activate Reviews Container
-	>Find **Reviews Container (EkomiFeedback)**<br>
+  >Find **Reviews Container (EkomiFeedback)**<br>
         Select container **_Single Item: Add content to detail tabs_**
  
 
@@ -129,6 +136,10 @@ Follow these steps to install the plugin.
 ### v1.0.0 (16-11-2017)
 
 - A complete working plugin
+
+### v1.0.1 (28-11-2017)
+
+- Description updated
 
 ## Authors
 
