@@ -10,7 +10,7 @@ use EkomiFeedback\Repositories\ReviewsRepository;
  */
 class EkomiFeedbackReviewsContainer {
 
-    public function call(Twig $twig, $arg): string {
+    public function call(Twig $twig, $arg) {
         $offset = 0;
         $limit = 5;
 

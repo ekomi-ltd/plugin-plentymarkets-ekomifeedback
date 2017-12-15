@@ -152,7 +152,7 @@ class ReviewsRepository {
 
         $itemID = $this->getItemIDs($item);
         if (!$itemID) {
-            $this->getLogger(__FUNCTION__)->error('EkomiFeedback::ReviewsRepository.getReviewsContainerStats', 'ItemId is Null:' . $itemID);
+            $this->getLogger(__FUNCTION__)->error('Null Item ID', 'ItemId is Null:' . $itemID);
             return NULL;
         }
 
@@ -184,7 +184,7 @@ class ReviewsRepository {
             }
             $avg = $sum / $reviewsCountTotal;
         } else {
-            $this->getLogger(__FUNCTION__)->error('EkomiFeedback::ReviewsRepository.getReviewsContainerStats', $item);
+            $this->getLogger(__FUNCTION__)->error('No data exist', $item);
         }
 
         $reviews = $this->getReviews($itemID, $offset, $limit, $filter_type = 1);

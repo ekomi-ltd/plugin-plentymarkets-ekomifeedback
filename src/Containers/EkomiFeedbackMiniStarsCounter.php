@@ -10,7 +10,7 @@ use EkomiFeedback\Repositories\ReviewsRepository;
  */
 class EkomiFeedbackMiniStarsCounter {
 
-    public function call(Twig $twig, $arg): string {
+    public function call(Twig $twig, $arg) {
         $reviewRepo = pluginApp(ReviewsRepository::class);
 
         $templateData = $reviewRepo->getMiniStarsStats($arg[0]);

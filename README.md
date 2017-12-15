@@ -141,6 +141,10 @@ Follow these steps to install the plugin.
 
 - Description updated
 
+### v1.1.0 (15-12-2017)
+
+- Added auth Middleware in routes, Changed logs messages, and fixed sendOrdersData method.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)

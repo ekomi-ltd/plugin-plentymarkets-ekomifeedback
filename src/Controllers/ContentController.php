@@ -4,7 +4,6 @@ namespace EkomiFeedback\Controllers;
 
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Templates\Twig;
-use Plenty\Modules\Authorization\Services\AuthHelper;
 use EkomiFeedback\Services\EkomiServices;
 use Plenty\Plugin\Http\Request;
 use EkomiFeedback\Repositories\ReviewsRepository;
@@ -22,27 +21,11 @@ class ContentController extends Controller {
      * @param Twig $twig
      * @return string
      */
-    public function sendOrdersToEkomi(Twig $twig): string {
+    public function sendOrdersToEkomi(Twig $twig) {
 
         $service = pluginApp(EkomiServices::class);
-
-        /** @var \Plenty\Modules\Authorization\Services\AuthHelper $authHelper */
-        $authHelper = pluginApp(AuthHelper::class);
-
-        $address = null;
-
-//guarded
-        $address = $authHelper->processUnguarded(
-                function () use ($service, $address) {
-            //unguarded
-            return $service->sendOrdersData(7);
-        }
-        );
-        //  $service->sendOrdersData(7);
-
-        $service = pluginApp(EkomiServices::class);
-
-        $service->fetchProductReviews($range = '1w');
+        
+        $service->sendOrdersData(7);
 
         return $twig->render('EkomiFeedback::content.hello');
     }
@@ -54,7 +37,7 @@ class ContentController extends Controller {
      * @param ReviewsRepository $reviewsRepo
      * @return string
      */
-    public function fetchProductReviews(Twig $twig, ReviewsRepository $reviewsRepo): string {
+    public function fetchProductReviews(Twig $twig) {
         $service = pluginApp(EkomiServices::class);
 
         $reviews = $service->fetchProductReviews($range = 'all');
@@ -71,9 +54,11 @@ class ContentController extends Controller {
      * @param ReviewsRepository $reviewsRepo
      * @return string
      */
-    public function showReview(string $pwd, Twig $twig, ReviewsRepository $reviewsRepo): string {
+    public function showReview(string $pwd, Twig $twig, ReviewsRepository $reviewsRepo) {
         $list = $reviewsRepo->getReviewsList($pwd);
+        
         $templateData = array("tasks" => $list);
+        
         return $twig->render('EkomiFeedback::content.reviews', $templateData);
     }
 
@@ -84,7 +69,7 @@ class ContentController extends Controller {
      * @param ReviewsRepository       $reviewsRepo
      * @return string
      */
-    public function loadReviews(Request $request, ReviewsRepository $reviewsRepo, Twig $twig): string {
+    public function loadReviews(Request $request, ReviewsRepository $reviewsRepo, Twig $twig) {
         $data = $request->all();
         if (!empty($data)) {
             $itemID = trim($data['prcItemID']);
@@ -98,7 +83,7 @@ class ContentController extends Controller {
 
             return json_encode(['result' => $result, 'count' => count($reviews), 'state' => 'success', 'message' => 'reviews fetched']);
         } else {
-            $this->getLogger(__FUNCTION__)->error('EkomiFeedback::ContentController.loadReviews', ['state' => 'error', 'message' => 'empty data fields', 'data' => $data]);
+            $this->getLogger(__FUNCTION__)->error('Empty data fields', ['state' => 'error', 'message' => 'empty data fields', 'data' => $data]);
 
             return json_encode(['state' => 'error', 'message' => 'empty data fields', 'data' => $data]);
         }
@@ -111,7 +96,7 @@ class ContentController extends Controller {
      * @param ReviewsRepository       $reviewsRepo
      * @return string
      */
-    public function saveFeedback(Request $request, ReviewsRepository $reviewsRepo): string {
+    public function saveFeedback(Request $request, ReviewsRepository $reviewsRepo) {
         $data = $request->all();
 
         $response = array(
@@ -142,7 +127,7 @@ class ContentController extends Controller {
             $response['message'] = 'Missing data fields';
             $response['data'] = $data;
 
-            $this->getLogger(__FUNCTION__)->error('EkomiFeedback::ContentController.saveFeedback', $response);
+            $this->getLogger(__FUNCTION__)->error('Missing data fields', $response);
         }
 
         return json_encode($response);

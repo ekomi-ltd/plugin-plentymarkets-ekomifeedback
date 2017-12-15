@@ -1,15 +1,17 @@
 <?php
 
-namespace EkomiFeedback\Repositories;
+namespace EkomiIntegration\Repositories;
 
 use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
 use Plenty\Repositories\Models\PaginatedResult;
-
+use Plenty\Plugin\Log\Loggable;
 /**
  * Class OrderRepository
  */
 class OrderRepository {
-
+	
+	use Loggable;
+	
     public function __construct() {
         
     }
@@ -20,13 +22,13 @@ class OrderRepository {
      * @return array Return order
      */
     public function getOrders($pageNum = 1) {
-        /** @var OrderRepositoryContract $orderRepo */
-        $orderRepo = pluginApp(OrderRepositoryContract::class);
+        
+	    $orderRepo = pluginApp(OrderRepositoryContract::class);
 
         if ($orderRepo instanceof OrderRepositoryContract) {
 
             /** @var PaginatedResult $paginatedResult */
-            $paginatedResult = $orderRepo->searchOrders($pageNum, 50, $with = ['addresses', 'relation', 'reference']);
+            $paginatedResult = $orderRepo->searchOrders($pageNum, 200, $with = ['addresses', 'relation', 'reference']);
 
             if ($paginatedResult instanceof PaginatedResult) {
                 if ($paginatedResult->getTotalCount() > 0) {
@@ -35,7 +37,7 @@ class OrderRepository {
             }
         }
 
-        return NULL;
+        return array();
     }
 
 }
