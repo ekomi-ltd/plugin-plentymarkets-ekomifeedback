@@ -152,7 +152,7 @@ class ReviewsRepository {
 
         $itemID = $this->getItemIDs($item);
         if (!$itemID) {
-            $this->getLogger(__FUNCTION__)->error('Null Item ID', 'ItemId is Null:' . $itemID);
+            $this->getLogger(__FUNCTION__)->error('Null Item ID', 'ItemId is Null:' . $item);
             return NULL;
         }
 
