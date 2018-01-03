@@ -6,7 +6,7 @@
         "en": "EkomiFeedback"
     },
     "license": "AGPL-3.0",
-    "pluginIcon": "icon_plugin.jpg",
+    "pluginIcon": "icon_plugin_xs.png",
     "price": 0.00,
     "description": "Ekomi FeedBack allows to read the necessary order details automatically from your shop system database which will enable eKomi to send a review request to your client, determine which order status should trigger the review request, contact your clients via email or SMS, request both seller and product reviews from your clients, display product reviews and ratings automatically on the corresponding product pages through our Product Review Container (PRC). If you have any questions regarding the plugin, please get in touch! Email us at support@ekomi.de, call us on +1 844-356-6487, or fill out our contact form.",
     "shortDescription": {
@@ -15,7 +15,7 @@
     },
     "categories": ["3521","3527"],
     "author": "eKomi Ltd",
-    "authorIcon": "icon_author.jpg",
+    "authorIcon": "icon_author_xs.png",
     "email": "support@ekomi.zendesk.com",
     "phone": "+49 3047376382",
     "keywords": ["plugins", "orders export", "ekomi", "integration","reviews container","feedback","prc"],
