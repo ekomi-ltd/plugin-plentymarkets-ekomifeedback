@@ -15,9 +15,9 @@ if (typeof jQuery !== 'undefined') {
         var prcItemID = jQuery('#prcItemID').val();
         var prcFilter = 0;
         var prcOffset = 0;
-        var reviewsLimit = jQuery('#reviewsLimit').val();
-        var reviewsCountTotal = jQuery('#reviewsCountTotal').val();
-        var reviewsCountPage = jQuery('#reviewsCountPage').val();
+        var reviewsLimit = parseInt(jQuery('#reviewsLimit').val());
+        var reviewsCountTotal = parseInt(jQuery('#reviewsCountTotal').val());
+        var reviewsCountPage = parseInt(jQuery('#reviewsCountPage').val());
 
         // sorting reviews data
         jQuery('.ekomi_reviews_sort').on('change', function (e) {
@@ -97,7 +97,7 @@ if (typeof jQuery !== 'undefined') {
                     success: function (data) {
                         var json = jQuery.parseJSON(data);
 
-                        reviewsCountPage = reviewsCountPage + json.count;
+                        reviewsCountPage = reviewsCountPage + parseInt(json.count);
                         jQuery('#ekomi_reviews_container').append(json.result);
                         jQuery('.current_review_batch').text(reviewsCountPage);
 
