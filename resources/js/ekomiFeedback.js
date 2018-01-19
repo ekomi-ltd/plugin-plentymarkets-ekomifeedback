@@ -71,7 +71,7 @@ if (typeof jQuery !== 'undefined') {
                     current.parent('.ekomi_review_helpful_question').hide();
                     current.parent().prev('.ekomi_review_helpful_thankyou').show();
 
-                    var infoMsg= json.helpfullCount+" "+prcJQuery('.ekomi_prc_out_of').text()+" "+json.totalCount+" "+prcJQuery('.ekomi_prc_people_found').text();
+                    var infoMsg= json.helpfullCount+" "+jQuery('.ekomi_prc_out_of').text()+" "+json.totalCount+" "+jQuery('.ekomi_prc_people_found').text();
                     current.parent().prev().prev('.ekomi_review_helpful_info').html(infoMsg);
                 }
             });
