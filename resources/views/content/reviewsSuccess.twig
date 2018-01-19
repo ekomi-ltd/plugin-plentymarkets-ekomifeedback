@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ekomi Feedback Reviews</title>
+        <title>{{ trans("EkomiFeedback::ekomiFeedback.EkomiFeedbackReviews") }}</title>
 
         <!-- Link main CSS file and additional fonts -->
         <link href="{{ plugin_path('EkomiFeedback') }}/css/main.css" rel="stylesheet">
@@ -14,10 +14,10 @@
     <body>
         <!-- To Do list -->
         <div class="list">
-            <h1 class="header">EkomiFeedback Reviews</h1>
+            <h1 class="header">{{ trans("EkomiFeedback::ekomiFeedback.EkomiFeedbackReviews") }}</h1>
 
             <ul class="tasks">
-                <strong>{{reviewsCount}} reviews fetched. :) </strong>
+                <strong>{{reviewsCount}} {{ trans("EkomiFeedback::ekomiFeedback.ReviewsFetched") }} </strong>
             </ul>
         </div>
     </body>

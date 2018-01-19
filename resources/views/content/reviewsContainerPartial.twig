@@ -25,20 +25,20 @@
 
                         <span class="ekomi_review_helpful_info ek-small-text-center ek-medium-text-left"  style="display:block;" >
                             {% if ((review.helpful + review.nothelpful) > 0) %}
-                                {{ review.helpful }} out of {{ (review.helpful + review.nothelpful) }} people found this review helpful
+                                {{ review.helpful }} {{ trans("EkomiFeedback::ekomiFeedback.OutOf") }} {{ (review.helpful + review.nothelpful) }} {{ trans("EkomiFeedback::ekomiFeedback.PeopleFoundThisReviewHelpful") }}
                             {%endif%}
                         </span>
 
                         <div class="ekomi_review_helpful_thankyou ek-small-text-center ek-medium-text-left"
                              style="display:none;">
-                            Thank you for your vote!
+                            {{ trans("EkomiFeedback::ekomiFeedback.ThankYouForYourVote") }}
                         </div>
                         <div class="ekomi_review_helpful_question ek-small-text-center ek-medium-text-left">
-                            <span>Did you find this review helpful?</span>
+                            <span>{{ trans("EkomiFeedback::ekomiFeedback.DidYouFindThisReviewHelpful") }}</span>
                             <input type="submit" class="ekomi_button ekomi_review_helpful_button" name="ekomi_answer"
-                                   data-review-helpfulness="1" data-review-id="{{ review.id }}" value=Yes>
+                                   data-review-helpfulness="1" data-review-id="{{ review.id }}" value="{{ trans("EkomiFeedback::ekomiFeedback.PrcYes") }}">
                             <input type="submit" class="ekomi_button ekomi_review_helpful_button" name="ekomi_answer"
-                                   data-review-helpfulness="0" data-review-id="{{ review.id }}" value=No>
+                                   data-review-helpfulness="0" data-review-id="{{ review.id }}" value="{{ trans("EkomiFeedback::ekomiFeedback.PrcNo") }}">
                         </div>
                     </div>
                 </div>

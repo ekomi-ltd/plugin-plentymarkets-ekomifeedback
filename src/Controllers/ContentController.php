@@ -97,10 +97,10 @@ class ContentController extends Controller {
             $review = $reviewsRepo->rateReview($itemID, (int) $reviewId, $helpfulness);
 
             if (!empty($review)) {
-                $message = ($review->helpful) . ' out of ' . ($review->helpful + $review->nothelpful) . ' people found this review helpful';
-
                 $response['state'] = 'success';
-                $response['message'] = $message;
+                $response['message'] = 'Rated successfully';
+                $response['helpfullCount'] = $review->helpful;
+                $response['totalCount'] = ($review->helpful + $review->nothelpful);
                 $response['rateHelpfulness'] = $helpfulness == '1' ? 'helpful' : 'nothelpful';
             } else {
                 $response['state'] = 'success';

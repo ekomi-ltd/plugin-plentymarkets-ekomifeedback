@@ -22,7 +22,7 @@
                         </div>
                         <div class="ek-small-12 ek-large-6 ek-columns ek-text-right">
                             <div class="ek-logo-text" style="">
-                                <span class="ek-powered-by">Powered by</span>
+                                <span class="ek-powered-by">{{ trans("EkomiFeedback::ekomiFeedback.PoweredBy") }}</span>
                                 <a class="ek-logo" href="http://www.ekomi.de/de/" target="_blank">
                                     <img src="{{ plugin_path('EkomiFeedback') }}/images/ekomi_logo.png"/>
                                 </a>
@@ -38,7 +38,7 @@
                                 {% for i in 5..1 %}
                                     <div class="ek-row ekomi_bar ek-small-collapse" data-sort-id={{i}}>
                                         <div class="ek-small-3 ek-large-3 ek-columns ek-text-right">
-                                            <span class="ratings_stars_amount">{{i}}{{(i == 1) ? " Star &nbsp;" :" Stars" }}</span>
+                                            <span class="ratings_stars_amount">{{i}}{{(i == 1) ? " ".trans("EkomiFeedback::ekomiFeedback.Star")." &nbsp;" :" ".trans("EkomiFeedback::ekomiFeedback.Stars") }}</span>
                                         </div>
                                         <div class="ek-small-6 ek-large-6 ek-columns">
                                             <div class="prc-progress round">
@@ -60,7 +60,7 @@
                             <section itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
                                 <div class="ekomi_average_rating">
                                     <div class="ek-row ekomi_average_title ek-text-center">
-                                        Average rating
+                                        {{ trans("EkomiFeedback::ekomiFeedback.AverageRating") }}
                                     </div>
                                     <div class="ek-row ek-text-center">
                                         <div class="ekomi_average_stars">
@@ -74,9 +74,9 @@
                                     </div>
                                 </div>
                                 <div class="ek-row ekomi_average_description ek-text-center">
-                                    Calculated from
+                                    {{ trans("EkomiFeedback::ekomiFeedback.CalculatedFrom") }}
                                     <span itemprop="reviewCount">{{reviewsCountTotal}}</span>
-                                    reviews
+                                    {{ trans("EkomiFeedback::ekomiFeedback.Reviews") }}
                                 </div>
                             </section>
                         </div>
@@ -85,15 +85,15 @@
                 <div class="ekomi_filter">
                     <div class="ek-row">
                         <div class="ek-small-12 ek-medium-6 ek-columns ek-small-text-center">
-                            <span class="current_review_batch">{{reviewsCountPage}}</span> out of {{reviewsCountTotal}} reviews :
+                            <span class="current_review_batch">{{reviewsCountPage}}</span> {{ trans("EkomiFeedback::ekomiFeedback.OutOf") }} {{reviewsCountTotal}} {{ trans("EkomiFeedback::ekomiFeedback.Reviews") }} :
                         </div>
                         <div class="ek-small-12 ek-medium-6 ek-columns ek-small-text-center ek-medium-text-right">
                             <select class="ekomi_reviews_sort" autocomplete="off">
-                                <option value="1">Newest reviews</option>
-                                <option value="2">Oldest reviews</option>
-                                <option value="3">Most helpful reviews</option>
-                                <option value="4">Highest rating</option>
-                                <option value="5">Lowest rating</option>
+                                <option value="1">{{ trans("EkomiFeedback::ekomiFeedback.NewestReviews") }}</option>
+                                <option value="2">{{ trans("EkomiFeedback::ekomiFeedback.OldestReviews") }}</option>
+                                <option value="3">{{ trans("EkomiFeedback::ekomiFeedback.MostHelpfulReviews") }}</option>
+                                <option value="4">{{ trans("EkomiFeedback::ekomiFeedback.HighestRating") }}</option>
+                                <option value="5">{{ trans("EkomiFeedback::ekomiFeedback.LowestRating") }}</option>
                             </select>
                         </div>
                     </div>
@@ -105,12 +105,14 @@
                     <div class="ek-row">
                         <div class="ek-large-12 ek-columns ek-text-center">
                             {% if reviewsCountPage < reviewsCountTotal%}
-                                <span class="loads_more_reviews">Show more</span>
+                                <span class="loads_more_reviews">{{ trans("EkomiFeedback::ekomiFeedback.ShowMore") }}</span>
                             {%endif%}
                         </div>
                     </div>
                 </div>
             </div>
+            <span class="ekomi_prc_out_of" style="display:none">{{ trans("EkomiFeedback::ekomiFeedback.OutOf") }}</span>
+            <span class="ekomi_prc_people_found" style="display:none">{{ trans("EkomiFeedback::ekomiFeedback.PeopleFoundThisReviewHelpful") }}</span>
         {% else %}
             {{noReviewText}}
         {% endif %}
