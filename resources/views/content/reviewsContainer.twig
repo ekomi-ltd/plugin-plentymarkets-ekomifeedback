@@ -4,7 +4,7 @@
         <meta content="{{productImage}}" itemprop="image">
         {%if reviewsCountTotal > 0 %}
             <input id="prcBaseUrl" type="hidden" value="{{baseUrl}}" />
-            <input id="prcItemID" type="hidden" value="{{prcItemID}}" />
+            <input id="prcItemID" type="hidden" value="{{productId}}" />
             <input id="reviewsLimit" type="hidden" value="{{reviewsLimit}}" />
             <input id="reviewsCountTotal" type="hidden" value="{{reviewsCountTotal}}" />
             <input id="reviewsCountPage" type="hidden" value="{{reviewsCountPage}}" />
@@ -43,7 +43,7 @@
                                                 {%if i == 1 %}
                                                     {{ trans("EkomiFeedback::ekomiFeedback.Star") }} &nbsp;
                                                 {% else %}
-                                                    {{ trans("EkomiFeedback::ekomiFeedback.Stars") }};
+                                                    {{ trans("EkomiFeedback::ekomiFeedback.Stars") }}
                                                 {% endif %}
                                             </span>
                                         </div>
