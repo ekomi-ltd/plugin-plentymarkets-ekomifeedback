@@ -38,7 +38,14 @@
                                 {% for i in 5..1 %}
                                     <div class="ek-row ekomi_bar ek-small-collapse" data-sort-id={{i}}>
                                         <div class="ek-small-3 ek-large-3 ek-columns ek-text-right">
-                                            <span class="ratings_stars_amount">{{i}}{{(i == 1) ? " ".trans("EkomiFeedback::ekomiFeedback.Star")." &nbsp;" :" ".trans("EkomiFeedback::ekomiFeedback.Stars") }}</span>
+                                            <span class="ratings_stars_amount">
+                                                {{i}}
+                                                {%if i == 1 %}
+                                                    {{ trans("EkomiFeedback::ekomiFeedback.Star") }} &nbsp;
+                                                {% else %}
+                                                    {{ trans("EkomiFeedback::ekomiFeedback.Stars") }};
+                                                {% endif %}
+                                            </span>
                                         </div>
                                         <div class="ek-small-6 ek-large-6 ek-columns">
                                             <div class="prc-progress round">
