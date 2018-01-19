@@ -11,3 +11,8 @@
 ### v1.1.0 (15-12-2017)
 
 - Added Auth Middleware in Routen, Changed Log-Nachrichten und feste sendOrdersData-Methode.
+
+### v1.2.0 (19-01-2018)
+
+- Übersetzungsdateien hinzugefügt
+- Kompatibilitätsproblem behoben

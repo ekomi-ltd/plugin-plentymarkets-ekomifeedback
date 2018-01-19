@@ -44,85 +44,70 @@ rufen Sie uns unter +49 (0)30 2000 444 999 an, oder melden Sie sich bei uns übe
 
 Befolgen Sie diese Schritte, um das Plugin zu installieren.
 
-1. Loggen Sie sich in das Admin Panel ein
+1. Loggen Sie sich in das Admin Panel ein **<your-shop-url>/plenty/terra/login**
  
- 
-2. Gehe zu Start »Plugins
+2. Gehe zu **Plugins » Git**
 
-
-3. Neues Plugin hinzufügen
+3. Neues **+ New Plugin**
  
- 
-4. Durch Git hinzufügen
- 
- 
-5. Geben Sie die Anmeldeinformationen für das Plugin Git URL & Git-Konto ein.
+4. Geben Sie die Anmeldeinformationen für das Plugin Git URL & Git-Konto ein.
 
     Remote Url: 
     ```
     https://github.com/ekomi-ltd/plugin-plentymarkets-ekomifeedback.git
     ```
     
-	Benutzername: --Ihr git-Benutzername
-
-	Passwort: --Ihr Passwort
-
-   
-	Nach dem Einfügen der Details klicken Sie auf die Schaltfläche Test Connection. Es wird die Details bestätigen.
-
-    Zweig: Meister
-
+    User name: --Ihr git-Benutzername
+    
+    Password: --Ihr Passwort
+    
+    Nach dem Einfügen der Details klicken Sie auf die Schaltfläche Test Connection. Es wird die Details bestätigen.
+    
+    Branch: Master
+    
     Und dann auf Speichern klicken.
  
-6. Holen Sie sich die neuesten Plugin-Änderungen
+5. Holen Sie sich die neuesten Plugin-Änderungen
 
-7. Wählen Sie Kunden
+6. Gehen Sie zu **Plugins » Plugin-Übersicht** und Wählen Sie Clients für das 
     - Klicken Sie auf das Suchsymbol
-    - Wählen Sie Kunde (n)
+    - Wählen Sie Mandant
 
-8. Implementieren Sie EkomiFeedback Plugin In Productive Es dauert einige Minuten und das produktive Icon wird dann blau.
- 
+7. Implementieren Sie EkomiFeedback Plugin In Productive Es dauert einige Minuten und das produktive Icon wird dann blau.
 
-9. Plugin-Konfiguration
-
-* Gehe zu EkomiFeedback »Configuration
+8. Gehe zu **EkomiFeedback »Konfiguration**
   
-- Aktivieren / Deaktivieren des Plugins
-  - Fügen Sie Ihre Interface Shop ID ein
-  - Fügen Sie Ihr Interface Shop Secret ein
-  - Produktbewertungen aktivieren / deaktivieren (falls aktiviert, werden Produktattribute auch an eKomi gesendet, d. H. Produkt-ID, Name, Bild und URL)
-  - Aktivieren / Deaktivieren von Gruppen-Reviews (falls aktiviert, werden auch Reviews von Child- / Varianten-Produkten hinzugefügt)
-  - Auswahlmodus. (für SMS sollte das Mobiltelefonnummernformat E164 entsprechen)
-  - Geben Sie Client-ID-Kennungen ein. Mehrere kommagetrennte Plenty ID können ebenfalls hinzugefügt werden. (Optional)
-  - Wählen Sie Auftragsstatus, an dem Sie Informationen an eKomi senden möchten.
-  - Kundenspeicher viele IDs durch Komma getrennt (optional), um sie in Kundengeschäften / Untergeschäften zu aktivieren
-  - Wählen Sie Referrer Filter (out), um die Aufträge herauszufiltern.
-  - Text einfügen, wenn keine Bewertungen gefunden wurden.
+    - Aktivieren / Deaktivieren des Plugins
+    - Fügen Sie Ihre Interface Shop ID ein
+    - Fügen Sie Ihr Interface Shop Secret ein
+    - Aktivieren / deaktivieren Product Reviews (falls aktiviert, werden Produktattribute auch an eKomi gesendet, d. H. Produkt-ID, Name, Bild und URL)
+    - Aktivieren / Deaktivieren Group Reviews (falls aktiviert, werden auch Reviews von Child- / Varianten-Produkten hinzugefügt)
+    - Mode. (für SMS sollte das Mobiltelefonnummernformat E164 entsprechen)
+    - Geben Sie Client Store Plenty IDs (comma separated) ein. Mehrere kommagetrennte Plenty ID können ebenfalls hinzugefügt werden. (Optional)
+    - Wählen Sie Order Status, an dem Sie Informationen an eKomi senden möchten.
+    - Wählen Sie Referrers Filter (out), um die Aufträge herauszufiltern.
+    - Text when no reviews found.
+    
+    **Hinweis:** Bitte vergewissern Sie sich, dass die Shop-ID und das Secret korrekt sind. Im Falle ungültiger Zugangsdaten funktioniert das Plugin nicht.
 
-  **Hinweis:** Bitte vergewissern Sie sich, dass die Shop-ID und das Secret korrekt sind. Im Falle ungültiger Zugangsdaten funktioniert das Plugin nicht.
- 
-10. Speichern Sie das Konfigurationsformular, indem Sie auf das Symbol "Speichern" klicken.
+9. Speichern Sie das Konfigurationsformular, indem Sie auf das Symbol "Speichern" klicken.
 
+10. Warten Sie 15 Minuten
 
-11. Warten Sie 15 Minuten
-
-
-12. Gehen Start » Plugins » Content
-   - aktivieren Sie mini stars counter
-     >Finden **_Mini Stars Counter (EkomiFeedback)_**        
-		Container auswählen, wo angezeigt werden soll      
+11. Gehen **Plugins » Content**
+    - aktivieren Sie mini stars counter
+        >Finden **_Mini Stars Counter (EkomiFeedback)_**        
+        Container auswählen, wo angezeigt werden soll      
         i.e Tick **_Single Item: Before price_**
-  
-  
-  - aktivieren Sie Reviews Container Tab
-    >Finden **Reviews Container Tab (EkomiFeedback)**<br>
+    - aktivieren Sie Reviews Container Tab
+        >Finden **Reviews Container Tab (EkomiFeedback)**<br>
         Container auswählen **_Single Item: Add detail tabs_**
-  - aktivieren Reviews Container
-  >Finden **Reviews Container (EkomiFeedback)**<br>
+    - aktivieren Reviews Container
+        >Finden **Reviews Container (EkomiFeedback)**<br>
         Container auswählen **_Single Item: Add content to detail tabs_**
 
 ## Bereitstellung des Plugin:
-- Gehen Sie zu Start » Plugins.
+- Gehen Sie zu **Plugins » Plugin-Übersicht**.
 - Klicken Sie in der Reihe Ihrer Plugins auf Kunden auswählen.
 - Wählen Sie Ihren Kunden und speichern Sie.
 - Aktivieren Sie das Plugin in der Produktiv Spalte. 

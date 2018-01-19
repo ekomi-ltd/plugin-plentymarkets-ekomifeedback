@@ -48,25 +48,19 @@ If you have any questions regarding the plugin, please get in touch! Email us at
 
 Follow these steps to install the plugin.
 
-1. Login to Admin Panel
+1. Login to Admin Panel **<your-shop-url>/plenty/terra/login**
  
- 
-2. Go Start » Plugins
+2. Go **Plugins » Git**
 
-
-3. Add New Plugin
+3. Click on **+ New Plugin** button
  
- 
-4. Add through Git
- 
- 
-5. Enter Plugin Git URL & Git Account Credentials
+4. Enter Plugin Git URL & Git Account Credentials
 
     Remote Url: 
     ```
     https://github.com/ekomi-ltd/plugin-plentymarkets-ekomifeedback.git
     ```
-    User name: --your git username
+    Username: --your git username
 
     Password:  --your git password
 
@@ -76,54 +70,46 @@ Follow these steps to install the plugin.
 
     And then Click on Save button.
  
-6. Fetch The Latest Plugin Changes
+5. Fetch The Latest Plugin Changes
 
-7. Select Clients
+6. Go **Plugins » Content** and Select Clients for eKomiFeedback plugin
     - Click on Search icon
-    - Choose Client(s)
+    - Choose Clients
 
-8. Deploy EkomiFeedback Plugin In Productive It will take few minutes and then productive icon will turn to blue.
+7. Deploy EkomiFeedback Plugin In Productive It will take few minutes and then productive icon will turn to blue.
  
+8. Go to **EkomiFeedback » Configuration**
+      - Enable / Disable The Plugin
+      - Insert your Interface Shop Id
+      - Insert your Interface Shop Secret
+      - Enable / Disable Product Reviews ( if enabled, product attributes will also be sent to eKomi i.e.  product id, name, image and URL )
+      - Enable / Disable Group Reviews ( if enabled, Reviews of child/variants products will also be added  )
+      - Select Mode. (for SMS, mobile number format should be according E164)
+      - Insert Client Store Plenty IDs. Multiple comma separated Plenty ID can also be added.(optional)
+      - Select Order Statuses on which you want to send information to eKomi.
+      - Select Referrers Filter (out) to filter out the orders.
+      - Insert Text when no reviews found.
+      
+      **Note:** Please make sure, The Shop Id and Secret is correct. In the case of invalid credentials the plugin will not work.
+      
+9. Save the configuration form by clicking on Save Icon
 
-9. Plugin Configuration
+10. Waite for 15 minutes
 
-* Go to EkomiFeedback » Configuration
- 
-  - Enable / Disable The Plugin
-  - Insert your Interface Shop Id
-  - Insert your Interface Shop Secret
-  - Enable / Disable Product Reviews ( if enabled, product attributes will also be sent to eKomi i.e.  product id, name, image and URL )
-  - Enable / Disable Group Reviews ( if enabled, Reviews of child/variants products will also be added  )
-  - Select Mode. (for SMS, mobile number format should be according E164)
-  - Insert Client Store Plenty IDs. Multiple comma separated Plenty ID can also be added.(optional)
-  - Select Order Statuses on which you want to send information to eKomi.
-  - Client Store plenty IDs comma separated (optional) to activate to client stores /sub shops
-  - Select Referrers Filter (out) to filter out the orders.
-  - Insert Text when no reviews found.
-
-  **Note:** Please make sure, The Shop Id and Secret is correct. In the case of invalid credentials the plugin will not work.
- 
-10. Save the configuration form by clicking on Save Icon
-
-
-11. Waite for 15 minutes
-
-
-12. Go Start » Plugins » Content
-   - Activate mini stars counter
-     >Find **_Mini Stars Counter (EkomiFeedback)_**        
-        Select container where to display      
-        i.e Tick **_Single Item: Before price_**
-  
-  - Activate Reviews Container Tab
-    >Find **Reviews Container Tab (EkomiFeedback)**<br>
-        Select container **_Single Item: Add detail tabs_**
-  - Activate Reviews Container
-  >Find **Reviews Container (EkomiFeedback)**<br>
-        Select container **_Single Item: Add content to detail tabs_**
+11. Go **Plugins » Content**
+       - Activate mini stars counter
+         >Find **_Mini Stars Counter (EkomiFeedback)_**        
+            Select container where to display      
+            i.e Tick **_Single Item: Before price_**
+      - Activate Reviews Container Tab
+        >Find **Reviews Container Tab (EkomiFeedback)**<br>
+            Select container **_Single Item: Add detail tabs_**
+      - Activate Reviews Container
+        >Find **Reviews Container (EkomiFeedback)**<br>
+            Select container **_Single Item: Add content to detail tabs_**
 
 ## Provisioning the plugin
-- Go to Start » Plugins.
+- Go to **Plugins »**
 - In the row of your plugin, click on Select client.
 - Select your client and save it.
 - Activate the plugin in the Productive column.
