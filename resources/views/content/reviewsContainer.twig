@@ -3,21 +3,16 @@
         <meta content="{{productId}}" itemprop="productID">
         <meta content="{{productImage}}" itemprop="image">
         {%if reviewsCountTotal > 0 %}
-            <script type='text/javascript'>
-                var prcBaseUrl = '{{baseUrl}}';
-                var prcItemID = '{{productId}}';
-                var prcFilter = 0;
-                var prcOffset = 0;
-                var reviewsLimit = {{reviewsLimit}};
-                var reviewsCountTotal = {{reviewsCountTotal}};
-                var reviewsCountPage = {{reviewsCountPage}};
-            </script>
-
+            <input id="prcBaseUrl" type="hidden" value="{{baseUrl}}" />
+            <input id="prcItemID" type="hidden" value="{{prcItemID}}" />
+            <input id="reviewsLimit" type="hidden" value="{{reviewsLimit}}" />
+            <input id="reviewsCountTotal" type="hidden" value="{{reviewsCountTotal}}" />
+            <input id="reviewsCountPage" type="hidden" value="{{reviewsCountPage}}" />
             <div class="ekomi_prc_widget reviews_large">
                 <div class="ekomi_header">
                     <div class="ek-row">
                         <div class="ek-small-12 ek-large-6 ek-columns">
-                            <span class="header_first_line">Product reviews for</span>
+                            <span class="header_first_line">{{ trans("EkomiFeedback::ekomiFeedback.ProductReviewsFor") }}</span>
                             <span class="header_second_line">
                                 <span itemprop="name"> {{productName}} </span>
                                 ({{reviewsCountTotal}})

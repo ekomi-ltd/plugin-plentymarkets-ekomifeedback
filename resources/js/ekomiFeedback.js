@@ -10,6 +10,15 @@ if ((typeof jQuery === 'undefined') && !window.jQuery) {
 
 if (typeof jQuery !== 'undefined') {
     jQuery(document).ready(function () {
+
+        var prcBaseUrl = jQuery('#prcBaseUrl').val();
+        var prcItemID = jQuery('#prcItemID').val();
+        var prcFilter = 0;
+        var prcOffset = 0;
+        var reviewsLimit = jQuery('#reviewsLimit').val();
+        var reviewsCountTotal = jQuery('#reviewsCountTotal').val();
+        var reviewsCountPage = jQuery('#reviewsCountPage').val();
+
         // sorting reviews data
         jQuery('.ekomi_reviews_sort').on('change', function (e) {
             prcFilter = this.value;

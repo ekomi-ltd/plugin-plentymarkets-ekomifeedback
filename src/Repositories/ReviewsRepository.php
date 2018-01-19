@@ -29,24 +29,6 @@ class ReviewsRepository {
     }
 
     /**
-     * Gets Reviews List
-     * 
-     * @param string $pwd
-     * @return array
-     */
-    public function getReviewsList($pwd) {
-        if ($pwd == 'ekomi1@3') {
-            /**
-             * @var Reviews[] $ekomiReviewsList
-             */
-            $ekomiReviewsList = $this->db->query(Reviews::class)->where('shopId', '=', $this->configHelper->getShopId())->get();
-        } else {
-            $ekomiReviewsList = NULL;
-        }
-        return $ekomiReviewsList;
-    }
-
-    /**
      * Checks is Reviews Exist in DB
      * 
      * @param array $review

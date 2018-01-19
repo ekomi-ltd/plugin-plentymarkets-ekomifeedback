@@ -48,21 +48,6 @@ class ContentController extends Controller {
     }
 
     /**
-     * Shows all reviews
-     * 
-     * @param Twig                   $twig
-     * @param ReviewsRepository $reviewsRepo
-     * @return string
-     */
-    public function showReview(string $pwd, Twig $twig, ReviewsRepository $reviewsRepo) {
-        $list = $reviewsRepo->getReviewsList($pwd);
-        
-        $templateData = array("tasks" => $list);
-        
-        return $twig->render('EkomiFeedback::content.reviews', $templateData);
-    }
-
-    /**
      * Loads Reviews by ajax call
      * 
      * @param  \Plenty\Plugin\Http\Request $request

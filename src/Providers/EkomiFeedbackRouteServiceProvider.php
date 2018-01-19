@@ -17,7 +17,7 @@ class EkomiFeedbackRouteServiceProvider extends RouteServiceProvider {
     public function map(Router $router) {
         $router->get('sendOrdersToEkomi', 'EkomiFeedback\Controllers\ContentController@sendOrdersToEkomi')->addMiddleware(['oauth.cookie', 'oauth',]);
         $router->get('fetchProductReviews', 'EkomiFeedback\Controllers\ContentController@fetchProductReviews')->addMiddleware(['oauth.cookie', 'oauth',]);
-        $router->get('reviews/{pwd}', 'EkomiFeedback\Controllers\ContentController@showReview')->addMiddleware(['oauth.cookie', 'oauth',]);
+
         /**
          * Routes for ajax calls
          */
