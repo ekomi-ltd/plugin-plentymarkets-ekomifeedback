@@ -149,7 +149,8 @@ class ReviewsRepository {
             $data = array(
                 'productId' => $itemID,
                 'productName' => '',
-                'reviewsCountTotal' => 0
+                'reviewsCountTotal' => 0,
+                'noReviewText' => $this->configHelper->getNoReviewTxt()
             );
             return $data;
         }
