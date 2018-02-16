@@ -99,12 +99,9 @@ Befolgen Sie diese Schritte, um das Plugin zu installieren.
         >Finden **_Mini Stars Counter (EkomiFeedback)_**        
         Container auswählen, wo angezeigt werden soll      
         i.e Tick **_Single Item: Before price_**
-    - aktivieren Sie Reviews Container Tab
-        >Finden **Reviews Container Tab (EkomiFeedback)**<br>
-        Container auswählen **_Single Item: Add detail tabs_**
     - aktivieren Reviews Container
         >Finden **Reviews Container (EkomiFeedback)**<br>
-        Container auswählen **_Single Item: Add content to detail tabs_**
+        Container auswählen, wo angezeigt werden soll
 
 ## Bereitstellung des Plugin:
 - Gehen Sie zu **Plugins » Plugin-Übersicht**.

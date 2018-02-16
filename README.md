@@ -117,14 +117,9 @@ Follow these steps to install the plugin.
      >Find **_Mini Stars Counter (EkomiFeedback)_**        
         Select container where to display      
         i.e Tick **_Single Item: Before price_**
-  
-  
-  - Activate Reviews Container Tab
-    >Find **Reviews Container Tab (EkomiFeedback)**<br>
-        Select container **_Single Item: Add detail tabs_**
-  - Activate Reviews Container
+   - Activate Reviews Container
   >Find **Reviews Container (EkomiFeedback)**<br>
-        Select container **_Single Item: Add content to detail tabs_**
+        Select container where to display     
  
 
 ## Built With
