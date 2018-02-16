@@ -118,7 +118,7 @@ class ReviewsRepository {
 
         if (!$itemID) {
             $this->getLogger(__FUNCTION__)->error('Item', $item);
-            return NULL;
+            return 0;
         }
 
         if ($itemID) {
@@ -146,7 +146,12 @@ class ReviewsRepository {
         $itemID = $this->getItemIDs($item);
         if (!$itemID) {
             $this->getLogger(__FUNCTION__)->error('Item', $item);
-            return NULL;
+            $data = array(
+                'productId' => $itemID,
+                'productName' => '',
+                'reviewsCountTotal' => 0
+            );
+            return $data;
         }
 
         $result = $this->db->query(Reviews::class)
