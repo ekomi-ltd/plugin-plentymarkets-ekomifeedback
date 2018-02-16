@@ -83,6 +83,11 @@ class ReviewsRepository {
 
         $itemID = $this->getItemIDs($item);
 
+        if (!$itemID) {
+            $this->getLogger(__FUNCTION__)->error('Item', $item);
+            return NULL;
+        }
+
         if ($itemID) {
             $result = $this->db->query(Reviews::class)
                             ->whereIn('productId', explode(',', $itemID))
@@ -110,6 +115,12 @@ class ReviewsRepository {
      */
     public function getReviewsCount($item) {
         $itemID = $this->getItemIDs($item);
+
+        if (!$itemID) {
+            $this->getLogger(__FUNCTION__)->error('Item', $item);
+            return NULL;
+        }
+
         if ($itemID) {
             $result = $this->db->query(Reviews::class)
                             ->whereIn('productId', explode(',', $itemID))
@@ -134,7 +145,7 @@ class ReviewsRepository {
 
         $itemID = $this->getItemIDs($item);
         if (!$itemID) {
-            $this->getLogger(__FUNCTION__)->error('Null Item ID', 'ItemId is Null:' . $item);
+            $this->getLogger(__FUNCTION__)->error('Item', $item);
             return NULL;
         }
 
