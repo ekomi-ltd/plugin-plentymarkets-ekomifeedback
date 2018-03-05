@@ -1,112 +1,61 @@
-# plugin-plentymarkets-ekomifeedback
+## eKomi Feedback
 
-eKomi ist der führende Bewertungsdienstleister, der sich auf die Sammlung, das Management und das Veröffentlichen von Seller- und Produktbewertungen für Unternehmen spezialisiert.
-Mit unseren offiziellen eKomi Plugins für diverse Shopsysteme können Sie nun unsere eKomi-Review-Technologie nahtlos in Ihr Shop-System und Ihre Website integrieren. Es erfolgt ein automatischer Versand einer Bewertungsanfrage in dem Moment, in dem eine Bestellung einen vordefinierten Status erreicht hat, und auch das Anzeigen von Produkt Bewertungen, erfolgt automatisch auf den entsprechenden Produktseiten, mit unserem Product-Bewertungs-Container. Auf diese Weise werden echte Kundenbewertungen erstellt und angezeigt, während wir Ihre Händler Bewertungen gleichzeitig mit Google, Bing und Yahoo syndizieren. Bitte beachten Sie, dass Sie einen eKomi-Account benötigen, um dieses Plugin nutzen zu können. Für eine Live-Vorführung unseres Produktes, können Sie sich einen Ihnen passenden Termin aussuchen, oder senden Sie uns einfach eine Email an support@ekomi.de.
+eKomi ist der führende Bewertungsdienstleister, der sich auf die Sammlung, das Management und das Veröffentlichen von Händler- und Produktbewertungen für Unternehmen spezialisiert. Dank unserer ständigen Innovationen und marktführenden Technologien bieten wir Ihnen die flexibelsten Methoden zur Generierung von Bewertungen, so dass Sie Ihre Kunden on- und offline erreichen können, um Feedback anzufordern. Insgesamt gilt, dass mit der Zahl der Bewertungen für Ihr Unternehmen auch die Zugriffe auf Ihre Website zunehmen, dass das Vertrauen Ihrer bestehenden und potenziellen Kunden wächst und Ihr Umsatz und Ihr ROI steigen – starten Sie also noch heute!
 
-**Plug-In Funktionen:**
 
-- Die notwendigen Details werden automatisch von Ihrer Datenbank gelesen, was eKomi befähigt Ihren Kunden eine Bewertungsanfrage zu senden.
-- Bestimmen Sie, welcher Bestellstatus eine Bewertungsanfrage initiieren soll.
-- Kontaktieren Sie Ihre Kunden anhand von Emails oder SMS*
-- Erfragen Sie sowohl Kundenbewertungen, als auch Produktbewertungen* von Ihren Kunden
-- Produktbewertungen und Sternebewertungen werden automatisch über unseren Product Review Container (PRC) auf den entsprechenden Produktseiten angezeigt*
+##### Hauptmerkmale des Plugins:
+- Die notwendigen Bestelldaten werden automatisch aus der Datenbank Ihres Shopsystems eingelesen und ermöglichen es eKomi, Ihrem Kunden eine Rezensionsanfrage zu senden.
+- Sie legen fest, welcher Auftragsstatus die Rezensionsanfrage auslösen soll.
+- Die Rezension kann per E-Mail oder SMS angefragt werden.*
+- Sammeln Sie sowohl Anbieter- als auch Produktbewertungen* von Ihren Kunden.
+- Zeigen Sie Produktbewertungen über unseren Container für Produktrezensionen (PRC) automatisch auf den entsprechenden Produktseiten an.
+
 *abhängig von Ihrem eKomi Abo
 
-**Eine Zusammenarbeit mit eKomi erlaubt Ihnen:**
+##### Die Vorteile durch Ihre Zusammenarbeit mit eKomi:
+- Sammeln von authentischen Händler- und Produktbewertungen.
+- Holen Sie sich einfache, konfigurierbare und gebündelte Produkte. 
+- Personalisieren Sie jede Kommunikation mit Ihrem Kunden, sei es über E-Mail / SMS Vorlagen, bis zum Design und dem Inhalt des Bewertungsformulars.
+- Steigern Sie die Kundenloyalität und steigern Sie die Motivation Ihrer Kunden mit unserer Gutscheinfunktion Bestandskunden zu werden.
+- Verwalten Sie Ihre Bewertungen mithilfe unseres Customer Feedback Management Teams, welches jede Bewertung auf ihre Rechtmäßigkeit und gemäß den Richtlinien überprüft.
+- Sie haben die Möglichkeit Ihre Bewertungen öffentlich zu kommentieren oder im Rahmen des Kundendialogs mit Ihrem Kunden Kontakt aufzunehmen.
+- Übermitteln Sie Ihre Bewertungen automatisch an Google, Bing und Yahoo.
+- Die Aktivierung Ihrer Seller Ratings Erweiterung mit Hilfe von Sternen in Ihren Ads steigert Ihre Click-Through-Rate (CTR) um ca. 17%.
+- Aktivieren Sie Rich Snippets und zeigen so Ihre Sternebewertungen in Ihren organischen Suchergebnissen, um Ihre Sichtbarkeit zu steigern und so mehr relevanten Traffic auf Ihrer Seite zu generieren.
+- Integrieren Sie Ihr eKomi Siegel und das Widget auf Ihrer Website, um Vertrauen zu schaffen und aus Besuchern Käufer zu machen und Verkaufszahlen zu steigern.
+- Heben Sie alle Ihre Bewertungen auf Ihrer Unternehmenszertifikatsseite hervor, um Kunden bei ihrer Kaufentscheidung zu unterstützen.
 
-- das Sammeln von authentischen Seller- und Produktbewertungen
-- Melden Sie sich für einfache, konfigurierbare, gruppierte und gebündelte Produkte an. 
-- Personalisieren Sie jede Kommunikation mit Ihrem Kunden, sei es über Email / SMS Vorlagen, bis zum Design, dem Content und dem Feel des Bewertungsformulars.
-- Steigern Sie Kundenloyalität und schaffen Sie Anreize für Ihre Kunden mit unserer Coupon Funktion Bestandskunde bei Ihnen zu werden.
-- Verwalten Sie Ihre Bewertungen mit Hilfe unseres Customer Feedback Management Teams, das jede Bewertung auf ihre Rechtmäßigkeit überprüft.
-- Sie haben die Wahl das Feedback öffentlich zu beantworten, oder es privat über unser Dialogfenster zu schicken.
-- Syndizieren Sie Ihre Seller Ratings und Bewertungen automatisch an Google, Bing und Yahoo.
-- Die Aktivierung Ihrer Seller Ratings Erweiterung mit Hilfe von Sternen in Ihren Ads steigert Ihre Click-Through-Rate um ca. 17%.
-- Aktivieren Sie Rich Snippets und zeigen Sie Ihre Strernebewertung in Ihren organischen Suchergebnissen, um die Sichtbarkeit zu steigern und so mehr relevanten Traffic auf Ihrer Seite zu generieren.
-- Integrieren Sie Ihr eKomi Siegel und das Bewertungswidget in ihrer Webseite, um Vertrauen zu schaffen und aus Surfern Käufer zu machen und Verkaufszahlen zu steigern.
-- Heben Sie alle Ihre Bewertungen auf Ihrer Unternehmenszertifikatsseite hervor, um Kunden bei ihrer Kaufentscheidung zu helfen.
+eKomi ist auf Englisch und Deutsch.
 
-eKomi ist verfügbar in englisch, französisch, deutsch, spanisch, niederländisch, italienisch, portugiesisch, polnisch, russisch, schwedisch, finnisch, norwegisch, tschechisch, ungarisch, türkisch, hebräisch, arabisch, thailändisch, japanisch und koreanisch.
+Bei weiteren Fragen bezüglich unseres Plugins, treten Sie bitte mit uns in Kontakt: Schreiben Sie uns eine E-Mail an [support@ekomi.de](support@ekomi.de), rufen uns unter +49 (0)30 2000 444 999 an oder nutzen unser [Kontaktformular](http://www.ekomi.de/de/contact-us/).
 
-Bei weiteren Fragen bezüglich unseres Plugins, treten Sie mit uns in Kontakt! Schreiben Sie uns eine Email an support@ekomi.de, 
-rufen Sie uns unter +49 (0)30 2000 444 999 an, oder melden Sie sich bei uns über unser Kontaktformular.
 
-## Bedarf
+### Sie benötigen ein eKomi-Konto
+Bitte beachten Sie, dass Sie einen eKomi-Account benötigen, um dieses Plugin nutzen zu können. Unsere Standardpakete beginnen bei 49 $ monatlich. Für eine Live-Vorführung unseres Produktes, können Sie sich einen Ihnen passenden Termin aussuchen, oder senden Sie uns einfach eine Email an [support@ekomi.de](support@ekomi.de).
 
-- plentymarkets version 7.0.0
-- [IO Plugin](https://marketplace.plentymarkets.com/plugins/templates/IO_4696)
-- [Ceres Plugin](https://marketplace.plentymarkets.com/plugins/templates/Ceres_4697)
+### Wie sie das "ekomi Feedback-Plugin" installieren
+Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) vom Plentymarkets Marketplace herunter. Sie können das Plugin über das Menü unter Plugins / Einkäufe. Klicken Sie einfach ganz rechts auf die Schaltfläche "Installieren" für das "eKomiFeedback" plugin.
 
-## Führer
-1. [Benutzerhandbuch](https://ekomi01.atlassian.net/wiki/spaces/PD/pages/101450083/Documentation+-+eKomi+Feedback+Plugin+-+Plentymarkets)
-
-## Installation
-
-Befolgen Sie diese Schritte, um das Plugin zu installieren.
-
-1. Loggen Sie sich in das Admin Panel ein **<your-shop-url>/plenty/terra/login**
- 
-2. Gehe zu **Plugins » Git**
-
-3. Neues **+ New Plugin**
- 
-4. Geben Sie die Anmeldeinformationen für das Plugin Git URL & Git-Konto ein.
-
-    Remote Url: 
-    ```
-    https://github.com/ekomi-ltd/plugin-plentymarkets-ekomifeedback.git
-    ```
-    
-    User name: --Ihr git-Benutzername
-    
-    Password: --Ihr Passwort
-    
-    Nach dem Einfügen der Details klicken Sie auf die Schaltfläche Test Connection. Es wird die Details bestätigen.
-    
-    Branch: Master
-    
-    Und dann auf Speichern klicken.
- 
-5. Holen Sie sich die neuesten Plugin-Änderungen
-
-6. Gehen Sie zu **Plugins » Plugin-Übersicht** und Wählen Sie Clients für das 
-    - Klicken Sie auf das Suchsymbol
-    - Wählen Sie Mandant
-
-7. Implementieren Sie EkomiFeedback Plugin In Productive Es dauert einige Minuten und das produktive Icon wird dann blau.
-
-8. Gehe zu **EkomiFeedback »Konfiguration**
-  
-    - Aktivieren / Deaktivieren des Plugins
-    - Fügen Sie Ihre Interface Shop ID ein
-    - Fügen Sie Ihr Interface Shop Secret ein
-    - Aktivieren / deaktivieren Product Reviews (falls aktiviert, werden Produktattribute auch an eKomi gesendet, d. H. Produkt-ID, Name, Bild und URL)
-    - Aktivieren / Deaktivieren Group Reviews (falls aktiviert, werden auch Reviews von Child- / Varianten-Produkten hinzugefügt)
-    - Mode. (für SMS sollte das Mobiltelefonnummernformat E164 entsprechen)
-    - Geben Sie Client Store Plenty IDs (comma separated) ein. Mehrere kommagetrennte Plenty ID können ebenfalls hinzugefügt werden. (Optional)
-    - Wählen Sie Order Status, an dem Sie Informationen an eKomi senden möchten.
-    - Wählen Sie Referrers Filter (out), um die Aufträge herauszufiltern.
-    - Text when no reviews found.
-    
-    **Hinweis:** Bitte vergewissern Sie sich, dass die Shop-ID und das Secret korrekt sind. Im Falle ungültiger Zugangsdaten funktioniert das Plugin nicht.
-
-9. Speichern Sie das Konfigurationsformular, indem Sie auf das Symbol "Speichern" klicken.
-
-10. Warten Sie 15 Minuten
-
-11. Gehen **Plugins » Content**
-    - aktivieren Sie mini stars counter
-        >Finden **_Mini Stars Counter (EkomiFeedback)_**        
-        Container auswählen, wo angezeigt werden soll      
-        i.e Tick **_Single Item: Before price_**
-    - aktivieren Reviews Container
-        >Finden **Reviews Container (EkomiFeedback)**<br>
-        Container auswählen, wo angezeigt werden soll
-
-## Bereitstellung des Plugin:
-- Gehen Sie zu **Plugins » Plugin-Übersicht**.
-- Klicken Sie in der Reihe Ihrer Plugins auf Kunden auswählen.
-- Wählen Sie Ihren Kunden und speichern Sie.
-- Aktivieren Sie das Plugin in der Produktiv Spalte. 
-- In der Toolbar auf Bereitstellungs Plugins in Produktiv.
-→ Sobald die Erfolgsmeldung dargestellt wird, können wir den Output kontrollieren.
+### Das ekomi Feedback Plugin konfigurieren
+1. Unter Plugins / Plugin-Übersicht das Plugin erscheinen. Dies ist ein Hinweis darauf, dass das Plugin erfolgreich installiert wurde.
+2. Klicken Sie auf den Namen des Plugins, „eKomiFeedBack“, um auf das Plugin zuzugreifen. Dort finden Sie die "Konfiguration" Ihres Plugins.
+	- Aktivieren / Deaktivieren Sie das Plugin
+	- Fügen Sie Ihre Interface Shop ID ein
+	- Fügen Sie Ihr Interface Shop Passwort ein 
+	- Aktivieren / Deaktivieren Sie Produktbewertungen (falls aktiviert, werden auch Produktattribute an eKomi gesendet, z.B. Produkt-ID, Name, Bild und URL)
+	- Aktivieren / Deaktivieren von Gruppenbewertungen (falls aktiviert, werden auch Bewertungen von Kindern / Produktvariationen hinzugefügt)
+	- „Modus“ auswählen (für SMS sollte das Mobiltelefonformat gemäß E164 sein)
+	- Fügen Sie „Client Store Plenty IDs“ ein. Durch Kommatrennung können mehrere Plenty IDs hinzugefügt werden (optional)
+	- Wählen Sie „Bestellstatus“ aus, welche Informationen enthalten und an eKomi gesendet werden
+	- Wählen Sie „Referrers Filter (out)“ aus, um die Bestellungen herauszufiltern
+	- Fügen Sie einen Text ein, wenn keine Bewertungen zu finden sind
+	
+	**Hinweis:** Bitte stellen Sie sicher, dass die „Shop ID“ und das „Shop Passwort“ korrekt sind. Bei ungültigen Anmeldedaten funktioniert das Plugin nicht. 
+3. Navigieren Sie zur Plugins / Plugin-Übersicht und aktivieren Sie das Plugin für die gewünschten Kunden. Aktivieren Sie das Plugin "Nicht in productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
+4. Schließlich müssen Sie die Widgets anzeigen. Dies erreichen Sie über den Menüpunkt „Plugins / Content“. Wählen Sie die entsprechenden Container aus, um die Widgets anzuzeigen.
+	- Um das Mini-Sterne-Counter-Widget anzuzeigen, suchen Sie den „Mini Stars-Counter“ (ekomiFeedback) und wählen Sie den Container aus, an dem Sie dies anzeigen möchten.
+	
+	  **Beispiel:** Wählen Sie **Single Item: After price**, der auf den Artikelseiten angezeigt werden soll. 
+	
+   	  Und Wählen Sie **Category item list: After prices container**, um die Auflistung der Artikel anzuzeigen.
+   - Um das Widget "Review-Container" anzuzeigen, suchen Sie den Container "Bewertungen" (ekomi Feedback) und wählen Sie den Container aus, in dem Sie diesen anzeigen möchten.
