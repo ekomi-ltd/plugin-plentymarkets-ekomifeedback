@@ -16,3 +16,8 @@
 
 - Übersetzungsdateien hinzugefügt
 - Kompatibilitätsproblem behoben
+
+### v1.2.1 (05-03-2018)
+
+- Kurze Beschreibung aktualisiert
+- Benutzerhandbücher aktualisiert (EN, DE)
