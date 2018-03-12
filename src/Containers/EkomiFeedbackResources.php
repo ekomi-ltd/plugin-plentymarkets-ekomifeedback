@@ -8,7 +8,7 @@ use EkomiFeedback\Repositories\ReviewsRepository;
 /**
  * Mini Stars counter
  */
-class EkomiFeedbackMiniStarsCounter {
+class EkomiFeedbackResources {
 
     public function call(Twig $twig) {
         return $twig->render('EkomiFeedback::content.resources');
