@@ -22,7 +22,7 @@ class EkomiFeedbackRouteServiceProvider extends RouteServiceProvider {
          * Routes for ajax calls
          */
         $router->post('loadReviews', 'EkomiFeedback\Controllers\ContentController@loadReviews')->addMiddleware(['oauth.cookie', 'oauth',]);
-        $router->post('saveFeedback', 'EkomiFeedback\Controllers\ContentController@saveFeedback')->addMiddleware(['oauth.cookie', 'oauth',]);
+        $router->post('saveFeedback', 'EkomiFeedback\Controllers\ContentController@saveFeedback');
     }
 
 }
