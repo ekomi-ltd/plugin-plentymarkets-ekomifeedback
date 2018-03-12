@@ -16,3 +16,12 @@
 
 - Added Translations files
 - Compatibilty issue fixed
+
+### v1.2.1 (05-03-2018)
+
+- Short description updated
+- User Guides updated (EN,DE)
+
+### v1.3.0 (13-03-2018)
+
+- Resources Content-Provider added

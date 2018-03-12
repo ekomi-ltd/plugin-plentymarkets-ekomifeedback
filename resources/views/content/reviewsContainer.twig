@@ -21,7 +21,7 @@
                             <meta content="{{productSku}}" itemprop="sku">
                         </div>
                         <div class="ek-small-12 ek-large-6 ek-columns ek-text-right">
-                            <div class="ek-logo-text" style="">
+                            <div class="ek-logo-text">
                                 <span class="ek-powered-by">{{ trans("EkomiFeedback::ekomiFeedback.PoweredBy") }}</span>
                                 <a class="ek-logo" href="http://www.ekomi.de/de/" target="_blank">
                                     <img src="{{ plugin_path('EkomiFeedback') }}/images/ekomi_logo.png"/>
@@ -118,15 +118,10 @@
                     </div>
                 </div>
             </div>
-            <span class="ekomi_prc_out_of" style="display:none">{{ trans("EkomiFeedback::ekomiFeedback.OutOf") }}</span>
-            <span class="ekomi_prc_people_found" style="display:none">{{ trans("EkomiFeedback::ekomiFeedback.PeopleFoundThisReviewHelpful") }}</span>
+            <span class="ekomi_prc_out_of">{{ trans("EkomiFeedback::ekomiFeedback.OutOf") }}</span>
+            <span class="ekomi_prc_people_found">{{ trans("EkomiFeedback::ekomiFeedback.PeopleFoundThisReviewHelpful") }}</span>
         {% else %}
             {{noReviewText}}
         {% endif %}
     </div>
-    {% block AdditionalScripts %}
-        <link rel="stylesheet" type="text/css" href="{{ plugin_path('EkomiFeedback') }}/css/ekomiFeedback.css">
-        <script src="{{ plugin_path('EkomiFeedback') }}/js/jquery-3.1.1.min.js"></script>
-        <script src="{{ plugin_path('EkomiFeedback') }}/js/ekomiFeedback.js"></script>
-    {% endblock %}   
 </div>

@@ -21,3 +21,7 @@
 
 - Kurze Beschreibung aktualisiert
 - Benutzerhandbücher aktualisiert (EN, DE)
+
+### v1.3.0 (13-03-2018)
+
+- Ressourcen Content-Provider hinzugefügt

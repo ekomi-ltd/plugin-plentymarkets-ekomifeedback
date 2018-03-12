@@ -12,3 +12,9 @@
 #ekomi_prc_tab{
     margin: 3px 0;
 }
+.ekomi_prc_out_of,
+.ekomi_prc_people_found,
+.ekomi_review_helpful_thankyou
+{
+    display:none;
+}

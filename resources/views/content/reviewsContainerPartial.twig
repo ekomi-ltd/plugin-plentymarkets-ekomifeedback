@@ -23,14 +23,13 @@
                     <p class="ekomi_review_text" itemprop="reviewBody">{{ review.reviewComment }}</p>
                     <div class="ekomi_review_helpful_button_wrapper ">
 
-                        <span class="ekomi_review_helpful_info ek-small-text-center ek-medium-text-left"  style="display:block;" >
+                        <span class="ekomi_review_helpful_info ek-small-text-center ek-medium-text-left" >
                             {% if ((review.helpful + review.nothelpful) > 0) %}
                                 {{ review.helpful }} {{ trans("EkomiFeedback::ekomiFeedback.OutOf") }} {{ (review.helpful + review.nothelpful) }} {{ trans("EkomiFeedback::ekomiFeedback.PeopleFoundThisReviewHelpful") }}
                             {%endif%}
                         </span>
 
-                        <div class="ekomi_review_helpful_thankyou ek-small-text-center ek-medium-text-left"
-                             style="display:none;">
+                        <div class="ekomi_review_helpful_thankyou ek-small-text-center ek-medium-text-left">
                             {{ trans("EkomiFeedback::ekomiFeedback.ThankYouForYourVote") }}
                         </div>
                         <div class="ekomi_review_helpful_question ek-small-text-center ek-medium-text-left">

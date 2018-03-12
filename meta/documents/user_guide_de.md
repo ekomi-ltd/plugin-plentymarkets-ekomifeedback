@@ -51,7 +51,7 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	- Fügen Sie einen Text ein, wenn keine Bewertungen zu finden sind
 	
 	**Hinweis:** Bitte stellen Sie sicher, dass die „Shop ID“ und das „Shop Passwort“ korrekt sind. Bei ungültigen Anmeldedaten funktioniert das Plugin nicht. 
-3. Navigieren Sie zur Plugins / Plugin-Übersicht und aktivieren Sie das Plugin für die gewünschten Kunden. Aktivieren Sie das Plugin "Nicht in productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
+3. Navigieren Sie zu Plugins / Plugin-Übersicht und aktivieren Sie das Plugin für die gewünschten Mandanten. Aktivieren Sie das Plugin über den ausgegrauten Button "Nicht in Productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
 4. Schließlich müssen Sie die Widgets anzeigen. Dies erreichen Sie über den Menüpunkt „Plugins / Content“. Wählen Sie die entsprechenden Container aus, um die Widgets anzuzeigen.
 	- Um das Mini-Sterne-Counter-Widget anzuzeigen, suchen Sie den „Mini Stars-Counter“ (ekomiFeedback) und wählen Sie den Container aus, an dem Sie dies anzeigen möchten.
 	

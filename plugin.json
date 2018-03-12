@@ -1,5 +1,5 @@
 {
-    "version": "1.2.1",
+    "version": "1.3.0",
     "name": "EkomiFeedback",
     "marketplaceName": {
         "de": "EkomiFeedback",
@@ -29,6 +29,11 @@
     "runOnBuild":["EkomiFeedback\\Migrations\\CreateReviewsTable"],
     "dataProviders"         :
     [
+        {
+            "key"           :"EkomiFeedback\\Containers\\EkomiFeedbackResources",
+            "name"          :"Resources",
+            "description"   :"eKomi Resources"
+        },
         {
             "key"           :"EkomiFeedback\\Containers\\EkomiFeedbackMiniStarsCounter",
             "name"          :"Mini Stars Counter",
