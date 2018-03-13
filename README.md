@@ -90,6 +90,14 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 - Short description updated
 - User Guides updated (EN,DE)
 
+### v1.3.0 (12-03-2018)
+
+- Resources container added
+
+### v1.3.1 (13-03-2018)
+
+- User Guides updated (EN,DE)
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)

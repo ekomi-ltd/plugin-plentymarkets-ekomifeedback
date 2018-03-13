@@ -55,10 +55,14 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	
 	**Hinweis:** Bitte stellen Sie sicher, dass die „Shop ID“ und das „Shop Passwort“ korrekt sind. Bei ungültigen Anmeldedaten funktioniert das Plugin nicht. 
 4. Navigieren Sie zu Plugins / Plugin-Übersicht und aktivieren Sie das Plugin für die gewünschten Mandanten. Aktivieren Sie das Plugin über den ausgegrauten Button "Nicht in Productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
-5. Schließlich müssen Sie die Widgets anzeigen. Dies erreichen Sie über den Menüpunkt „Plugins / Content“. Wählen Sie den gewünschten mandant aus der Dropdown-Liste neben dem Speichern button und Wählen Sie die entsprechenden Container aus, um die Widgets anzuzeigen.
-	- Um das Mini-Sterne-Counter-Widget anzuzeigen, suchen Sie den „Mini Stars-Counter“ (ekomiFeedback) und wählen Sie den Container aus, an dem Sie dies anzeigen möchten.
+5. Schließlich müssen Sie die Widgets anzeigen. Dies erreichen Sie über den Menüpunkt „Plugins / Content“. Wählen Sie den gewünschten mandant aus der Dropdown-Liste neben dem Speichern button und Wählen Sie die entsprechenden Container aus, um die Widgets anzuzeigen.	
+
+    - Suchen Sie nach „Resources (EkomiFeedback)“ und wählen Sie den **Script loader: Register/load JS** Container um Ressourcen zu laden.
+    
+	- Um das Mini-Sterne-Counter-Widget anzuzeigen, suchen Sie den „Mini Stars-Counter (EkomiFeedback)“ und wählen Sie den Container aus, an dem Sie dies anzeigen möchten.
 	
 	  **Beispiel:** Wählen Sie **Single Item: After price**, der auf den Artikelseiten angezeigt werden soll. 
-	
+
    	  Und Wählen Sie **Category item list: After prices container**, um die Auflistung der Artikel anzuzeigen.
-    - Um das Widget "Review-Container" anzuzeigen, suchen Sie den Container "Bewertungen" (ekomi Feedback) und wählen Sie den Container aus, in dem Sie diesen anzeigen möchten.
+      
+    - Um das Widget "Review-Container" anzuzeigen, suchen Sie den Container „Reviews Container (EkomiFeedback)" und wählen Sie den Container aus, in dem Sie diesen anzeigen möchten.

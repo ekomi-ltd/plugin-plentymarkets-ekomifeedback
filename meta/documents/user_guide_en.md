@@ -41,22 +41,26 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 	- Enable the Plugin
 	- Enter your Interface ID
 	- Enter your Interface Password
-	- Enable / Disable Product Reviews (if enabled, product attributes will 	  also be sent to eKomi i.e. product id, name, image, and URL)
-	- Enable / Disable Group Reviews (if enabled, Reviews of child/variants  	   products will also be added )
+	- Enable / Disable Product Reviews (if enabled, product attributes will also be sent to eKomi i.e. product id, name, image, and URL)
+	- Enable / Disable Group Reviews (if enabled, Reviews of child/variants products will also be added)
 	- Select Mode. (for SMS, mobile number format should be according to E164)
-	- Insert Client Store Plenty IDs. Multiple commas separated Plenty IDs can 		 also be added. (optional)
+	- Insert Client Store Plenty IDs. Multiple commas separated Plenty IDs can also be added. (optional)
 	- Select Order Statuses on which you want to send information to eKomi.
 	- Select Referrers Filter (out) to filter out the orders.
 	- Insert Text when no reviews are found.
 	
-	**Note:** Please make sure, The Shop Id and Shop Password are correct. In 	  the case of invalid credentials, the plugin will not work.
+	**Note:** Please make sure, The Shop Id and Shop Password are correct. In the case of invalid credentials, the plugin will not work.
    
 4. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
 
 5. Finally, you have to display the widgets. You can do this via the menu item Plugins / Content. Choose the required client from the drop-down next to save button and select the appropriate containers to display the widgets.
-	- To display the mini stars counter widget, find the Mini Stars Counter 	(eKomi FeedBack) and select container where you want to display this.
 	
-		**For example:** select Single Item: Before price to display on item 	 	 detail pages.
+	- Find “Resources (EkomiFeedback)” and select **Script loader: Register/load JS** container to load resources.
+	
+	- To display the mini stars counter widget, find the "Mini Stars Counter (eKomi FeedBack)" and select container where you want to display this.
+	
+		**For example:** select Single Item: Before price to display on item detail pages.
         
-        And Select **Category item list: After prices container** to display 		 the listing of the items.
-	- To display the Review Container widget, find the Reviews Container 		(eKomi FeedBack) and select the container where you want to display this.
+        And Select **Category item list: After prices container** to display the listing of the items.
+
+	- To display the Review Container widget, find the "Reviews Container (eKomi FeedBack)" and select the container where you want to display this.
