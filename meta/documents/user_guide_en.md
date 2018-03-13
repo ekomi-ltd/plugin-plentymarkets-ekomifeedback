@@ -35,7 +35,9 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 ### Configuring the eKomi Feedback plugin
 1. Under Plugins / Plugin overview, the plugin should appear. This is an indication that the plugin has been installed successfully.
 
-2. Click on the name of the plugin, eKomi FeedBack, to get access to the plugin. There you find the "configuration" of your plugin.
+2. Select the required client from the "CLIENT" drop-down
+
+3. Click on the name of the plugin, eKomi FeedBack, to get access to the plugin. There you find the "configuration" of your plugin.
 	- Enable the Plugin
 	- Enter your Interface ID
 	- Enter your Interface Password
@@ -49,9 +51,9 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 	
 	**Note:** Please make sure, The Shop Id and Shop Password are correct. In 	  the case of invalid credentials, the plugin will not work.
    
-3. Browse to Plugins / Plugin overview and activate the plugin for the desired clients. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
+4. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
 
-4. Finally, you have to display the widgets. You can do this via the menu item Plugins / Content. Select the appropriate containers to display the widgets.
+5. Finally, you have to display the widgets. You can do this via the menu item Plugins / Content. Choose the required client from the drop-down next to save button and select the appropriate containers to display the widgets.
 	- To display the mini stars counter widget, find the Mini Stars Counter 	(eKomi FeedBack) and select container where you want to display this.
 	
 		**For example:** select Single Item: Before price to display on item 	 	 detail pages.
