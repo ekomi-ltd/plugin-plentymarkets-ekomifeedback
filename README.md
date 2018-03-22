@@ -98,6 +98,10 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 
 - User Guides updated (EN,DE)
 
+### v1.3.2 (22-03-2018)
+
+- Surrounding Twig-Block removed.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)

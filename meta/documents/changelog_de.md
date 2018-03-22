@@ -25,3 +25,7 @@
 ### v1.3.0 (13-03-2018)
 
 - Ressourcen Content-Provider hinzugefügt
+
+### v1.3.2 (22-03-2018)
+
+- Umliegender Twig-Block entfernt
