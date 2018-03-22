@@ -63,6 +63,6 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	
 	  **Beispiel:** Wählen Sie **Single Item: After price**, der auf den Artikelseiten angezeigt werden soll. 
 
-   	  Und Wählen Sie **Category item list: After prices container**, um die Auflistung der Artikel anzuzeigen.
+   	- Und Wählen Sie **Category item list: After prices container**, um die Auflistung der Artikel anzuzeigen.
       
     - Um das Widget "Review-Container" anzuzeigen, suchen Sie den Container „Reviews Container (EkomiFeedback)" und wählen Sie den Container aus, in dem Sie diesen anzeigen möchten.
