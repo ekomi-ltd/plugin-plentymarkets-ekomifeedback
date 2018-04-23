@@ -3,7 +3,7 @@
 namespace EkomiFeedback\Containers;
 
 use Plenty\Plugin\Templates\Twig;
-use EkomiFeedback\Repositories\ReviewsRepository;
+use EkomiFeedback\Helper\ConfigHelper;
 
 /**
  * Mini Stars counter
@@ -11,7 +11,13 @@ use EkomiFeedback\Repositories\ReviewsRepository;
 class EkomiFeedbackResources {
 
     public function call(Twig $twig) {
-        return $twig->render('EkomiFeedback::content.resources');
+        $configHelper = pluginApp(ConfigHelper::class);
+
+        if ($configHelper->getEnabled() == 'true') {
+            return $twig->render('EkomiFeedback::content.resources');
+        }
+
+        return '';
     }
 
 }
