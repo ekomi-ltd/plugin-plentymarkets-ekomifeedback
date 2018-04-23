@@ -102,6 +102,11 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 
 - Surrounding Twig-Block removed.
 
+### v1.3.3 (23-04-2018)
+
+- Cronjob running time changed to 15 minute.
+- Ministars clicking event added.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)

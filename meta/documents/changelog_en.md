@@ -29,3 +29,8 @@
 ### v1.3.2 (22-03-2018)
 
 - Surrounding Twig-Block removed.
+
+### v1.3.3 (23-04-2018)
+
+- Cronjob running time changed to 15 minute.
+- Clicking on ministars opens PRC.
