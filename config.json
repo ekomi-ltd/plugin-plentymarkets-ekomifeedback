@@ -1,205 +1,604 @@
-[
-    {
-        "tab": "Configuration",
-        "key": "is_active",
-        "label": "Enable",
-        "type": "checkbox",
-        "default": false
-    },
-    {
-        "tab": "Configuration",
-        "key": "shop_id",
-        "label": "Interface Shop ID",
-        "type": "text",
-        "default": ""
-    },
-    {
-        "tab": "Configuration",
-        "key": "shop_secret",
-        "label": "Interface Shop Secret",
-        "type": "text",
-        "default": ""
-    },
-    {
-        "tab": "Configuration",
-        "key": "product_reviews",
-        "label": "Enable Product Reviews",
-        "type": "checkbox",
-        "default": false
-    },
-    {
-        "tab": "Configuration",
-        "key": "group_reviews",
-        "label": "Enable Group Reviews",
-        "type": "checkbox",
-        "default": false
-    },
-    {
-        "tab": "Configuration",
-        "key": "mode",
-        "label": "Mode",
-        "type": "dropdown",
-        "possibleValues": {
-            "email": "Email",
-            "sms": "SMS",
-            "fallback": "SMS if contact number, otherwise Email"
-        },
-        "default": "email"
-    },
-    {
-        "tab": "Configuration",
-        "key": "plenty_IDs",
-        "label": "Client Store Plenty IDs (comma separated)",
-        "type": "text",
-        "default": ""
-    },
-    {
-        "tab": "Configuration",
-        "key": "order_status",
-        "label": "Order Status",
-        "type": "multi_select",
-        "possibleValues": {
-            "1": "[1] Unvollständige Daten",
-            "1.1": "[1.1] Warten auf Zahlung & Freischaltung",
-            "1.2": "[1.2] Freigeschaltet, warten auf Zahlung",
-            "2": "[2] Warten auf Freischaltung",
-            "3": "[3] Warten auf Zahlung",
-            "3.1": "[3.1] Start PayPal-Zahlungsprozess",
-            "3.2": "[3.2] In Warteposition",
-            "3.3": "[3.3] Versandfertig; warten auf Zahlung",
-            "3.4": "[3.4] Mahnung versendet",
-            "4": "[4] In Versandvorbereitung",
-            "5": "[5] Freigabe Versand",
-            "5.1": "[5.1] Abwicklung extern",
-            "6": "[6] Gerade im Versand",
-            "7": "[7] Warenausgang gebucht",
-            "7.1": "[7.1] Auftrag exportiert",
-            "8": "[8] Storniert",
-            "8.1": "[8.1] Storniert durch Kunden",
-            "9": "[9] Retoure",
-            "9.1": "[9.1] Ware wird geprüft",
-            "9.2": "[9.2] Warten auf Retoure von Großhändler",
-            "9.3": "[9.3] Gewährleistung eingeleitet",
-            "9.4": "[9.4] Umtausch eingeleitet",
-            "9.5": "[9.5] Gutschrift angelegt",
-            "10": "[10] Gewährleistung",
-            "11": "[11] Gutschrift",
-            "11.1": "[11.1] Gutschrift ausgezahlt",
-            "12": "[12] Reparatur",
-            "13": "[13] Sammelauftrag",
-            "14": "[14] Sammelgutschrift"
-        },
-        "default": "7"
-    },
-    {
-        "tab": "Configuration",
-        "key": "referrer_id",
-        "label": "Referrers Filter (out)",
-        "type": "multi_select",
-        "possibleValues": {
-            "0": "[0] Manuelle Eingabe",
-            "1": "[1] Mandant (Shop)",
-            "2": "[2] Ebay",
-            "2.01": "[2.01] eBay United States",
-            "2.02": "[2.02] eBay Canada (English)",
-            "2.03": "[2.03] eBay UK",
-            "2.04": "[2.04] eBay Australia",
-            "2.05": "[2.05] eBay Austria",
-            "2.06": "[2.06] eBay Belgium (French)",
-            "2.07": "[2.07] eBay France",
-            "2.08": "[2.08] eBay Germany",
-            "2.09": "[2.09] eBay Motors",
-            "2.1": "[2.1] eBay Italy",
-            "2.11": "[2.11] eBay Belgium (Dutch)",
-            "2.12": "[2.12] eBay Netherlands",
-            "2.13": "[2.13] eBay Spain",
-            "2.14": "[2.14] eBay Switzerland",
-            "2.15": "[2.15] eBay Hong Kong",
-            "2.16": "[2.16] eBay India",
-            "2.17": "[2.17] eBay Ireland",
-            "2.18": "[2.18] eBay Malaysia",
-            "2.19": "[2.19] eBay Canada (French)",
-            "2.2": "[2.2] eBay Philippines",
-            "2.21": "[2.21] eBay Poland",
-            "2.22": "[2.22] eBay Singapore",
-            "3": "[3] Elmar",
-            "4": "[4] Amazon",
-            "4.01": "[4.01] Amazon Germany",
-            "4.02": "[4.02] Amazon UK",
-            "4.03": "[4.03] Amazon USA",
-            "4.04": "[4.04] Amazon France",
-            "4.05": "[4.05] Amazon Italy",
-            "4.06": "[4.06] Amazon Spain",
-            "4.21": "[4.21] Amazon Germany B2B",
-            "4.22": "[4.22] Amazon UK B2B",
-            "5": "[5] Yatego",
-            "6": "[6] Kelkoo",
-            "7": "[7] GoogleProducts",
-            "101": "[101] Ricardo",
-            "102": "[102] Hitmeister",
-            "103": "[103] Kassensystem",
-            "104": "[104] Amazon FBA",
-            "104.01": "[104.01] Amazon FBA Germany",
-            "104.02": "[104.02] Amazon FBA UK",
-            "104.03": "[104.03] Amazon FBA USA",
-            "104.04": "[104.04] Amazon FBA France",
-            "104.05": "[104.05] Amazon FBA Italy",
-            "104.06": "[104.06] Amazon FBA Spain",
-            "104.21": "[104.21] Amazon FBA Germany B2B",
-            "104.22": "[104.22] Amazon FBA UK B2B",
-            "105": "[105] Zentralverkauf.de",
-            "106": "[106] Rakuten.de",
-            "106.02": "[106.02] Rakuten.co.uk",
-            "107": "[107] Neckermann.de Enterprise",
-            "108": "[108] Otto Cooperation",
-            "108.02": "[108.02] Otto Integration",
-            "109": "[109] Shopgate",
-            "110": "[110] Allyouneed",
-            "111": "[111] Gimahhot",
-            "112": "[112] Shopperella",
-            "113": "[113] ShopShare",
-            "114": "[114] Quelle",
-            "115": "[115] Restposten",
-            "116": "[116] Kauflux",
-            "117": "[117] Home24",
-            "118": "[118] Zalando",
-            "119": "[119] NeckermannATEP",
-            "120": "[120] NeckermannATCD",
-            "121": "[121] Idealo",
-            "121.02": "[121.02] idealo Direktkauf",
-            "122": "[122] La Redoute",
-            "123": "[123] LAARY",
-            "124": "[124] SumoScout",
-            "125": "[125] Hood",
-            "126": "[126] ParfumDEAL",
-            "127": "[127] BeezUP",
-            "130": "[130] tracdelight",
-            "131": "[131] Plus.de",
-            "132": "[132] GartenXXL.de",
-            "133": "[133] Twenga",
-            "134": "[134] sporTrade",
-            "135": "[135] Newsletter2GO",
-            "136": "[136] Play.com",
-            "137": "[137] grosshandel.eu",
-            "138": "[138] Hertie",
-            "139": "[139] CouchCommerce",
-            "143": "[143] Cdiscount.com",
-            "143.02": "[143.02] Cdiscount.com C Logistique",
-            "144": "[144] DaWanda.com",
-            "145": "[145] Fruugo",
-            "147": "[147] Flubit",
-            "148": "[148] WEB-API",
-            "149": "[149] Mercateo",
-            "150": "[150] Check24",
-            "152": "[152] BOL.com"
-        },
-        "default": "none"
-    },
-    {
-        "tab": "Configuration",
-        "key": "no_review_text",
-        "label": "Text when no reviews found",
-        "type": "textarea",
-        "default": ""
+{
+    "formatVersion": 1,
+    "menu": {
+        "Config.ConfigurationTab": {
+            "label": "Config.ConfigurationTab",
+            "formFields": {
+                "is_active": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.isActiveLabel",
+                    "options": {
+                        "defaultValue": false
+                    }
+                },
+                "shop_id": {
+                    "type": "inputText",
+                    "required": false,
+                    "label": "Config.shopIdLabel",
+                    "options": {
+                        "defaultValue": ""
+                    }
+                },
+                "shop_secret": {
+                    "type": "inputText",
+                    "required": false,
+                    "label": "Config.shopSecretLabel",
+                    "options": {
+                        "defaultValue": ""
+                    }
+                },
+                "product_reviews": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.productReviewsLabel",
+                    "options": {
+                        "defaultValue": false
+                    }
+                },
+                "group_reviews": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.groupReviewsLabel",
+                    "options": {
+                        "defaultValue": false
+                    }
+                },
+                "mode": {
+                    "type": "selectBox",
+                    "required": false,
+                    "label": "Config.modeLabel",
+                    "options": {
+                        "defaultValue": "email",
+                        "selectBoxValues": [
+                            {
+                                "value": "email",
+                                "caption": "Config.modePossibleValueEmail"
+                            },
+                            {
+                                "value": "sms",
+                                "caption": "Config.modePossibleValueSms"
+                            },
+                            {
+                                "value": "fallback",
+                                "caption": "Config.modePossibleValueFallback"
+                            }
+                        ]
+                    }
+                },
+                "plenty_IDs": {
+                    "type": "inputText",
+                    "required": false,
+                    "label": "Config.plentyIDsLabel",
+                    "options": {
+                        "defaultValue": ""
+                    }
+                },
+                "order_status": {
+                    "type": "multiCheckBox",
+                    "required": false,
+                    "label": "Config.orderStatusLabel",
+                    "options": {
+                        "defaultValue": "7",
+                        "checkBoxValues": [
+                            {
+                                "value": "1",
+                                "caption": "Config.orderStatusPossibleValue1"
+                            },
+                            {
+                                "value": "2",
+                                "caption": "Config.orderStatusPossibleValue2"
+                            },
+                            {
+                                "value": "3",
+                                "caption": "Config.orderStatusPossibleValue3"
+                            },
+                            {
+                                "value": "4",
+                                "caption": "Config.orderStatusPossibleValue4"
+                            },
+                            {
+                                "value": "5",
+                                "caption": "Config.orderStatusPossibleValue5"
+                            },
+                            {
+                                "value": "6",
+                                "caption": "Config.orderStatusPossibleValue6"
+                            },
+                            {
+                                "value": "7",
+                                "caption": "Config.orderStatusPossibleValue7"
+                            },
+                            {
+                                "value": "8",
+                                "caption": "Config.orderStatusPossibleValue8"
+                            },
+                            {
+                                "value": "9",
+                                "caption": "Config.orderStatusPossibleValue9"
+                            },
+                            {
+                                "value": "10",
+                                "caption": "Config.orderStatusPossibleValue10"
+                            },
+                            {
+                                "value": "11",
+                                "caption": "Config.orderStatusPossibleValue11"
+                            },
+                            {
+                                "value": "12",
+                                "caption": "Config.orderStatusPossibleValue12"
+                            },
+                            {
+                                "value": "13",
+                                "caption": "Config.orderStatusPossibleValue13"
+                            },
+                            {
+                                "value": "14",
+                                "caption": "Config.orderStatusPossibleValue14"
+                            },
+                            {
+                                "value": "1.1",
+                                "caption": "Config.orderStatusPossibleValue11"
+                            },
+                            {
+                                "value": "1.2",
+                                "caption": "Config.orderStatusPossibleValue12"
+                            },
+                            {
+                                "value": "3.1",
+                                "caption": "Config.orderStatusPossibleValue31"
+                            },
+                            {
+                                "value": "3.2",
+                                "caption": "Config.orderStatusPossibleValue32"
+                            },
+                            {
+                                "value": "3.3",
+                                "caption": "Config.orderStatusPossibleValue33"
+                            },
+                            {
+                                "value": "3.4",
+                                "caption": "Config.orderStatusPossibleValue34"
+                            },
+                            {
+                                "value": "5.1",
+                                "caption": "Config.orderStatusPossibleValue51"
+                            },
+                            {
+                                "value": "7.1",
+                                "caption": "Config.orderStatusPossibleValue71"
+                            },
+                            {
+                                "value": "8.1",
+                                "caption": "Config.orderStatusPossibleValue81"
+                            },
+                            {
+                                "value": "9.1",
+                                "caption": "Config.orderStatusPossibleValue91"
+                            },
+                            {
+                                "value": "9.2",
+                                "caption": "Config.orderStatusPossibleValue92"
+                            },
+                            {
+                                "value": "9.3",
+                                "caption": "Config.orderStatusPossibleValue93"
+                            },
+                            {
+                                "value": "9.4",
+                                "caption": "Config.orderStatusPossibleValue94"
+                            },
+                            {
+                                "value": "9.5",
+                                "caption": "Config.orderStatusPossibleValue95"
+                            },
+                            {
+                                "value": "11.1",
+                                "caption": "Config.orderStatusPossibleValue111"
+                            }
+                        ]
+                    }
+                },
+                "referrer_id": {
+                    "type": "multiCheckBox",
+                    "required": false,
+                    "label": "Config.referrerIdLabel",
+                    "options": {
+                        "defaultValue": "none",
+                        "checkBoxValues": [
+                            {
+                                "value": "0",
+                                "caption": "Config.referrerIdPossibleValue0"
+                            },
+                            {
+                                "value": "1",
+                                "caption": "Config.referrerIdPossibleValue1"
+                            },
+                            {
+                                "value": "2",
+                                "caption": "Config.referrerIdPossibleValue2"
+                            },
+                            {
+                                "value": "3",
+                                "caption": "Config.referrerIdPossibleValue3"
+                            },
+                            {
+                                "value": "4",
+                                "caption": "Config.referrerIdPossibleValue4"
+                            },
+                            {
+                                "value": "5",
+                                "caption": "Config.referrerIdPossibleValue5"
+                            },
+                            {
+                                "value": "6",
+                                "caption": "Config.referrerIdPossibleValue6"
+                            },
+                            {
+                                "value": "7",
+                                "caption": "Config.referrerIdPossibleValue7"
+                            },
+                            {
+                                "value": "101",
+                                "caption": "Config.referrerIdPossibleValue101"
+                            },
+                            {
+                                "value": "102",
+                                "caption": "Config.referrerIdPossibleValue102"
+                            },
+                            {
+                                "value": "103",
+                                "caption": "Config.referrerIdPossibleValue103"
+                            },
+                            {
+                                "value": "104",
+                                "caption": "Config.referrerIdPossibleValue104"
+                            },
+                            {
+                                "value": "105",
+                                "caption": "Config.referrerIdPossibleValue105"
+                            },
+                            {
+                                "value": "106",
+                                "caption": "Config.referrerIdPossibleValue106"
+                            },
+                            {
+                                "value": "107",
+                                "caption": "Config.referrerIdPossibleValue107"
+                            },
+                            {
+                                "value": "108",
+                                "caption": "Config.referrerIdPossibleValue108"
+                            },
+                            {
+                                "value": "109",
+                                "caption": "Config.referrerIdPossibleValue109"
+                            },
+                            {
+                                "value": "110",
+                                "caption": "Config.referrerIdPossibleValue110"
+                            },
+                            {
+                                "value": "111",
+                                "caption": "Config.referrerIdPossibleValue111"
+                            },
+                            {
+                                "value": "112",
+                                "caption": "Config.referrerIdPossibleValue112"
+                            },
+                            {
+                                "value": "113",
+                                "caption": "Config.referrerIdPossibleValue113"
+                            },
+                            {
+                                "value": "114",
+                                "caption": "Config.referrerIdPossibleValue114"
+                            },
+                            {
+                                "value": "115",
+                                "caption": "Config.referrerIdPossibleValue115"
+                            },
+                            {
+                                "value": "116",
+                                "caption": "Config.referrerIdPossibleValue116"
+                            },
+                            {
+                                "value": "117",
+                                "caption": "Config.referrerIdPossibleValue117"
+                            },
+                            {
+                                "value": "118",
+                                "caption": "Config.referrerIdPossibleValue118"
+                            },
+                            {
+                                "value": "119",
+                                "caption": "Config.referrerIdPossibleValue119"
+                            },
+                            {
+                                "value": "120",
+                                "caption": "Config.referrerIdPossibleValue120"
+                            },
+                            {
+                                "value": "121",
+                                "caption": "Config.referrerIdPossibleValue121"
+                            },
+                            {
+                                "value": "122",
+                                "caption": "Config.referrerIdPossibleValue122"
+                            },
+                            {
+                                "value": "123",
+                                "caption": "Config.referrerIdPossibleValue123"
+                            },
+                            {
+                                "value": "124",
+                                "caption": "Config.referrerIdPossibleValue124"
+                            },
+                            {
+                                "value": "125",
+                                "caption": "Config.referrerIdPossibleValue125"
+                            },
+                            {
+                                "value": "126",
+                                "caption": "Config.referrerIdPossibleValue126"
+                            },
+                            {
+                                "value": "127",
+                                "caption": "Config.referrerIdPossibleValue127"
+                            },
+                            {
+                                "value": "130",
+                                "caption": "Config.referrerIdPossibleValue130"
+                            },
+                            {
+                                "value": "131",
+                                "caption": "Config.referrerIdPossibleValue131"
+                            },
+                            {
+                                "value": "132",
+                                "caption": "Config.referrerIdPossibleValue132"
+                            },
+                            {
+                                "value": "133",
+                                "caption": "Config.referrerIdPossibleValue133"
+                            },
+                            {
+                                "value": "134",
+                                "caption": "Config.referrerIdPossibleValue134"
+                            },
+                            {
+                                "value": "135",
+                                "caption": "Config.referrerIdPossibleValue135"
+                            },
+                            {
+                                "value": "136",
+                                "caption": "Config.referrerIdPossibleValue136"
+                            },
+                            {
+                                "value": "137",
+                                "caption": "Config.referrerIdPossibleValue137"
+                            },
+                            {
+                                "value": "138",
+                                "caption": "Config.referrerIdPossibleValue138"
+                            },
+                            {
+                                "value": "139",
+                                "caption": "Config.referrerIdPossibleValue139"
+                            },
+                            {
+                                "value": "143",
+                                "caption": "Config.referrerIdPossibleValue143"
+                            },
+                            {
+                                "value": "144",
+                                "caption": "Config.referrerIdPossibleValue144"
+                            },
+                            {
+                                "value": "145",
+                                "caption": "Config.referrerIdPossibleValue145"
+                            },
+                            {
+                                "value": "147",
+                                "caption": "Config.referrerIdPossibleValue147"
+                            },
+                            {
+                                "value": "148",
+                                "caption": "Config.referrerIdPossibleValue148"
+                            },
+                            {
+                                "value": "149",
+                                "caption": "Config.referrerIdPossibleValue149"
+                            },
+                            {
+                                "value": "150",
+                                "caption": "Config.referrerIdPossibleValue150"
+                            },
+                            {
+                                "value": "152",
+                                "caption": "Config.referrerIdPossibleValue152"
+                            },
+                            {
+                                "value": "2.01",
+                                "caption": "Config.referrerIdPossibleValue201"
+                            },
+                            {
+                                "value": "2.02",
+                                "caption": "Config.referrerIdPossibleValue202"
+                            },
+                            {
+                                "value": "2.03",
+                                "caption": "Config.referrerIdPossibleValue203"
+                            },
+                            {
+                                "value": "2.04",
+                                "caption": "Config.referrerIdPossibleValue204"
+                            },
+                            {
+                                "value": "2.05",
+                                "caption": "Config.referrerIdPossibleValue205"
+                            },
+                            {
+                                "value": "2.06",
+                                "caption": "Config.referrerIdPossibleValue206"
+                            },
+                            {
+                                "value": "2.07",
+                                "caption": "Config.referrerIdPossibleValue207"
+                            },
+                            {
+                                "value": "2.08",
+                                "caption": "Config.referrerIdPossibleValue208"
+                            },
+                            {
+                                "value": "2.09",
+                                "caption": "Config.referrerIdPossibleValue209"
+                            },
+                            {
+                                "value": "2.1",
+                                "caption": "Config.referrerIdPossibleValue21"
+                            },
+                            {
+                                "value": "2.11",
+                                "caption": "Config.referrerIdPossibleValue211"
+                            },
+                            {
+                                "value": "2.12",
+                                "caption": "Config.referrerIdPossibleValue212"
+                            },
+                            {
+                                "value": "2.13",
+                                "caption": "Config.referrerIdPossibleValue213"
+                            },
+                            {
+                                "value": "2.14",
+                                "caption": "Config.referrerIdPossibleValue214"
+                            },
+                            {
+                                "value": "2.15",
+                                "caption": "Config.referrerIdPossibleValue215"
+                            },
+                            {
+                                "value": "2.16",
+                                "caption": "Config.referrerIdPossibleValue216"
+                            },
+                            {
+                                "value": "2.17",
+                                "caption": "Config.referrerIdPossibleValue217"
+                            },
+                            {
+                                "value": "2.18",
+                                "caption": "Config.referrerIdPossibleValue218"
+                            },
+                            {
+                                "value": "2.19",
+                                "caption": "Config.referrerIdPossibleValue219"
+                            },
+                            {
+                                "value": "2.2",
+                                "caption": "Config.referrerIdPossibleValue22"
+                            },
+                            {
+                                "value": "2.21",
+                                "caption": "Config.referrerIdPossibleValue221"
+                            },
+                            {
+                                "value": "2.22",
+                                "caption": "Config.referrerIdPossibleValue222"
+                            },
+                            {
+                                "value": "4.01",
+                                "caption": "Config.referrerIdPossibleValue401"
+                            },
+                            {
+                                "value": "4.02",
+                                "caption": "Config.referrerIdPossibleValue402"
+                            },
+                            {
+                                "value": "4.03",
+                                "caption": "Config.referrerIdPossibleValue403"
+                            },
+                            {
+                                "value": "4.04",
+                                "caption": "Config.referrerIdPossibleValue404"
+                            },
+                            {
+                                "value": "4.05",
+                                "caption": "Config.referrerIdPossibleValue405"
+                            },
+                            {
+                                "value": "4.06",
+                                "caption": "Config.referrerIdPossibleValue406"
+                            },
+                            {
+                                "value": "4.21",
+                                "caption": "Config.referrerIdPossibleValue421"
+                            },
+                            {
+                                "value": "4.22",
+                                "caption": "Config.referrerIdPossibleValue422"
+                            },
+                            {
+                                "value": "104.01",
+                                "caption": "Config.referrerIdPossibleValue10401"
+                            },
+                            {
+                                "value": "104.02",
+                                "caption": "Config.referrerIdPossibleValue10402"
+                            },
+                            {
+                                "value": "104.03",
+                                "caption": "Config.referrerIdPossibleValue10403"
+                            },
+                            {
+                                "value": "104.04",
+                                "caption": "Config.referrerIdPossibleValue10404"
+                            },
+                            {
+                                "value": "104.05",
+                                "caption": "Config.referrerIdPossibleValue10405"
+                            },
+                            {
+                                "value": "104.06",
+                                "caption": "Config.referrerIdPossibleValue10406"
+                            },
+                            {
+                                "value": "104.21",
+                                "caption": "Config.referrerIdPossibleValue10421"
+                            },
+                            {
+                                "value": "104.22",
+                                "caption": "Config.referrerIdPossibleValue10422"
+                            },
+                            {
+                                "value": "106.02",
+                                "caption": "Config.referrerIdPossibleValue10602"
+                            },
+                            {
+                                "value": "108.02",
+                                "caption": "Config.referrerIdPossibleValue10802"
+                            },
+                            {
+                                "value": "121.02",
+                                "caption": "Config.referrerIdPossibleValue12102"
+                            },
+                            {
+                                "value": "143.02",
+                                "caption": "Config.referrerIdPossibleValue14302"
+                            }
+                        ]
+                    }
+                },
+                "no_review_text": {
+                    "type": "inputTextArea",
+                    "required": false,
+                    "label": "Config.noReviewTextLabel",
+                    "options": {
+                        "defaultValue": ""
+                    }
+                }
+            }
+        }
     }
-]
+}

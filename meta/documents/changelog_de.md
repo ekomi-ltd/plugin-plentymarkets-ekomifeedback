@@ -34,3 +34,8 @@
 
 - Cronjob-Laufzeit wurde auf 15 Minuten geändert
 - Ein Klick auf Ministars öffnet PRC
+
+### v2.0.0 (29-05-2018)
+
+- Die Cronjob-Laufzeit wurde auf 24 Stunden geändert.
+- Config neue Struktur und Mehrsprachigkeit.

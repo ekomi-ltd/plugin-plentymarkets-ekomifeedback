@@ -34,3 +34,8 @@
 
 - Cronjob running time changed to 15 minute.
 - Clicking on ministars opens PRC.
+
+### v2.0.0 (29-05-2018)
+
+- Cronjob running time changed to 24 hour.
+- Config new structure & Multilingualism.

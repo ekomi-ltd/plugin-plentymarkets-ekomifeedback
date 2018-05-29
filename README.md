@@ -105,7 +105,12 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 ### v1.3.3 (23-04-2018)
 
 - Cronjob running time changed to 15 minute.
-- Ministars clicking event added.
+- Clicking on ministars opens PRC.
+
+### v2.0.0 (29-05-2018)
+
+- Cronjob running time changed to 24 hour.
+- Config new structure & Multilingualism.
 
 ## Authors
 
