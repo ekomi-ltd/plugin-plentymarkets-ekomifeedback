@@ -168,7 +168,8 @@ class EkomiServices {
                 $decodedResp = json_decode($exec);
 
                if ($decodedResp && $decodedResp->status == 'error') {
-                    $this->getLogger(__FUNCTION__)->error("$logMessage|$decodedResp->status", $logMessage .= $exec);
+                   $this->getLogger(__FUNCTION__)->error("$logMessage|orderData", $postVars);
+                   $this->getLogger(__FUNCTION__)->error("$logMessage|$decodedResp->status", $logMessage .= $exec);
                }
                 return TRUE;
             } catch (\Exception $e) {
