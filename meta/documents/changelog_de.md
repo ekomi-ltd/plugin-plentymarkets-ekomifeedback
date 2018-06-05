@@ -39,3 +39,7 @@
 
 - Die Cronjob-Laufzeit wurde auf 24 Stunden geändert.
 - Config neue Struktur und Mehrsprachigkeit.
+
+### v2.1.0 (05-06-2018)
+
+- Code-Redundanz behoben.

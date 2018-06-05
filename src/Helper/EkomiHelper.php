@@ -2,8 +2,6 @@
 
 namespace EkomiFeedback\Helper;
 
-use Plenty\Modules\Order\Address\Contracts\OrderAddressRepositoryContract;
-use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use EkomiFeedback\Helper\ConfigHelper;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Item\ItemImage\Contracts\ItemImageRepositoryContract;
@@ -17,15 +15,11 @@ class EkomiHelper {
      * @var ConfigRepository
      */
     private $configHelper;
-    private $orderAddress;
-    private $itemVariation;
     private $webStoreRepo;
     private $imagesRepo;
 
-    public function __construct(WebstoreRepositoryContract $webStoreRepo, ConfigHelper $configHelper, VariationRepositoryContract $variation, OrderAddressRepositoryContract $orderAddress, ItemImageRepositoryContract $imagesRepo) {
+    public function __construct(WebstoreRepositoryContract $webStoreRepo, ConfigHelper $configHelper, ItemImageRepositoryContract $imagesRepo) {
         $this->configHelper = $configHelper;
-        $this->orderAddress = $orderAddress;
-        $this->itemVariation = $variation;
         $this->webStoreRepo = $webStoreRepo;
         $this->imagesRepo = $imagesRepo;
     }
@@ -42,21 +36,9 @@ class EkomiHelper {
         $plentyId = $order['plentyId'];
         $createdAt = $order['createdAt'];
 
-        $customerInfo = array();
+        $customerInfo=$order['relations'][1]['contactReceiver'];
 
-        foreach ($order['addressRelations'] as $key => $value) {
-            $customerInfo[$value['typeId']] = array('addressId' => $value['addressId'], 'typeId' => $value['typeId']);
-        }
-
-        $addressTypeId = 1;
-        $addressId = $customerInfo[$addressTypeId]['addressId'];
-
-        $customerInfo = $this->getCustomerInfo($addressId, $id, $addressTypeId);
-
-        $clientId = $this->getClientId($order['relations']);
-
-        $telephone = $this->getCustomerPhone($addressId, $id, $addressTypeId);
-        $apiMode = $this->getRecipientType($telephone);
+        $apiMode = $this->getRecipientType($customerInfo['privatePhone']);
 
         $scheduleTime = $this->toMySqlDateTime($createdAt);
 
@@ -71,18 +53,18 @@ class EkomiHelper {
             'password' => $this->configHelper->getShopSecret(),
             'recipient_type' => $apiMode,
             'salutation' => '',
-            'first_name' => (empty($customerInfo['name1'])) ? $customerInfo['name2'] : $customerInfo['name1'],
-            'last_name' => $customerInfo['name3'],
-            'email' => $this->getCustomerEmail($addressId, $id, $addressTypeId),
+            'first_name' => $customerInfo['firstName'],
+            'last_name' => $customerInfo['lastName'],
+            'email' => $customerInfo['email'],
             'transaction_id' => $id,
             'transaction_time' => $scheduleTime,
-            'telephone' => $telephone,
+            'telephone' => $customerInfo['privatePhone'],
             'sender_name' => $senderName,
-            'sender_email' => $this->getStoreEmail()
+            'sender_email' => ''
         );
 
-        $fields['client_id'] = $clientId;
-        $fields['screen_name'] = $customerInfo['searchName'];
+        $fields['client_id'] = $customerInfo['id'];
+        $fields['screen_name'] = $customerInfo['fullName'];
 
         if ($this->configHelper->getProductReviews() == 'true') {
             $fields['has_products'] = 1;
@@ -101,56 +83,6 @@ class EkomiHelper {
         }
 
         return $postVars;
-    }
-
-    protected function getClientId($relations) {
-        $clientId = '';
-        foreach ($relations as $key => $value) {
-            if ($value['relation'] == 'receiver') {
-                $clientId = $value['referenceId'];
-                break;
-            }
-        }
-        return $clientId;
-    }
-
-    /**
-     * Gets customer information
-     * 
-     * @param int $addressId The address order
-     * @param int $orderId   Order id
-     * @param int $typeId    The type of address
-     *  
-     * @return array address of order
-     */
-    public function getCustomerInfo($addressId, $orderId, $typeId) {
-        return $this->orderAddress->getAddressOfOrder($addressId, $orderId, $typeId)->toArray();
-    }
-
-    /**
-     * Gets Customer email
-     * 
-     * @param int $addressId The address order
-     * @param int $orderId   Order id
-     * @param int $typeId    The type of address
-     *  
-     * @return array address of order
-     */
-    public function getCustomerEmail($addressId, $orderId, $typeId) {
-        return $this->orderAddress->getAddressOfOrder($addressId, $orderId, $typeId)->email;
-    }
-
-    /**
-     * Gets Customer phone number
-     * 
-     * @param int $addressId The address order
-     * @param int $orderId   Order id
-     * @param int $typeId    The type of address
-     *  
-     * @return array address of order
-     */
-    public function getCustomerPhone($addressId, $orderId, $typeId) {
-        return $this->orderAddress->getAddressOfOrder($addressId, $orderId, $typeId)->phone;
     }
 
     /**
@@ -196,21 +128,6 @@ class EkomiHelper {
     }
 
     /**
-     * Gets the variation of item
-     * 
-     * @param int $variationId The variation Id
-     *  
-     * @return int The id of item Null otherwise.
-     */
-    public function getItemIdByVariationId($variationId) {
-        $item = $this->itemVariation->findById($variationId)->toArray();
-        if (isset($item['itemId'])) {
-            return $item['itemId'];
-        }
-        return NULL;
-    }
-
-    /**
      * Gets the products data
      * 
      * @return array The products array
@@ -222,7 +139,7 @@ class EkomiHelper {
         $products = array();
         foreach ($orderItems as $key => $product) {
             if (!empty($product['properties'])) {
-                $itemId = $this->getItemIdByVariationId($product['itemVariationId']);
+                $itemId = $product['id'];
 
                 $canonicalUrl = $this->getItemUrl($itemId, $plentyId);
 
@@ -366,17 +283,6 @@ class EkomiHelper {
         if (isset($temp1['configuration']['domain'])) {
             return $temp1['configuration']['domain'];
         }
-        return '';
-    }
-
-    /**
-     * Gets store email
-     * 
-     * @return string
-     * 
-     * @access protected
-     */
-    protected function getStoreEmail() {
         return '';
     }
 

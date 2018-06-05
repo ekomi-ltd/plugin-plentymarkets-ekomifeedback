@@ -112,6 +112,10 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 - Cronjob running time changed to 24 hour.
 - Config new structure & Multilingualism.
 
+### v2.1.0 (05-06-2018)
+
+- Code redundancy fixed.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)

@@ -29,21 +29,24 @@ class ReviewsRepository {
     }
 
     /**
-     * Checks is Reviews Exist in DB
-     * 
-     * @param array $review
-     * @return boolean
+     * Gets all reviews from Database
+     *
      */
-    public function isReviewExist($review) {
+
+    public function getAllReviews() {
         $result = $this->db->query(Reviews::class)
-                        ->where('shopId', '=', $this->configHelper->getShopId())
-                        ->where('orderId', '=', $review['order_id'])
-                        ->where('productId', '=', $review['product_id'])
-                        ->where('timestamp', '=', $review['submitted'])->get();
-        if (empty($result)) {
-            return FALSE;
+            ->where('shopId', '=', $this->configHelper->getShopId())->get();
+
+        $reviews = [];
+
+        if (!empty($result)) {
+            foreach ($result as $review){
+                $key = $review->orderId.$review->productId.$review->timestamp;
+                $reviews[$key]=true;
+            }
         }
-        return TRUE;
+
+        return $reviews;
     }
 
     /**
@@ -53,8 +56,10 @@ class ReviewsRepository {
      * @return int reviews counts
      */
     public function saveReviews($reviews) {
+        $savedReviews = $this->getAllReviews();
         foreach ($reviews as $review) {
-            if (!$this->isReviewExist($review)) {
+            $key = $review['order_id'].$review['product_id'].((int) $review['submitted']);
+            if (!isset($savedReviews[$key])) {
                 $ekomiReview = pluginApp(Reviews::class);
                 $ekomiReview->shopId = (int) $this->configHelper->getShopId();
                 $ekomiReview->orderId = $review['order_id'];

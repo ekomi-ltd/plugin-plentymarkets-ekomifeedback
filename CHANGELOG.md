@@ -43,3 +43,7 @@
 
 - Cronjob running time changed to 24 hour.
 - Config new structure & Multilingualism.
+
+### v2.1.0 (05-06-2018)
+
+- Code redundancy fixed.

@@ -1,5 +1,5 @@
 {
-    "version": "2.0.0",
+    "version": "2.1.0",
     "name": "EkomiFeedback",
     "marketplaceName": {
         "de": "EkomiFeedback",
@@ -13,7 +13,7 @@
         "de": "Mit unseren offiziellen eKomi Plugins für diverse Shopsysteme können Sie nun unsere eKomi-Review-Technologie nahtlos in Ihr Shop-System und Ihre Website integrieren. Es erfolgt ein automatischer Versand einer Bewertungsanfrage in dem Moment, in dem eine Bestellung einen vordefinierten Status erreicht hat. Mit dem Produkt-Bewertungs-Container können Sie in wenigen Schritten das Anzeigen von Produktbewertungen so einstellen, dass auch diese automatisch in den entsprechenden Produktseiten angezeigt werden. Auf diese Weise werden echte Kundenbewertungen erstellt und angezeigt, während wir Ihre Verkäuferbewertungen gleichzeitig mit Google, Bing und Yahoo syndizieren.",
         "en": "With our official eKomi Plugin for Plentymarkets, you can now seamlessly integrate our eKomi review collection and display technology with your shop system and website. Automatically trigger the sending of a review request the moment an order has reached a predefined status, and display any product reviews received automatically on the corresponding product pages with our review container. This allows you to generate and display genuine client reviews, all while we syndicate your seller ratings to Google, Bing and Yahoo."
     },
-    "categories": ["3521","3527"],
+    "categories": ["3527"],
     "author": "eKomi Ltd",
     "authorIcon": "icon_author_xs.png",
     "email": "support@ekomi.zendesk.com",

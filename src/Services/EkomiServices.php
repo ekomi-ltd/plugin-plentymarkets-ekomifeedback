@@ -75,11 +75,9 @@ class EkomiServices {
                 while ($fetchOrders) {
                     $orders = $this->orderRepository->getOrders($pageNum);
                     $this->getLogger(__FUNCTION__)->error('orders-chunk', 'count:'.count($orders));
-                    // return $orders;
                     $flag = FALSE;
                     if ($orders && !empty($orders)) {
                         foreach ($orders as $key => $order) {
-                            //$this->getLogger(__FUNCTION__)->error('order', $order);
                             $orderId = $order['id'];
                             $plentyID   = $order['plentyId'];
                             $referrerId = $order['orderItems'][0]['referrerId'];
@@ -98,7 +96,6 @@ class EkomiServices {
                                 }
 
                                 $updatedAt = $this->ekomiHelper->toMySqlDateTime($order['updatedAt']);
-
                                 $statusId = $order['statusId'];
 
                                 $orderDaysDiff = $this->ekomiHelper->daysDifference($updatedAt);
@@ -170,9 +167,9 @@ class EkomiServices {
 
                 $decodedResp = json_decode($exec);
 
-               //if ($decodedResp && $decodedResp->status == 'error') {
+               if ($decodedResp && $decodedResp->status == 'error') {
                     $this->getLogger(__FUNCTION__)->error("$logMessage|$decodedResp->status", $logMessage .= $exec);
-                //}
+               }
                 return TRUE;
             } catch (\Exception $e) {
                 $this->getLogger(__FUNCTION__)->error("$logMessage|exception", $logMessage .= $e->getMessage());
