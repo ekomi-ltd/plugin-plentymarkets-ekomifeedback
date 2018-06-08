@@ -59,7 +59,7 @@ class EkomiServices {
     /**
      * Sends orders data to eKomi System
      */
-     public function sendOrdersData($daysDiff = 7) {
+     public function sendOrdersData() {
     	
         if ($this->configHelper->getEnabled() == 'true') {
             if ($this->validateShop()) {
@@ -67,19 +67,25 @@ class EkomiServices {
                 $orderStatuses = $this->configHelper->getOrderStatus();
                 $referrerIds   = $this->configHelper->getReferrerIds();
                 $plentyIDs     = $this->configHelper->getPlentyIDs();
+                $turnaroundTime = $this->configHelper->getTurnaroundTime();
 
-                $pageNum = 1;
+                $updatedAtFrom = date('Y-m-d\TH:i:s',strtotime("-{$turnaroundTime} day"));
+                $updatedAtTo = date('Y-m-d\TH:i:s');
 
-                $fetchOrders = TRUE;
-				
-                while ($fetchOrders) {
-                    $orders = $this->orderRepository->getOrders($pageNum);
-                    $this->getLogger(__FUNCTION__)->error('orders-chunk', 'count:'.count($orders));
-                    $flag = FALSE;
+                $pageNum =1;
+                $filters = ['updatedAtFrom'=>$updatedAtFrom,'updatedAtTo'=>$updatedAtTo];
+
+                $fetchOrders = true;
+
+                while($fetchOrders) {
+                    $orders = $this->orderRepository->getOrders($pageNum, $filters);
+
+                    $this->getLogger(__FUNCTION__)->error('orders-count-page-' . $pageNum, 'count:' . count($orders));
+
                     if ($orders && !empty($orders)) {
                         foreach ($orders as $key => $order) {
                             $orderId = $order['id'];
-                            $plentyID   = $order['plentyId'];
+                            $plentyID = $order['plentyId'];
                             $referrerId = $order['orderItems'][0]['referrerId'];
 
                             if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
@@ -91,41 +97,23 @@ class EkomiServices {
                                         '|ReferrerID:' . $referrerId .
                                         ' Blocked in plugin configuration.'
                                     );
-                                    $flag = TRUE;
                                     continue;
                                 }
+                                if (in_array($order['statusId'], $orderStatuses)) {
 
-                                $updatedAt = $this->ekomiHelper->toMySqlDateTime($order['updatedAt']);
-                                $statusId = $order['statusId'];
-
-                                $orderDaysDiff = $this->ekomiHelper->daysDifference($updatedAt);
-
-                                if ($orderDaysDiff <= $daysDiff) {
-
-                                    if (in_array($statusId, $orderStatuses)) {
-
-                                        $postVars = $this->ekomiHelper->preparePostVars($order);
-                                        // sends order data to eKomi
-                                        $this->addRecipient($postVars, $orderId);
-                                    }
-
-                                    $flag = TRUE;
-                                } else{
-                                    $this->getLogger(__FUNCTION__)->error("orderId:{$orderId}|old", "orderId:{$orderId}|days difference failed $orderDaysDiff <= $daysDiff");
+                                    $postVars = $this->ekomiHelper->preparePostVars($order);
+                                    // sends order data to eKomi
+                                    $this->addRecipient($postVars, $orderId);
                                 }
-
-                            } else{
-                                $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID('.$plentyID .') not matched with PlentyIDs:'. implode(',', $plentyIDs));
+                            } else {
+                                $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode(',', $plentyIDs));
                             }
                         }
+                    } else{
+                        $fetchOrders = false;
                     }
-                    //check to fetch next page
-                    if ($flag) {
-                        $fetchOrders = TRUE;
-                        $pageNum++;
-                    } else {
-                        $fetchOrders = FALSE;
-                    }
+
+                    $pageNum = $pageNum + 1;
                 }
             } else {
                 $this->getLogger(__FUNCTION__)->error('invalid credentials', "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}");

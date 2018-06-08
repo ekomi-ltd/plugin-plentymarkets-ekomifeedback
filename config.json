@@ -66,6 +66,40 @@
                         ]
                     }
                 },
+                "turnaround_time": {
+                    "type": "selectBox",
+                    "required": true,
+                    "label": "Config.turnaroundTimeLabel",
+                    "options": {
+                        "defaultValue": 10,
+                        "selectBoxValues": [
+                            {
+                                "value": 5,
+                                "caption": "5"
+                            },
+                            {
+                                "value": 10,
+                                "caption": "10"
+                            },
+                            {
+                                "value": 15,
+                                "caption": "15"
+                            },
+                            {
+                                "value": 20,
+                                "caption": "20"
+                            },
+                            {
+                                "value": 25,
+                                "caption": "25"
+                            },
+                            {
+                                "value": 30,
+                                "caption": "30"
+                            }
+                        ]
+                    }
+                },
                 "plenty_IDs": {
                     "type": "inputText",
                     "required": false,

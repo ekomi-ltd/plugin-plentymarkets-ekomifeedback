@@ -106,14 +106,14 @@ class EkomiHelper {
      *  
      * @return string The url of image
      */
-    public function getItemUrl($itemId, $plentyId) {
+    public function getItemURLs($itemId, $plentyId) {
         $itemUrl = '';
 
-        $images = $this->getItemImageUrl($itemId);
+        $imagUrl = $this->getItemImageUrl($itemId);
 
-        if (isset($images[0])) {
-            if (!empty($images[0]['url'])) {
-                $temp = explode('/item/', $images[0]['url']);
+        if (isset($imagUrl[0])) {
+            if (!empty($imagUrl[0]['url'])) {
+                $temp = explode('/item/', $imagUrl[0]['url']);
                 if (isset($temp[0])) {
                     $itemUrl = $temp[0];
                 }
@@ -124,7 +124,7 @@ class EkomiHelper {
         }
         $itemUrl = $itemUrl . '/a-' . $itemId;
 
-        return $itemUrl;
+        return ['itemUrl'=>$itemUrl,'imgUrl'=>$imagUrl];
     }
 
     /**
@@ -141,15 +141,13 @@ class EkomiHelper {
             if (!empty($product['properties'])) {
                 $itemId = $product['id'];
 
-                $canonicalUrl = $this->getItemUrl($itemId, $plentyId);
+                $itemURLs = $this->getItemURLs($itemId, $plentyId);
 
                 $products['product_info'][$itemId] = $product['orderItemName'];
 
                 $productOther = array();
 
-                $imageUrl = $this->getItemImageUrl($itemId);
-
-                $productOther['image_url'] = utf8_decode($imageUrl);
+                $productOther['image_url'] = utf8_decode($itemURLs['imgUrl']);
 
                 $productOther['brand_name'] = '';
 
@@ -159,7 +157,7 @@ class EkomiHelper {
 
                 $productOther['links'] = array(
                     array('rel' => 'canonical', 'type' => 'text/html',
-                        'href' => utf8_decode($canonicalUrl))
+                        'href' => utf8_decode($itemURLs['itemUrl']))
                 );
 
                 $products['other'][$itemId]['product_other'] = $productOther;
@@ -235,23 +233,6 @@ class EkomiHelper {
             echo $exc->getTraceAsString();
             return $date;
         }
-    }
-
-    /**
-     * Calculate the days difference in date
-     * 
-     * @param string $date the order updated date
-     * 
-     * @return int Number of days
-     */
-    public function daysDifference($date) {
-        $temp = $this->toMySqlDateTime($date);
-
-        $str = strtotime(date("d-m-Y H:i:s")) - (strtotime($temp));
-
-        $days = floor($str / 3600 / 24);
-
-        return $days;
     }
 
     /**

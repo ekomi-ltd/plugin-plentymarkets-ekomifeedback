@@ -43,3 +43,8 @@
 ### v2.1.0 (05-06-2018)
 
 - Code-Redundanz behoben.
+
+### v2.2.0 (08-06-2018)
+
+- Code-Optimierung.
+- Bearbeitungszeit.

@@ -28,6 +28,10 @@ class ConfigHelper {
     {
         return $this->config->get('EkomiFeedback.mode');
     }
+    public function getTurnaroundTime()
+    {
+        return $this->config->get('EkomiFeedback.turnaround_time');
+    }
 
     public function getShopId()
     {

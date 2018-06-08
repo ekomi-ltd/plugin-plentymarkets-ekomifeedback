@@ -25,7 +25,7 @@ class ContentController extends Controller {
 
         $service = pluginApp(EkomiServices::class);
         
-        $service->sendOrdersData(7);
+        $service->sendOrdersData();
 
         return $twig->render('EkomiFeedback::content.hello');
     }

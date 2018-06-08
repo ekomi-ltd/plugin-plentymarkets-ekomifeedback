@@ -21,14 +21,15 @@ class OrderRepository {
      * 
      * @return array Return order
      */
-    public function getOrders($pageNum = 1) {
+    public function getOrders($pageNum, $filters) {
         
 	    $orderRepo = pluginApp(OrderRepositoryContract::class);
 
         if ($orderRepo instanceof OrderRepositoryContract) {
 
             /** @var PaginatedResult $paginatedResult */
-            $paginatedResult = $orderRepo->searchOrders($pageNum, 200, $with = ['addresses', 'relation', 'reference']);
+            $orderRepo->setFilters($filters);
+            $paginatedResult = $orderRepo->searchOrders($pageNum, 50, $with = ['addresses', 'relation', 'reference']);
 
             if ($paginatedResult instanceof PaginatedResult) {
                 if ($paginatedResult->getTotalCount() > 0) {

@@ -24,11 +24,9 @@ class EkomiFeedbackCron extends Cron {
     }
 
     public function handle() {
-        $daysDiff = 7;
+        $this->getLogger(__FUNCTION__)->error('Cron Running...', 'CronRunning...:');
 
-        $this->getLogger(__FUNCTION__)->error('Cron Running...', 'CronRunning... DaysDiff:'.$daysDiff);
-
-        $this->ekomiServices->sendOrdersData($daysDiff);
+        $this->ekomiServices->sendOrdersData();
         /**
          * Fetch the product reviews if first time then range=all else range=1w
          */

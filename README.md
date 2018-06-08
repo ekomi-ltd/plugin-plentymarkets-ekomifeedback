@@ -116,6 +116,11 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 
 - Code redundancy fixed.
 
+### v2.2.0 (08-06-2018)
+
+- Code optimization.
+- Turnaround time feature.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)
