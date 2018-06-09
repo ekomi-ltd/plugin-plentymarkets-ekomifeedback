@@ -44,7 +44,7 @@
 
 - Code redundancy fixed.
 
-### v2.2.0 (08-06-2018)
+### v2.2.0 (09-06-2018)
 
 - Code optimization.
 - Turnaround time feature.

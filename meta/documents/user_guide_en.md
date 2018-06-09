@@ -44,6 +44,7 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 	- Enable / Disable Product Reviews (if enabled, product attributes will also be sent to eKomi i.e. product id, name, image, and URL)
 	- Enable / Disable Group Reviews (if enabled, Reviews of child/variants products will also be added)
 	- Select Mode. (for SMS, mobile number format should be according to E164)
+	- Enter Turnaround Time (Time it takes for an order to get complete)
 	- Insert Client Store Plenty IDs. Multiple commas separated Plenty IDs can also be added. (optional)
 	- Select Order Statuses on which you want to send information to eKomi.
 	- Select Referrers Filter (out) to filter out the orders.

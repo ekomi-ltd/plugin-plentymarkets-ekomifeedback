@@ -69,8 +69,8 @@ class EkomiServices {
                 $plentyIDs     = $this->configHelper->getPlentyIDs();
                 $turnaroundTime = $this->configHelper->getTurnaroundTime();
 
-                $updatedAtFrom = date('Y-m-d\TH:i:s',strtotime("-{$turnaroundTime} day"));
-                $updatedAtTo = date('Y-m-d\TH:i:s');
+                $updatedAtFrom = date('Y-m-d\TH:i:s+00:00',strtotime("-{$turnaroundTime} day"));
+                $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
 
                 $pageNum =1;
                 $filters = ['updatedAtFrom'=>$updatedAtFrom,'updatedAtTo'=>$updatedAtTo];
@@ -82,7 +82,7 @@ class EkomiServices {
 
                     $this->getLogger(__FUNCTION__)->error('orders-count-page-' . $pageNum, 'count:' . count($orders));
 
-                    if ($orders && !empty($orders)) {
+                    if ($orders && count($orders) > 0) {
                         foreach ($orders as $key => $order) {
                             $orderId = $order['id'];
                             $plentyID = $order['plentyId'];
