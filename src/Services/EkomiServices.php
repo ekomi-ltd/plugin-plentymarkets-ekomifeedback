@@ -6,6 +6,7 @@ use EkomiFeedback\Helper\EkomiHelper;
 use EkomiFeedback\Helper\ConfigHelper;
 use EkomiFeedback\Repositories\OrderRepository;
 use EkomiFeedback\Repositories\ReviewsRepository;
+use Plenty\Plugin\Application;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Log\Loggable;
 
@@ -23,12 +24,14 @@ class EkomiServices {
     private $ekomiHelper;
     private $orderRepository;
     private $reviewsRepository;
+    private $app;
 
-    public function __construct(ConfigHelper $configHelper, OrderRepository $orderRepo, ReviewsRepository $ekomiReviewsRepo, EkomiHelper $ekomiHelper) {
+    public function __construct(ConfigHelper $configHelper, OrderRepository $orderRepo, ReviewsRepository $ekomiReviewsRepo, EkomiHelper $ekomiHelper, Application $app) {
         $this->configHelper = $configHelper;
         $this->ekomiHelper = $ekomiHelper;
         $this->orderRepository = $orderRepo;
         $this->reviewsRepository = $ekomiReviewsRepo;
+        $this->app = $app;
     }
 
     /**
@@ -60,9 +63,9 @@ class EkomiServices {
      * Sends orders data to eKomi System
      */
      public function sendOrdersData() {
-         $this->getLogger(__FUNCTION__)->error('SOD-getPlentyId', $this->getApplication()->getPlentyId());
-         $this->getLogger(__FUNCTION__)->error('SOD-getWebstoreId', $this->getApplication()->getWebstoreId());
-         
+         $this->getLogger(__FUNCTION__)->error('SOD-getPlentyId', $this->app->getPlentyId());
+         $this->getLogger(__FUNCTION__)->error('SOD-getWebstoreId', $this->app->getWebstoreId());
+
         if ($this->configHelper->getEnabled() == 'true') {
             if ($this->validateShop()) {
 
