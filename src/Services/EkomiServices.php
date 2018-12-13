@@ -60,7 +60,9 @@ class EkomiServices {
      * Sends orders data to eKomi System
      */
      public function sendOrdersData() {
-    	
+         $this->getLogger(__FUNCTION__)->error('SOD-getPlentyId', $this->getApplication()->getPlentyId());
+         $this->getLogger(__FUNCTION__)->error('SOD-getWebstoreId', $this->getApplication()->getWebstoreId());
+         
         if ($this->configHelper->getEnabled() == 'true') {
             if ($this->validateShop()) {
 
@@ -74,8 +76,7 @@ class EkomiServices {
 
                 $pageNum =1;
 
-                $this->getLogger(__FUNCTION__)->error('SOD-getPlentyId', $this->getApplication()->getPlentyId());
-                $this->getLogger(__FUNCTION__)->error('SOD-getWebstoreId', $this->getApplication()->getWebstoreId());
+
 
                 $filters = ['updatedAtFrom'=>$updatedAtFrom,'updatedAtTo'=>$updatedAtTo];
 
