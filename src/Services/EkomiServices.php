@@ -73,6 +73,10 @@ class EkomiServices {
                 $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
 
                 $pageNum =1;
+
+                $this->getLogger(__FUNCTION__)->error('SOD-getPlentyId', $this->getApplication()->getPlentyId());
+                $this->getLogger(__FUNCTION__)->error('SOD-getWebstoreId', $this->getApplication()->getWebstoreId());
+
                 $filters = ['updatedAtFrom'=>$updatedAtFrom,'updatedAtTo'=>$updatedAtTo];
 
                 $fetchOrders = true;
