@@ -26,10 +26,8 @@ class EkomiFeedbackServiceProvider extends ServiceProvider {
 
     public function boot(CronContainer $container, ReviewsRepository $reviewsRepo) {
         
-        // registers crons EVERY_FIFTEEN_MINUTES|DAILY
-        $container->add(CronContainer::EVERY_FIFTEEN_MINUTES, EkomiFeedbackCron::class);
-        $this->getLogger(__FUNCTION__)->error('boot-getPlentyId', $this->getApplication()->getPlentyId());
-        $this->getLogger(__FUNCTION__)->error('boot-getWebstoreId', $this->getApplication()->getWebstoreId());
+        // registers crons EVERY_FIFTEEN_MINUTES|DAILY|EVERY_FIVE_MINUTES
+        $container->add(CronContainer::EVERY_FIVE_MINUTES, EkomiFeedbackCron::class);
 
     }
 
