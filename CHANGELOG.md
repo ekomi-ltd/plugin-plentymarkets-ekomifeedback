@@ -52,3 +52,12 @@
 
 - Code optimization.
 - Turnaround time feature.
+
+### v3.0.0 (10-11-2018)
+
+- Smart check feature
+- Option to select id/sku
+- Option to exclude products
+- Sending product & image URL
+- eKomi Product reviews container removed
+- Integration of smart widget. 

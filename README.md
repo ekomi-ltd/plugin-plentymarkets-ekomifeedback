@@ -36,18 +36,6 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 1. Under Plugins / Plugin overview, the plugin should appear. This is an indication that the plugin has been installed successfully.
 
 2. Click on the name of the plugin, eKomi FeedBack, to get access to the plugin. There you find the "configuration" of your plugin.
-  - Enable the Plugin
-  - Enter your Interface ID
-  - Enter your Interface Password
-  - Enable / Disable Product Reviews (if enabled, product attributes will     also be sent to eKomi i.e. product id, name, image, and URL)
-  - Enable / Disable Group Reviews (if enabled, Reviews of child/variants      products will also be added )
-  - Select Mode. (for SMS, mobile number format should be according to E164)
-  - Insert Client Store Plenty IDs. Multiple commas separated Plenty IDs can     also be added. (optional)
-  - Select Order Statuses on which you want to send information to eKomi.
-  - Select Referrers Filter (out) to filter out the orders.
-  - Insert Text when no reviews are found.
-  
-  **Note:** Please make sure, The Shop Id and Shop Password are correct. In     the case of invalid credentials, the plugin will not work.
    
 3. Browse to Plugins / Plugin overview and activate the plugin for the desired clients. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
 
@@ -120,6 +108,15 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 
 - Code optimization.
 - Turnaround time feature.
+
+### v3.0.0 (02-01-2019)
+
+- Smart check feature
+- Option to select id/sku
+- Option to exclude products
+- Sending product & image URL
+- eKomi Product reviews container removed
+- Integration of smart widget. 
 
 ## Authors
 

@@ -48,3 +48,13 @@
 
 - Code-Optimierung.
 - Bearbeitungszeit.
+
+
+### v3.0.0 (02-01-2019)
+
+- Smart Check-Funktion
+- Option zur Auswahl von ID / Sku
+- Option zum Ausschluss von Produkten
+- Versenden der Produkt- und Bild-URL
+- eKomi Product Reviews Container wurde entfernt
+- Integration von Smart Widget. 

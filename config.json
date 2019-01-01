@@ -36,14 +36,6 @@
                         "defaultValue": false
                     }
                 },
-                "group_reviews": {
-                    "type": "checkBox",
-                    "required": false,
-                    "label": "Config.groupReviewsLabel",
-                    "options": {
-                        "defaultValue": false
-                    }
-                },
                 "mode": {
                     "type": "selectBox",
                     "required": false,
@@ -107,6 +99,56 @@
                     "options": {
                         "defaultValue": ""
                     }
+                },
+                "smart_check": {
+                  "type": "checkBox",
+                  "required": true,
+                  "label": "Config.smartCheckLabel",
+                  "options": {
+                    "defaultValue": false
+                  }
+                },
+                "product_identifier": {
+                  "type": "selectBox",
+                  "required": true,
+                  "label": "Config.productIdentifierLabel",
+                  "options": {
+                    "defaultValue": "id",
+                    "selectBoxValues": [
+                      {
+                        "value": "id",
+                        "caption": "Config.productIdentifierPossibleValueId"
+                      },
+                      {
+                        "value": "sku",
+                        "caption": "Config.productIdentifierPossibleValueSku"
+                      }
+                    ]
+                  }
+                },
+                "exclude_products": {
+                  "type": "inputText",
+                  "required": false,
+                  "label": "Config.excludeProductsLabel",
+                  "options": {
+                    "defaultValue": ""
+                  }
+                },
+                "show_prc_widget": {
+                  "type": "checkBox",
+                  "required": false,
+                  "label": "Config.showPrcWidgetLabel",
+                  "options": {
+                    "defaultValue": false
+                  }
+                },
+                "prc_widget_token": {
+                  "type": "inputText",
+                  "required": false,
+                  "label": "Config.prcWidgetTokenLabel",
+                  "options": {
+                    "defaultValue": ""
+                  }
                 },
                 "order_status": {
                     "type": "multiCheckBox",
@@ -622,14 +664,6 @@
                                 "caption": "Config.referrerIdPossibleValue14302"
                             }
                         ]
-                    }
-                },
-                "no_review_text": {
-                    "type": "inputTextArea",
-                    "required": false,
-                    "label": "Config.noReviewTextLabel",
-                    "options": {
-                        "defaultValue": ""
                     }
                 }
             }
