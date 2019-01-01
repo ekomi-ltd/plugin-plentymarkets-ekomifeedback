@@ -30,9 +30,9 @@ class EkomiHelper {
     /**
      * Gets the order data and prepare post variables.
      * 
-     * @param array $order Order object as array
+     * @param array $order Order object as array.
      * 
-     * @return array The comma separated parameters
+     * @return array The comma separated parameter.s
      */
     function preparePostVars($order) {
 	    $id = $order['id'];
@@ -47,11 +47,12 @@ class EkomiHelper {
 		    'exclude_products'   => $this->configHelper->getExcludeProducts(),
 	    );
 
-	    $order['senderName'] = $this->getWebStoreName($plentyId);
+	    $order['senderName']  = $this->getWebStoreName($plentyId);
         $order['senderEmail'] = '';
 
 	    foreach ($order['addresses'] as $key=>$address) {
-            $countryInfo = $this->countryRepo->getCountryById($address['countryId']);
+	        $countryInfo = $this->countryRepo->getCountryById($address['countryId']);
+
             $order['addresses'][$key]['countryName'] = $countryInfo->name;
             $order['addresses'][$key]['isoCode2'] = $countryInfo->isoCode2;
             $order['addresses'][$key]['isoCode3'] = $countryInfo->isoCode3;
@@ -78,9 +79,9 @@ class EkomiHelper {
     }
 
     /**
-     * Gets Item image url
+     * Gets Item image url.
      * 
-     * @param int $itemId The item Id
+     * @param int $itemId The item Id.
      *  
      * @return string The url of image
      */
@@ -106,7 +107,7 @@ class EkomiHelper {
     }
 
     /**
-     * Gets the products data
+     * Gets the products data.
      * 
      * @return array The products array
      * 
@@ -130,7 +131,7 @@ class EkomiHelper {
     }
 
     /**
-     * Gets web store
+     * Gets web store.
      *
      * @return string
      *
@@ -146,7 +147,7 @@ class EkomiHelper {
     }
 
     /**
-     * Gets Store domain Url
+     * Gets Store domain Url.
      *
      * @param type $plentyId
      *

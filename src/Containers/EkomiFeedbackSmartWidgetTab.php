@@ -13,7 +13,6 @@ class EkomiFeedbackSmartWidgetTab {
     public function call(Twig $twig, $arg)
     {
         $configHelper = pluginApp(ConfigHelper::class);
-
         if ($configHelper->getEnabled() == 'true' && $configHelper->getShowPrcWidget() == 'true') {
             $templateData = array();
 

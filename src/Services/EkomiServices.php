@@ -40,6 +40,13 @@ class EkomiServices {
 	private $ekomiHelper;
 	private $orderRepository;
 
+    /**
+     * EkomiServices constructor.
+     *
+     * @param ConfigHelper    $configHelper
+     * @param OrderRepository $orderRepo
+     * @param EkomiHelper     $ekomiHelper
+     */
 	public function __construct( ConfigHelper $configHelper, OrderRepository $orderRepo, EkomiHelper $ekomiHelper ) {
 		$this->configHelper      = $configHelper;
 		$this->ekomiHelper       = $ekomiHelper;
@@ -93,7 +100,6 @@ class EkomiServices {
 
 		if ( $this->configHelper->getEnabled() == 'true' ) {
 			if ( $this->validateShop() ) {
-
 				$orderStatuses  = $this->configHelper->getOrderStatus();
 				$referrerIds    = $this->configHelper->getReferrerIds();
 				$plentyIDs      = $this->configHelper->getPlentyIDs();
@@ -103,12 +109,9 @@ class EkomiServices {
 				$pageNum        = 1;
 				$filters        = [ 'updatedAtFrom' => $updatedAtFrom, 'updatedAtTo' => $updatedAtTo ];
 				$fetchOrders    = true;
-
 				while ( $fetchOrders ) {
 					$orders = $this->orderRepository->getOrders( $pageNum, $filters );
-
 					$this->getLogger( __FUNCTION__ )->error( 'orders-count-page-' . $pageNum, 'count:' . count( $orders ) );
-
 					if ( $orders && count( $orders ) > 0 ) {
 						foreach ( $orders as $key => $order ) {
 							$orderId    = $order['id'];
@@ -135,7 +138,6 @@ class EkomiServices {
 					} else {
 						$fetchOrders = false;
 					}
-
 					$pageNum = $pageNum + 1;
 				}
 			} else {

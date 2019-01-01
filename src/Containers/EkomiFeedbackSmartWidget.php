@@ -16,7 +16,7 @@ class EkomiFeedbackSmartWidget {
 
         if ($configHelper->getEnabled() == 'true' && $configHelper->getShowPrcWidget() == 'true') {
 	        $item = $arg[0];
-            if ( isset( $item['item']['id'] ) ) {
+            if (isset( $item['item']['id'])) {
 		        $productIdentifier = trim( $item['item']['id'] );
 		        if($configHelper->getProductIdentifier() == EkomiServices::PRODUCT_IDENTIFIER_SKU){
                     $productIdentifier = trim( $item['variation']['id'] );
