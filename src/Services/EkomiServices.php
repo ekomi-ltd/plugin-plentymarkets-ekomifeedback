@@ -108,6 +108,7 @@ class EkomiServices {
 
 		if ( $this->configHelper->getEnabled() == 'true' ) {
 			if ( $this->validateShop() ) {
+			    $this->enableDefaultCustomerSegment();
 				$orderStatuses  = $this->configHelper->getOrderStatus();
 				$referrerIds    = $this->configHelper->getReferrerIds();
 				$plentyIDs      = $this->configHelper->getPlentyIDs();
