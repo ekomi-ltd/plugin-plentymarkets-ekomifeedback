@@ -16,15 +16,35 @@ class EkomiHelper {
      * @var ConfigRepository
      */
     private $configHelper;
+
+    /**
+     * @var WebstoreRepositoryContract
+     */
     private $webStoreRepo;
+
+    /**
+     * @var ItemImageRepositoryContract
+     */
     private $imagesRepo;
+
+    /**
+     * @var CountryRepositoryContract
+     */
     private $countryRepo;
 
+    /**
+     * Initializes object variables.
+     *
+     * @param WebstoreRepositoryContract         $webStoreRepo
+     * @param \EkomiFeedback\Helper\ConfigHelper $configHelper
+     * @param ItemImageRepositoryContract        $imagesRepo
+     * @param CountryRepositoryContract          $countryRepo
+     */
     public function __construct(WebstoreRepositoryContract $webStoreRepo, ConfigHelper $configHelper, ItemImageRepositoryContract $imagesRepo, CountryRepositoryContract $countryRepo) {
         $this->configHelper = $configHelper;
         $this->webStoreRepo = $webStoreRepo;
-        $this->imagesRepo = $imagesRepo;
-        $this->countryRepo = $countryRepo;
+        $this->imagesRepo   = $imagesRepo;
+        $this->countryRepo  = $countryRepo;
     }
 
     /**
@@ -32,10 +52,10 @@ class EkomiHelper {
      * 
      * @param array $order Order object as array.
      * 
-     * @return array The comma separated parameter.s
+     * @return array The comma separated parameters.
      */
     function preparePostVars($order) {
-	    $id = $order['id'];
+	    $id       = $order['id'];
 	    $plentyId = $order['plentyId'];
 	    $fields   = array(
 		    'shop_id'            => $this->configHelper->getShopId(),
@@ -49,13 +69,11 @@ class EkomiHelper {
 
 	    $order['senderName']  = $this->getWebStoreName($plentyId);
         $order['senderEmail'] = '';
-
 	    foreach ($order['addresses'] as $key=>$address) {
-	        $countryInfo = $this->countryRepo->getCountryById($address['countryId']);
-
+	        $countryInfo                             = $this->countryRepo->getCountryById($address['countryId']);
             $order['addresses'][$key]['countryName'] = $countryInfo->name;
-            $order['addresses'][$key]['isoCode2'] = $countryInfo->isoCode2;
-            $order['addresses'][$key]['isoCode3'] = $countryInfo->isoCode3;
+            $order['addresses'][$key]['isoCode2']    = $countryInfo->isoCode2;
+            $order['addresses'][$key]['isoCode3']    = $countryInfo->isoCode3;
         }
 
         $order['orderItems']  = $this->getProductsData($order['orderItems'], $plentyId);

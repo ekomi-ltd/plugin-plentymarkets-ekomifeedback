@@ -19,18 +19,26 @@ class EkomiServices {
 	 * The Url to validate shop.
 	 */
 	const URL_GET_SETTINGS = 'http://api.ekomi.de/v3/getSettings';
+
 	/**
 	 * The URL where the order data is sent.
 	 */
 	const URL_TO_SEND_DATA = 'https://plugins-dashboard.ekomiapps.de/api/v1/order';
+
+    /**
+     * The SRR URL for Customer segments.
+     */
+    const URL_UPDATE_CUSTOMER_SEGMENT = 'https://srr.ekomi.com/api/v1/customer-segments';
+
 	/**
 	 * The SRR URL to update the Smart Check Settings.
 	 */
 	const URL_SMART_CHECK_SETTINGS = 'https://srr.ekomi.com/api/v1/shops/setting';
+
 	/**
 	 * Product Identifiers.
 	 */
-	const PRODUCT_IDENTIFIER_ID = 'id';
+	const PRODUCT_IDENTIFIER_ID  = 'id';
 	const PRODUCT_IDENTIFIER_SKU = 'sku';
 
 	/**
@@ -56,7 +64,7 @@ class EkomiServices {
 	/**
 	 * Validates the shop.
 	 *
-	 * @return boolean True if validated False otherwise
+	 * @return boolean True if validated False otherwise.
 	 */
 	public function validateShop() {
 		$apiUrl = self::URL_GET_SETTINGS;
@@ -148,11 +156,34 @@ class EkomiServices {
 		}
 	}
 
+    /**
+     * Enables default customer segment in SRR.
+     *
+     * @return void
+     */
+    public function enableDefaultCustomerSegment()
+    {
+        $httpHeader = array(
+            'shop-id: ' . $this->configHelper->getShopId(),
+            'interface-password: ' . $this->configHelper->getShopSecret()
+        );
+        $apiUrl   = self::URL_UPDATE_CUSTOMER_SEGMENT . '?api_key=enable&records_per_page=30';
+        $response = $this->doCurl($apiUrl, 'GET', $httpHeader, '');
+        $segments = json_decode($response);
+        foreach ($segments->data as $key => $segment) {
+            if ($segment->name == 'Reviews') {
+                $apiUrl   = self::URL_UPDATE_CUSTOMER_SEGMENT . "/{$segment->id}?status=active";
+                $response = $this->doCurl($apiUrl, 'PUT', $httpHeader, '');
+                $this->getLogger(__FUNCTION__ )->error( 'Customer-segment-status', $response);
+                break;
+            }
+        }
+    }
+
 	/**
 	 * Sends Order data to eKomi Plugins dashboard.
 	 *
 	 * @param array $orderData
-	 * @param array $configurationData
 	 *
 	 * @return mixed|string
 	 * @throws Exception
@@ -173,10 +204,10 @@ class EkomiServices {
 	/**
 	 * Makes a curl request.
 	 *
-	 * @param string $requestUrl  Api End point url
-	 * @param string $requestType Api Request type
-	 * @param array  $httpHeader  Header
-	 * @param string $postFields  The post data to send
+	 * @param string $requestUrl  Api End point url.
+	 * @param string $requestType Api Request type.
+	 * @param array  $httpHeader  Header.
+	 * @param string $postFields  The post data to send.
 	 *
 	 * @return mixed|string
 	 */
@@ -191,6 +222,7 @@ class EkomiServices {
 			if (!empty($httpHeader)) {
 				curl_setopt($ch, CURLOPT_HTTPHEADER, $httpHeader);
 			}
+
 			if (!empty($postFields)) {
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 			}

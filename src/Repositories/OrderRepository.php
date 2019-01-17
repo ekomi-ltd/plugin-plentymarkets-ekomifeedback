@@ -17,7 +17,7 @@ class OrderRepository {
     }
 
     /**
-     * Gets order
+     * Gets orders.
      * 
      * @return array Return order
      */

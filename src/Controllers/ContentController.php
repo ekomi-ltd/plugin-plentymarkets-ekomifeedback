@@ -17,7 +17,10 @@ class ContentController extends Controller {
     use Loggable;
 
     /**
+     * Sends orders to eKomi.
+     *
      * @param Twig $twig
+     *
      * @return string
      */
     public function sendOrdersToEkomi(Twig $twig) {

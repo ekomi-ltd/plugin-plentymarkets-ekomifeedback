@@ -12,6 +12,8 @@ use Plenty\Plugin\Routing\Router;
 class EkomiFeedbackRouteServiceProvider extends RouteServiceProvider {
 
     /**
+     * Registers the frontend route.
+     *
      * @param Router $router
      */
     public function map(Router $router) {

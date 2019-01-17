@@ -10,10 +10,16 @@ use EkomiFeedback\Helper\ConfigHelper;
  */
 class EkomiFeedbackSmartWidget {
 
+    /**
+     * Renders HTML content for newly created tab on the product page.
+     *
+     * @param Twig  $twig
+     * @param array $arg
+     *
+     * @return string
+     */
     public function call(Twig $twig, $arg) {
-
         $configHelper = pluginApp(ConfigHelper::class);
-
         if ($configHelper->getEnabled() == 'true' && $configHelper->getShowPrcWidget() == 'true') {
 	        $item = $arg[0];
             if (isset( $item['item']['id'])) {

@@ -23,6 +23,9 @@ class EkomiFeedbackCron extends Cron {
         $this->ekomiServices = $ekomiService;
     }
 
+    /**
+     * Handles Cron jobs.
+     */
     public function handle() {
         $this->getLogger(__FUNCTION__)->error('CronStatus', 'Cron is running...:)');
 
