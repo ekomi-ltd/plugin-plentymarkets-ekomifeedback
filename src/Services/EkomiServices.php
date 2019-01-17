@@ -171,6 +171,9 @@ class EkomiServices {
         $apiUrl   = self::URL_UPDATE_CUSTOMER_SEGMENT . '?api_key=enable&records_per_page=30';
         $response = $this->doCurl($apiUrl, 'GET', $httpHeader, '');
         $segments = json_decode($response);
+        $this->getLogger(__FUNCTION__ )->error( 'Customer-segment-status-01', $response);
+        $this->getLogger(__FUNCTION__ )->error( 'Customer-segment-status-02', $segments);
+        $this->getLogger(__FUNCTION__ )->error( 'Customer-segment-status-03', $segments->data);
         foreach ($segments->data as $key => $segment) {
             if ($segment->name == 'Reviews') {
                 $apiUrl   = self::URL_UPDATE_CUSTOMER_SEGMENT . "/{$segment->id}?status=active";
