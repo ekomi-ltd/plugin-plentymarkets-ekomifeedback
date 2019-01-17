@@ -77,7 +77,6 @@ class EkomiServices {
 			$this->getLogger( __FUNCTION__ )->error( 'invalid credentials', "url:{$apiUrl}" );
 			return false;
 		} else {
-			$this->updateSmartCheck();
 			return true;
 		}
 	}
@@ -108,6 +107,7 @@ class EkomiServices {
 
 		if ( $this->configHelper->getEnabled() == 'true' ) {
 			if ( $this->validateShop() ) {
+                $this->updateSmartCheck();
 			    $this->enableDefaultCustomerSegment();
 				$orderStatuses  = $this->configHelper->getOrderStatus();
 				$referrerIds    = $this->configHelper->getReferrerIds();
@@ -171,9 +171,6 @@ class EkomiServices {
         $apiUrl   = self::URL_UPDATE_CUSTOMER_SEGMENT . '?api_key=enable&records_per_page=30';
         $response = $this->doCurl($apiUrl, 'GET', $httpHeader, '');
         $segments = json_decode($response);
-        $this->getLogger(__FUNCTION__ )->error( 'Customer-segment-status-01', $response);
-        $this->getLogger(__FUNCTION__ )->error( 'Customer-segment-status-02', $segments);
-        $this->getLogger(__FUNCTION__ )->error( 'Customer-segment-status-03', $segments->data);
         foreach ($segments->data as $key => $segment) {
             if ($segment->name == 'Reviews') {
                 $apiUrl   = self::URL_UPDATE_CUSTOMER_SEGMENT . "/{$segment->id}?status=active";
