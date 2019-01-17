@@ -5,7 +5,6 @@ namespace EkomiFeedback\Services;
 use EkomiFeedback\Helper\EkomiHelper;
 use EkomiFeedback\Helper\ConfigHelper;
 use EkomiFeedback\Repositories\OrderRepository;
-use EkomiFeedback\Repositories\ReviewsRepository;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Log\Loggable;
 
@@ -14,201 +13,197 @@ use Plenty\Plugin\Log\Loggable;
  */
 class EkomiServices {
 
-    use Loggable;
+	use Loggable;
+
+	/**
+	 * The Url to validate shop.
+	 */
+	const URL_GET_SETTINGS = 'http://api.ekomi.de/v3/getSettings';
+	/**
+	 * The URL where the order data is sent.
+	 */
+	const URL_TO_SEND_DATA = 'https://plugins-dashboard.ekomiapps.de/api/v1/order';
+	/**
+	 * The SRR URL to update the Smart Check Settings.
+	 */
+	const URL_SMART_CHECK_SETTINGS = 'https://srr.ekomi.com/api/v1/shops/setting';
+	/**
+	 * Product Identifiers.
+	 */
+	const PRODUCT_IDENTIFIER_ID = 'id';
+	const PRODUCT_IDENTIFIER_SKU = 'sku';
+
+	/**
+	 * @var ConfigRepository
+	 */
+	private $configHelper;
+	private $ekomiHelper;
+	private $orderRepository;
 
     /**
-     * @var ConfigRepository
+     * EkomiServices constructor.
+     *
+     * @param ConfigHelper    $configHelper
+     * @param OrderRepository $orderRepo
+     * @param EkomiHelper     $ekomiHelper
      */
-    private $configHelper;
-    private $ekomiHelper;
-    private $orderRepository;
-    private $reviewsRepository;
+	public function __construct( ConfigHelper $configHelper, OrderRepository $orderRepo, EkomiHelper $ekomiHelper ) {
+		$this->configHelper      = $configHelper;
+		$this->ekomiHelper       = $ekomiHelper;
+		$this->orderRepository   = $orderRepo;
+	}
 
-    public function __construct(ConfigHelper $configHelper, OrderRepository $orderRepo, ReviewsRepository $ekomiReviewsRepo, EkomiHelper $ekomiHelper) {
-        $this->configHelper = $configHelper;
-        $this->ekomiHelper = $ekomiHelper;
-        $this->orderRepository = $orderRepo;
-        $this->reviewsRepository = $ekomiReviewsRepo;
-    }
+	/**
+	 * Validates the shop.
+	 *
+	 * @return boolean True if validated False otherwise
+	 */
+	public function validateShop() {
+		$apiUrl = self::URL_GET_SETTINGS;
+		$apiUrl .= "?auth={$this->configHelper->getShopId()}|{$this->configHelper->getShopSecret()}";
+		$apiUrl .= '&version=cust-1.0.0&type=request&charset=iso';
 
-    /**
-     * Validates the shop
-     * 
-     * @return boolean True if validated False otherwise
-     */
-    public function validateShop() {
-        $ApiUrl = 'http://api.ekomi.de/v3/getSettings';
+		$response = $this->doCurl($apiUrl, 'GET');
 
-        $ApiUrl .= "?auth={$this->configHelper->getShopId()}|{$this->configHelper->getShopSecret()}";
-        $ApiUrl .= '&version=cust-1.0.0&type=request&charset=iso';
+		if ( $response == 'Access denied' ) {
+			$this->getLogger( __FUNCTION__ )->error( 'invalid credentials', "url:{$apiUrl}" );
+			return false;
+		} else {
+			$this->updateSmartCheck();
+			return true;
+		}
+	}
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $ApiUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $server_output = curl_exec($ch);
-        curl_close($ch);
-
-        if ($server_output == 'Access denied') {
-            $this->getLogger(__FUNCTION__)->error('invalid credentials', "url:{$ApiUrl}");
-            return FALSE;
-        } else {
-            return TRUE;
+	/**
+	 * Updates the smart check in SRR.
+	 */
+	public function updateSmartCheck()
+	{
+		$httpHeader = array(
+			'shop-id: ' . $this->configHelper->getShopId(),
+			'interface-password: ' . $this->configHelper->getShopSecret()
+		);
+		$smartCheck = false;
+		if ($this->configHelper->getSmartCheck() == 'true' || $this->configHelper->getSmartCheck() == '1' ){
+            $smartCheck = true;
         }
+
+		$postFields = json_encode(array('smartcheck_on' => $smartCheck));
+
+		$this->doCurl(self::URL_SMART_CHECK_SETTINGS, 'PUT', $httpHeader, $postFields);
     }
 
-    /**
-     * Sends orders data to eKomi System
-     */
-     public function sendOrdersData() {
-    	
-        if ($this->configHelper->getEnabled() == 'true') {
-            if ($this->validateShop()) {
+	/**
+	 * Sends orders data to eKomi System.
+	 */
+	public function sendOrdersData() {
 
-                $orderStatuses = $this->configHelper->getOrderStatus();
-                $referrerIds   = $this->configHelper->getReferrerIds();
-                $plentyIDs     = $this->configHelper->getPlentyIDs();
-                $turnaroundTime = $this->configHelper->getTurnaroundTime();
+		if ( $this->configHelper->getEnabled() == 'true' ) {
+			if ( $this->validateShop() ) {
+				$orderStatuses  = $this->configHelper->getOrderStatus();
+				$referrerIds    = $this->configHelper->getReferrerIds();
+				$plentyIDs      = $this->configHelper->getPlentyIDs();
+				$turnaroundTime = $this->configHelper->getTurnaroundTime();
+				$updatedAtFrom  = date( 'Y-m-d\TH:i:s+00:00', strtotime( "-{$turnaroundTime} day" ) );
+				$updatedAtTo    = date( 'Y-m-d\TH:i:s+00:00' );
+				$pageNum        = 1;
+				$filters        = [ 'updatedAtFrom' => $updatedAtFrom, 'updatedAtTo' => $updatedAtTo ];
+				$fetchOrders    = true;
+				while ( $fetchOrders ) {
+					$orders = $this->orderRepository->getOrders( $pageNum, $filters );
+					$this->getLogger( __FUNCTION__ )->error( 'orders-count-page-' . $pageNum, 'count:' . count( $orders ) );
+					if ( $orders && count( $orders ) > 0 ) {
+						foreach ( $orders as $key => $order ) {
+							$orderId    = $order['id'];
+							$plentyID   = $order['plentyId'];
+							$referrerId = $order['orderItems'][0]['referrerId'];
+							if ( ! $plentyIDs || in_array( $plentyID, $plentyIDs ) ) {
+								if ( ! empty( $referrerIds ) && in_array( (string) $referrerId, $referrerIds ) ) {
+									$this->getLogger( __FUNCTION__ )->error(
+										"OrderID:{$orderId} ,referrerID:{$referrerId}|Blocked",
+										'OrderID:' . $orderId .
+										'|ReferrerID:' . $referrerId .
+										' Blocked in plugin configuration.'
+									);
+									continue;
+								}
+								if ( in_array( $order['statusId'], $orderStatuses ) ) {
+									$postVars = $this->ekomiHelper->preparePostVars( $order );
+									$this->sendData($postVars);
+								}
+							} else {
+								$this->getLogger( __FUNCTION__ )->error( 'PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode( ',', $plentyIDs ) );
+							}
+						}
+					} else {
+						$fetchOrders = false;
+					}
+					$pageNum = $pageNum + 1;
+				}
+			} else {
+				$this->getLogger( __FUNCTION__ )->error( 'invalid credentials', "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}" );
+			}
+		} else {
+			$this->getLogger( __FUNCTION__ )->error( 'Plugin not active', 'is_active:' . $this->configHelper->getEnabled() );
+		}
+	}
 
-                $updatedAtFrom = date('Y-m-d\TH:i:s+00:00',strtotime("-{$turnaroundTime} day"));
-                $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
+	/**
+	 * Sends Order data to eKomi Plugins dashboard.
+	 *
+	 * @param array $orderData
+	 * @param array $configurationData
+	 *
+	 * @return mixed|string
+	 * @throws Exception
+	 */
+	public function sendData($orderData)
+	{
+		$response = '';
+		if (!empty($orderData)) {
+            $boundary   = md5(time());
+            $header     = array('ContentType:multipart/form-data;boundary=' . $boundary);
+            $postFields = json_encode($orderData);
 
-                $pageNum =1;
-                $filters = ['updatedAtFrom'=>$updatedAtFrom,'updatedAtTo'=>$updatedAtTo];
-
-                $fetchOrders = true;
-
-                while($fetchOrders) {
-                    $orders = $this->orderRepository->getOrders($pageNum, $filters);
-
-                    $this->getLogger(__FUNCTION__)->error('orders-count-page-' . $pageNum, 'count:' . count($orders));
-
-                    if ($orders && count($orders) > 0) {
-                        foreach ($orders as $key => $order) {
-                            $orderId = $order['id'];
-                            $plentyID = $order['plentyId'];
-                            $referrerId = $order['orderItems'][0]['referrerId'];
-
-                            if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
-
-                                if (!empty($referrerIds) && in_array((string)$referrerId, $referrerIds)) {
-                                    $this->getLogger(__FUNCTION__)->error(
-                                        "OrderID:{$orderId} ,referrerID:{$referrerId}|Blocked",
-                                        'OrderID:' . $orderId .
-                                        '|ReferrerID:' . $referrerId .
-                                        ' Blocked in plugin configuration.'
-                                    );
-                                    continue;
-                                }
-                                if (in_array($order['statusId'], $orderStatuses)) {
-
-                                    $postVars = $this->ekomiHelper->preparePostVars($order);
-                                    // sends order data to eKomi
-                                    $this->addRecipient($postVars, $orderId);
-                                }
-                            } else {
-                                $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode(',', $plentyIDs));
-                            }
-                        }
-                    } else{
-                        $fetchOrders = false;
-                    }
-
-                    $pageNum = $pageNum + 1;
-                }
-            } else {
-                $this->getLogger(__FUNCTION__)->error('invalid credentials', "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}");
-            }
-        } else {
-            $this->getLogger(__FUNCTION__)->error('Plugin not active', 'is_active:'.$this->configHelper->getEnabled());
+			$response = $this->doCurl(self::URL_TO_SEND_DATA, "PUT", $header, $postFields);
         }
-    }
+		return $response;
+	}
 
-    /**
-     * Calls the addRecipient API
-     * 
-     * @param string $postVars
-     * 
-     * @return string return the api status
-     */
-    public function addRecipient($postVars, $orderId = '') {
-        if ($postVars != '') {
-            $logMessage = "OrderID:{$orderId}";
-            /*
-             * The Api Url
-             */
-            $apiUrl = 'https://srr.ekomi.com/add-recipient';
+	/**
+	 * Makes a curl request.
+	 *
+	 * @param string $requestUrl  Api End point url
+	 * @param string $requestType Api Request type
+	 * @param array  $httpHeader  Header
+	 * @param string $postFields  The post data to send
+	 *
+	 * @return mixed|string
+	 */
+	public function doCurl($requestUrl, $requestType, $httpHeader = array(), $postFields = '')
+	{
+		try {
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $requestUrl);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $requestType);
+			if (!empty($httpHeader)) {
+				curl_setopt($ch, CURLOPT_HTTPHEADER, $httpHeader);
+			}
+			if (!empty($postFields)) {
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+			}
 
-            $boundary = md5('' . time());
-            /*
-             * Send the curl call
-             */
-            try {
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $apiUrl);
-                curl_setopt($ch, CURLOPT_HEADER, false);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array('ContentType:multipart/form-data;boundary=' . $boundary));
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $postVars);
-                $exec = curl_exec($ch);
-                curl_close($ch);
+			$response = curl_exec($ch);
+			curl_close($ch);
 
-                $decodedResp = json_decode($exec);
+			return $response;
+		} catch (\Exception $exception) {
+			$this->getLogger( __FUNCTION__ )->error( "exception", $exception->getMessage() );
 
-               if ($decodedResp && $decodedResp->status == 'error') {
-                   $this->getLogger(__FUNCTION__)->error("$logMessage|orderData", $postVars);
-                   $this->getLogger(__FUNCTION__)->error("$logMessage|$decodedResp->status", $logMessage .= $exec);
-               }
-                return TRUE;
-            } catch (\Exception $e) {
-                $this->getLogger(__FUNCTION__)->error("$logMessage|exception", $logMessage .= $e->getMessage());
-            }
-        }
-        return FALSE;
-    }
-
-    /**
-     * Fetches Product Reviews by Calling eKomi Api
-     * 
-     * @param string $range
-     * @return Null
-     */
-    public function fetchProductReviews($range = 'all') {
-
-        if ($this->configHelper->getEnabled() == 'true') {
-            if ($this->validateShop()) {
-                $review = $this->reviewsRepository->getReviewById(1);
-                if (is_null($review)) {
-                    $range = 'all';
-                }
-
-                $ekomi_api_url = "http://api.ekomi.de/v3/getProductfeedback?interface_id={$this->configHelper->getShopId()}&interface_pw={$this->configHelper->getShopSecret()}&type=json&charset=utf-8&range={$range}";
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $ekomi_api_url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $product_reviews = curl_exec($ch);
-                curl_close($ch);
-
-                // log the results
-                if ($product_reviews) {
-                    $reviews = json_decode($product_reviews, true);
-
-                    if ($reviews) {
-                        $this->reviewsRepository->saveReviews($reviews);
-                        $this->getLogger(__FUNCTION__)->error('Reviews fetched  successfully', 'Reviews fetched  successfully. |url:' . $ekomi_api_url);
-                    } else {
-                        $this->getLogger(__FUNCTION__)->error('Something went wrong', 'Something went wrong! |url:' . $ekomi_api_url);
-                    }
-                } else {
-                    $this->getLogger(__FUNCTION__)->error('No reviews available.', 'No reviews available. |url:' . $ekomi_api_url);
-                }
-            } else {
-                $this->getLogger(__FUNCTION__)->error('Invalid credentials', 'Shop id or shop secret is not correct! |url:' . $ekomi_api_url);
-            }
-        } else {
-            $this->getLogger(__FUNCTION__)->error('Plugin is not enabled', 'Config:'.$this->configHelper->getEnabled());
-        }
-        return NULL;
-    }
+			return $exception->getMessage();
+		}
+	}
 
 }

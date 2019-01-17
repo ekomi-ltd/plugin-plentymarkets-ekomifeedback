@@ -24,13 +24,9 @@ class EkomiFeedbackCron extends Cron {
     }
 
     public function handle() {
-        $this->getLogger(__FUNCTION__)->error('Cron Running...', 'CronRunning...:');
+        $this->getLogger(__FUNCTION__)->error('CronStatus', 'Cron is running...:)');
 
         $this->ekomiServices->sendOrdersData();
-        /**
-         * Fetch the product reviews if first time then range=all else range=1w
-         */
-        $this->ekomiServices->fetchProductReviews($range = '1w');
     }
 
 }

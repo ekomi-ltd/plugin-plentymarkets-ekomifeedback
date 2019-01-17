@@ -24,7 +24,7 @@ class ConfigHelper {
         return $this->config->get('EkomiFeedback.is_active');
     }
 
-    public function getMod()
+    public function getMode()
     {
         return $this->config->get('EkomiFeedback.mode');
     }
@@ -67,11 +67,6 @@ class ConfigHelper {
         return $this->config->get('EkomiFeedback.product_reviews');
     }
     
-    public function getGroupReviews()
-    {
-        return $this->config->get('EkomiFeedback.group_reviews');
-    }
-    
     public function getNoReviewTxt()
     {
         return $this->config->get('EkomiFeedback.no_review_text');
@@ -93,4 +88,28 @@ class ConfigHelper {
         return $referrerIds;
     }
 
+	public function getSmartCheck()
+	{
+		return $this->config->get('EkomiFeedback.smart_check');
+	}
+
+	public function getProductIdentifier()
+	{
+		return $this->config->get('EkomiFeedback.product_identifier');
+	}
+
+	public function getExcludeProducts()
+	{
+		return $this->config->get('EkomiFeedback.exclude_products');
+	}
+
+	public function getShowPrcWidget()
+	{
+		return $this->config->get('EkomiFeedback.show_prc_widget');
+	}
+
+	public function getPrcWidgetToken()
+	{
+		return $this->config->get('EkomiFeedback.prc_widget_token');
+	}
 }

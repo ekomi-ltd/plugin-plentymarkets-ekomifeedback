@@ -16,13 +16,6 @@ class EkomiFeedbackRouteServiceProvider extends RouteServiceProvider {
      */
     public function map(Router $router) {
         $router->get('sendOrdersToEkomi', 'EkomiFeedback\Controllers\ContentController@sendOrdersToEkomi');
-        $router->get('fetchProductReviews', 'EkomiFeedback\Controllers\ContentController@fetchProductReviews');
-
-        /**
-         * Routes for ajax calls
-         */
-        $router->post('loadReviews', 'EkomiFeedback\Controllers\ContentController@loadReviews');
-        $router->post('saveFeedback', 'EkomiFeedback\Controllers\ContentController@saveFeedback');
     }
 
 }
