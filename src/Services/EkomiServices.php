@@ -215,6 +215,7 @@ class EkomiServices
             $postFields = json_encode($orderData);
 
             $response = $this->doCurl(self::URL_TO_SEND_DATA, "PUT", $header, $postFields);
+            $this->getLogger(__FUNCTION__)->error('PD-API-Response', $response);
         }
         return $response;
     }
