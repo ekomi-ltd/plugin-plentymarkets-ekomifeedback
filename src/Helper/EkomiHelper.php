@@ -10,7 +10,8 @@ use Plenty\Modules\Order\Shipping\Countries\Contracts\CountryRepositoryContract;
 /**
  * Class EkomiHelper
  */
-class EkomiHelper {
+class EkomiHelper
+{
 
     /**
      * @var ConfigRepository
@@ -40,7 +41,8 @@ class EkomiHelper {
      * @param ItemImageRepositoryContract        $imagesRepo
      * @param CountryRepositoryContract          $countryRepo
      */
-    public function __construct(WebstoreRepositoryContract $webStoreRepo, ConfigHelper $configHelper, ItemImageRepositoryContract $imagesRepo, CountryRepositoryContract $countryRepo) {
+    public function __construct(WebstoreRepositoryContract $webStoreRepo, ConfigHelper $configHelper, ItemImageRepositoryContract $imagesRepo, CountryRepositoryContract $countryRepo)
+    {
         $this->configHelper = $configHelper;
         $this->webStoreRepo = $webStoreRepo;
         $this->imagesRepo   = $imagesRepo;
@@ -49,46 +51,56 @@ class EkomiHelper {
 
     /**
      * Gets the order data and prepare post variables.
-     * 
+     *
      * @param array $order Order object as array.
-     * 
+     *
      * @return array The comma separated parameters.
      */
-    function preparePostVars($order) {
-	    $id       = $order['id'];
-	    $plentyId = $order['plentyId'];
-	    $fields   = array(
-		    'shop_id'            => $this->configHelper->getShopId(),
-		    'interface_password' => $this->configHelper->getShopSecret(),
-		    'mode'               => $this->configHelper->getMode(),
-		    'product_reviews'    => $this->configHelper->getProductReviews(),
-		    'plugin_name'        => 'plentymarkets',
-		    'product_identifier' => $this->configHelper->getProductIdentifier(),
-		    'exclude_products'   => $this->configHelper->getExcludeProducts(),
-	    );
+    public function preparePostVars($order)
+    {
+        $id       = $order['id'];
+        $plentyId = $order['plentyId'];
+        $fields   = array(
+            'shop_id'            => $this->configHelper->getShopId(),
+            'interface_password' => $this->configHelper->getShopSecret(),
+            'mode'               => $this->configHelper->getMode(),
+            'product_reviews'    => $this->configHelper->getProductReviews(),
+            'plugin_name'        => 'plentymarkets',
+            'product_identifier' => $this->configHelper->getProductIdentifier(),
+            'exclude_products'   => $this->configHelper->getExcludeProducts(),
+        );
 
-	    $order['senderName']  = $this->getWebStoreName($plentyId);
+        $order['senderName']  = $this->getWebStoreName($plentyId);
         $order['senderEmail'] = '';
-	    foreach ($order['addresses'] as $key=>$address) {
-	        $countryInfo                             = $this->countryRepo->getCountryById($address['countryId']);
+        foreach ($order['addresses'] as $key=>$address) {
+            $countryInfo                             = $this->countryRepo->getCountryById($address['countryId']);
             $order['addresses'][$key]['countryName'] = $countryInfo->name;
             $order['addresses'][$key]['isoCode2']    = $countryInfo->isoCode2;
             $order['addresses'][$key]['isoCode3']    = $countryInfo->isoCode3;
         }
 
         $order['orderItems']  = $this->getProductsData($order['orderItems'], $plentyId);
-	    $fields['order_data'] = $order;
+        $fields['order_data'] = $order;
 
-	    return $fields;
+        return $fields;
+    }
+
+    public function prepareFilter($turnaroundTime)
+    {
+        $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTime} day"));
+        $updatedAtTo   = date('Y-m-d\TH:i:s+00:00');
+
+        return [ 'updatedAtFrom' => $updatedAtFrom, 'updatedAtTo' => $updatedAtTo ];
     }
 
     /**
      * Gets item image url.
-     * 
+     *
      * @param int $itemId
      * @return string
      */
-    public function getItemImageUrl($itemId) {
+    public function getItemImageUrl($itemId)
+    {
         $images = $this->imagesRepo->findByItemId($itemId);
         if (isset($images[0])) {
             return $images[0]['url'];
@@ -98,12 +110,13 @@ class EkomiHelper {
 
     /**
      * Gets Item image url.
-     * 
+     *
      * @param int $itemId The item Id.
-     *  
+     *
      * @return string The url of image
      */
-    public function getItemURLs($itemId, $plentyId) {
+    public function getItemURLs($itemId, $plentyId)
+    {
         $itemUrl = '';
 
         $imagUrl = $this->getItemImageUrl($itemId);
@@ -126,22 +139,22 @@ class EkomiHelper {
 
     /**
      * Gets the products data.
-     * 
+     *
      * @return array The products array
-     * 
+     *
      * @access protected
      */
-    protected function getProductsData($orderItems, $plentyId) {
-
+    protected function getProductsData($orderItems, $plentyId)
+    {
         $products = array();
         foreach ($orderItems as $key => $product) {
             if (!empty($product['properties'])) {
                 $itemURLs = $this->getItemURLs($product['id'], $plentyId);
 
-	            $product['image_url'] = utf8_decode($itemURLs['imgUrl']);
-	            $product['canonical_url'] = utf8_decode($itemURLs['itemUrl']);
+                $product['image_url'] = utf8_decode($itemURLs['imgUrl']);
+                $product['canonical_url'] = utf8_decode($itemURLs['itemUrl']);
 
-	            $products[] = $product;
+                $products[] = $product;
             }
         }
 
@@ -155,7 +168,8 @@ class EkomiHelper {
      *
      * @access protected
      */
-    protected function getWebStoreName($plentyId) {
+    protected function getWebStoreName($plentyId)
+    {
         $temp1 = $this->webStoreRepo->findByPlentyId($plentyId)->toArray();
         if (isset($temp1['name'])) {
             return $temp1['name'];
@@ -173,7 +187,8 @@ class EkomiHelper {
      *
      * @access protected
      */
-    protected function getStoreDomain($plentyId) {
+    protected function getStoreDomain($plentyId)
+    {
         $temp1 = $this->webStoreRepo->findByPlentyId($plentyId)->toArray();
         if (isset($temp1['configuration']['domain'])) {
             return $temp1['configuration']['domain'];
@@ -181,5 +196,4 @@ class EkomiHelper {
 
         return '';
     }
-
 }

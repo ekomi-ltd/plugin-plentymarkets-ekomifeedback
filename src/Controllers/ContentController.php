@@ -12,8 +12,8 @@ use Plenty\Plugin\Log\Loggable;
  * Class ContentController
  * @package EkomiFeedback\Controllers
  */
-class ContentController extends Controller {
-
+class ContentController extends Controller
+{
     use Loggable;
 
     /**
@@ -23,8 +23,8 @@ class ContentController extends Controller {
      *
      * @return string
      */
-    public function sendOrdersToEkomi(Twig $twig) {
-
+    public function sendOrdersToEkomi(Twig $twig)
+    {
         $service = pluginApp(EkomiServices::class);
         
         $service->sendOrdersData();

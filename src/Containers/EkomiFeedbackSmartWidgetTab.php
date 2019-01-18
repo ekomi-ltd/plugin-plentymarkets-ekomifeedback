@@ -8,7 +8,8 @@ use EkomiFeedback\Helper\ConfigHelper;
 /**
  * Ekomi Feedback Reviews Container Tab.
  */
-class EkomiFeedbackSmartWidgetTab {
+class EkomiFeedbackSmartWidgetTab
+{
 
     /**
      * Renders HTML code to create new tab on the product page.

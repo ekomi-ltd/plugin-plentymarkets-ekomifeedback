@@ -11,14 +11,15 @@ use Plenty\Plugin\Log\Loggable;
  * Class EkomiFeedbackServiceProvider
  * @package EkomiFeedback\Providers
  */
-class EkomiFeedbackServiceProvider extends ServiceProvider {
-
+class EkomiFeedbackServiceProvider extends ServiceProvider
+{
     use Loggable;
 
     /**
      * Registers the service provider.
      */
-    public function register() {
+    public function register()
+    {
         $this->getApplication()->register(EkomiFeedbackRouteServiceProvider::class);
     }
 
@@ -27,8 +28,8 @@ class EkomiFeedbackServiceProvider extends ServiceProvider {
      *
      * @param CronContainer $container
      */
-    public function boot(CronContainer $container) {
-    	$container->add(CronContainer::EVERY_FIVE_MINUTES, EkomiFeedbackCron::class);
+    public function boot(CronContainer $container)
+    {
+        $container->add(CronContainer::EVERY_FIVE_MINUTES, EkomiFeedbackCron::class);
     }
-
 }

@@ -9,27 +9,28 @@ use Plenty\Plugin\Log\Loggable;
 /**
  * Class EkomiFeedbackCron
  */
-class EkomiFeedbackCron extends Cron {
-
+class EkomiFeedbackCron extends Cron
+{
     use Loggable;
 
     /**
      *
-     * @var $ekomiServices 
+     * @var $ekomiServices
      */
     private $ekomiServices;
 
-    public function __construct(EkomiServices $ekomiService) {
+    public function __construct(EkomiServices $ekomiService)
+    {
         $this->ekomiServices = $ekomiService;
     }
 
     /**
      * Handles Cron jobs.
      */
-    public function handle() {
+    public function handle()
+    {
         $this->getLogger(__FUNCTION__)->error('CronStatus', 'Cron is running...:)');
 
         $this->ekomiServices->sendOrdersData();
     }
-
 }

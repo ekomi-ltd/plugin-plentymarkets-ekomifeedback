@@ -5,25 +5,29 @@ namespace EkomiFeedback\Repositories;
 use Plenty\Modules\Order\Contracts\OrderRepositoryContract;
 use Plenty\Repositories\Models\PaginatedResult;
 use Plenty\Plugin\Log\Loggable;
+
 /**
  * Class OrderRepository
  */
-class OrderRepository {
-	
-	use Loggable;
-	
-    public function __construct() {
-        
+class OrderRepository
+{
+    use Loggable;
+    
+    public function __construct()
+    {
     }
 
     /**
      * Gets orders.
-     * 
-     * @return array Return order
+     *
+     * @param int   $pageNum
+     * @param array $filters
+     *
+     * @return array
      */
-    public function getOrders($pageNum, $filters) {
-        
-	    $orderRepo = pluginApp(OrderRepositoryContract::class);
+    public function getOrders($pageNum, $filters)
+    {
+        $orderRepo = pluginApp(OrderRepositoryContract::class);
 
         if ($orderRepo instanceof OrderRepositoryContract) {
 
@@ -40,5 +44,4 @@ class OrderRepository {
 
         return array();
     }
-
 }

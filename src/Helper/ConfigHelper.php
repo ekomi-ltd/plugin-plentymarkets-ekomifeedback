@@ -7,7 +7,8 @@ use Plenty\Plugin\ConfigRepository;
 /**
  * Class ConfigHelper
  */
-class ConfigHelper {
+class ConfigHelper
+{
 
     /**
      * @var ConfigRepository
@@ -136,47 +137,47 @@ class ConfigHelper {
      *
      * @return mixed
      */
-	public function getSmartCheck()
-	{
-		return $this->config->get('EkomiFeedback.smart_check');
-	}
+    public function getSmartCheck()
+    {
+        return $this->config->get('EkomiFeedback.smart_check');
+    }
 
     /**
      * Gets Product Identifier from plugin configurations.
      *
      * @return mixed
      */
-	public function getProductIdentifier()
-	{
-		return $this->config->get('EkomiFeedback.product_identifier');
-	}
+    public function getProductIdentifier()
+    {
+        return $this->config->get('EkomiFeedback.product_identifier');
+    }
 
     /**
      * Gets Exclude Products from plugin configurations.
      *
      * @return mixed
      */
-	public function getExcludeProducts()
-	{
-		return $this->config->get('EkomiFeedback.exclude_products');
-	}
+    public function getExcludeProducts()
+    {
+        return $this->config->get('EkomiFeedback.exclude_products');
+    }
 
     /**
      * Gets Show Widget from plugin configurations.
      *
      * @return mixed
      */
-	public function getShowPrcWidget()
-	{
-		return $this->config->get('EkomiFeedback.show_prc_widget');
-	}
+    public function getShowPrcWidget()
+    {
+        return $this->config->get('EkomiFeedback.show_prc_widget');
+    }
 
     /**
      * Gets Widget Token from plugin configurations.
      * @return mixed
      */
-	public function getPrcWidgetToken()
-	{
-		return $this->config->get('EkomiFeedback.prc_widget_token');
-	}
+    public function getPrcWidgetToken()
+    {
+        return $this->config->get('EkomiFeedback.prc_widget_token');
+    }
 }
