@@ -7,18 +7,22 @@ use EkomiFeedback\Services\EkomiServices;
 use Plenty\Plugin\Log\Loggable;
 
 /**
- * Class EkomiFeedbackCron
+ * Class EkomiFeedbackCron.
  */
 class EkomiFeedbackCron extends Cron
 {
     use Loggable;
 
     /**
-     *
-     * @var $ekomiServices
+     * @var
      */
     private $ekomiServices;
 
+    /**
+     * EkomiFeedbackCron constructor.
+     *
+     * @param EkomiServices $ekomiService
+     */
     public function __construct(EkomiServices $ekomiService)
     {
         $this->ekomiServices = $ekomiService;

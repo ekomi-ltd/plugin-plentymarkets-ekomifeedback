@@ -5,11 +5,10 @@ namespace EkomiFeedback\Helper;
 use Plenty\Plugin\ConfigRepository;
 
 /**
- * Class ConfigHelper
+ * Class ConfigHelper.
  */
 class ConfigHelper
 {
-
     /**
      * @var ConfigRepository
      */
@@ -28,7 +27,7 @@ class ConfigHelper
     /**
      * Gets enabled from plugin configurations.
      *
-     * @return mixed
+     * @return bool
      */
     public function getEnabled()
     {
@@ -38,7 +37,7 @@ class ConfigHelper
     /**
      * Gets mode from plugin configurations.
      *
-     * @return mixed
+     * @return string
      */
     public function getMode()
     {
@@ -48,7 +47,7 @@ class ConfigHelper
     /**
      * Gets Turnaround time from plugin configurations.
      *
-     * @return mixed
+     * @return int
      */
     public function getTurnaroundTime()
     {
@@ -74,14 +73,14 @@ class ConfigHelper
      */
     public function getPlentyIDs()
     {
-        $plentyIDs = false;
-        $IDs       = $this->config->get('EkomiFeedback.plenty_IDs');
-        $IDs       = preg_replace('/\s+/', '', $IDs);
-        if (!empty($IDs)) {
-            $plentyIDs = explode(',', $IDs);
+        $plentyIds = false;
+        $ids = $this->config->get('EkomiFeedback.plenty_IDs');
+        $ids = preg_replace('/\s+/', '', $ids);
+        if (!empty($ids)) {
+            $plentyIds = explode(',', $ids);
         }
 
-        return $plentyIDs;
+        return $plentyIds;
     }
 
     /**
@@ -99,7 +98,7 @@ class ConfigHelper
     /**
      * Gets Product Reviews from plugin configurations.
      *
-     * @return mixed
+     * @return bool
      */
     public function getProductReviews()
     {
@@ -113,16 +112,16 @@ class ConfigHelper
      */
     public function getOrderStatus()
     {
-        $status      = $this->config->get('EkomiFeedback.order_status');
+        $status = $this->config->get('EkomiFeedback.order_status');
         $statusArray = explode(',', $status);
 
         return $statusArray;
     }
 
     /**
-     * Gets Referrer IDs array from plugin configurations.
+     * Gets Referrer Ids array from plugin configurations.
      *
-     * @return array|mixed
+     * @return array
      */
     public function getReferrerIds()
     {
@@ -135,7 +134,7 @@ class ConfigHelper
     /**
      * Gets Smart Check from plugin configurations.
      *
-     * @return mixed
+     * @return bool
      */
     public function getSmartCheck()
     {
@@ -145,7 +144,7 @@ class ConfigHelper
     /**
      * Gets Product Identifier from plugin configurations.
      *
-     * @return mixed
+     * @return string
      */
     public function getProductIdentifier()
     {
@@ -155,7 +154,7 @@ class ConfigHelper
     /**
      * Gets Exclude Products from plugin configurations.
      *
-     * @return mixed
+     * @return string
      */
     public function getExcludeProducts()
     {
@@ -165,7 +164,7 @@ class ConfigHelper
     /**
      * Gets Show Widget from plugin configurations.
      *
-     * @return mixed
+     * @return bool
      */
     public function getShowPrcWidget()
     {
@@ -174,7 +173,8 @@ class ConfigHelper
 
     /**
      * Gets Widget Token from plugin configurations.
-     * @return mixed
+     *
+     * @return string
      */
     public function getPrcWidgetToken()
     {

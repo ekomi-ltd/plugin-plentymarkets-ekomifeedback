@@ -7,12 +7,15 @@ use Plenty\Repositories\Models\PaginatedResult;
 use Plenty\Plugin\Log\Loggable;
 
 /**
- * Class OrderRepository
+ * Class OrderRepository.
  */
 class OrderRepository
 {
     use Loggable;
-    
+
+    /**
+     * OrderRepository constructor.
+     */
     public function __construct()
     {
     }
@@ -30,11 +33,8 @@ class OrderRepository
         $orderRepo = pluginApp(OrderRepositoryContract::class);
 
         if ($orderRepo instanceof OrderRepositoryContract) {
-
-            /** @var PaginatedResult $paginatedResult */
             $orderRepo->setFilters($filters);
             $paginatedResult = $orderRepo->searchOrders($pageNum, 50, $with = ['addresses', 'relation', 'reference']);
-
             if ($paginatedResult instanceof PaginatedResult) {
                 if ($paginatedResult->getTotalCount() > 0) {
                     return $paginatedResult->getResult();

@@ -8,8 +8,7 @@ use EkomiFeedback\Crons\EkomiFeedbackCron;
 use Plenty\Plugin\Log\Loggable;
 
 /**
- * Class EkomiFeedbackServiceProvider
- * @package EkomiFeedback\Providers
+ * Class EkomiFeedbackServiceProvider.
  */
 class EkomiFeedbackServiceProvider extends ServiceProvider
 {

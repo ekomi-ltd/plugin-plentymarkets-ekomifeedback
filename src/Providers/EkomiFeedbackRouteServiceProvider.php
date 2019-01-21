@@ -6,12 +6,10 @@ use Plenty\Plugin\RouteServiceProvider;
 use Plenty\Plugin\Routing\Router;
 
 /**
- * Class EkomiFeedbackRouteServiceProvider
- * @package EkomiFeedback\Providers
+ * Class EkomiFeedbackRouteServiceProvider.
  */
 class EkomiFeedbackRouteServiceProvider extends RouteServiceProvider
 {
-
     /**
      * Registers the frontend route.
      *

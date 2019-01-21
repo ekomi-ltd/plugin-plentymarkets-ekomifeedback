@@ -7,11 +7,10 @@ use Plenty\Plugin\Templates\Twig;
 use EkomiFeedback\Helper\ConfigHelper;
 
 /**
- * Ekomi Feedback Reviews Container
+ * Ekomi Feedback Reviews Container.
  */
 class EkomiFeedbackSmartWidget
 {
-
     /**
      * Renders HTML content for newly created tab on the product page.
      *
@@ -23,18 +22,18 @@ class EkomiFeedbackSmartWidget
     public function call(Twig $twig, $arg)
     {
         $configHelper = pluginApp(ConfigHelper::class);
-        if ($configHelper->getEnabled() == 'true' && $configHelper->getShowPrcWidget() == 'true') {
+        if ('true' == $configHelper->getEnabled() && 'true' == $configHelper->getShowPrcWidget()) {
             $item = $arg[0];
             if (isset($item['item']['id'])) {
                 $productIdentifier = trim($item['item']['id']);
-                if ($configHelper->getProductIdentifier() == EkomiServices::PRODUCT_IDENTIFIER_SKU) {
+                if (EkomiServices::PRODUCT_IDENTIFIER_SKU == $configHelper->getProductIdentifier()) {
                     $productIdentifier = trim($item['variation']['id']);
                 }
 
                 $data = array(
                     'productIdentifier' => $productIdentifier,
-                    'customerId'        => $configHelper->getShopId(),
-                    'widgetToken'       => $configHelper->getPrcWidgetToken()
+                    'customerId' => $configHelper->getShopId(),
+                    'widgetToken' => $configHelper->getPrcWidgetToken(),
                 );
 
                 return $twig->render('EkomiFeedback::content.smartWidget', $data);

@@ -5,12 +5,10 @@ namespace EkomiFeedback\Controllers;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Templates\Twig;
 use EkomiFeedback\Services\EkomiServices;
-use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Log\Loggable;
 
 /**
- * Class ContentController
- * @package EkomiFeedback\Controllers
+ * Class ContentController.
  */
 class ContentController extends Controller
 {
@@ -26,7 +24,7 @@ class ContentController extends Controller
     public function sendOrdersToEkomi(Twig $twig)
     {
         $service = pluginApp(EkomiServices::class);
-        
+
         $service->sendOrdersData();
 
         return $twig->render('EkomiFeedback::content.hello');

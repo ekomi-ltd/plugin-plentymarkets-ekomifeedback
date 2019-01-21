@@ -10,7 +10,6 @@ use EkomiFeedback\Helper\ConfigHelper;
  */
 class EkomiFeedbackSmartWidgetTab
 {
-
     /**
      * Renders HTML code to create new tab on the product page.
      *
@@ -22,7 +21,7 @@ class EkomiFeedbackSmartWidgetTab
     public function call(Twig $twig, $arg)
     {
         $configHelper = pluginApp(ConfigHelper::class);
-        if ($configHelper->getEnabled() == 'true' && $configHelper->getShowPrcWidget() == 'true') {
+        if ('true' == $configHelper->getEnabled() && 'true' == $configHelper->getShowPrcWidget()) {
             $templateData = array();
 
             return $twig->render('EkomiFeedback::content.smartWidgetTab', $templateData);
