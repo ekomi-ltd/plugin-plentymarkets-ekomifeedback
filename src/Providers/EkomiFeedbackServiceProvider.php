@@ -8,22 +8,27 @@ use EkomiFeedback\Crons\EkomiFeedbackCron;
 use Plenty\Plugin\Log\Loggable;
 
 /**
- * Class EkomiFeedbackServiceProvider
- * @package EkomiFeedback\Providers
+ * Class EkomiFeedbackServiceProvider.
  */
-class EkomiFeedbackServiceProvider extends ServiceProvider {
-
+class EkomiFeedbackServiceProvider extends ServiceProvider
+{
     use Loggable;
 
     /**
-     * Register the service provider.
+     * Registers the service provider.
      */
-    public function register() {
+    public function register()
+    {
         $this->getApplication()->register(EkomiFeedbackRouteServiceProvider::class);
     }
 
-    public function boot(CronContainer $container) {
-    	$container->add(CronContainer::EVERY_FIVE_MINUTES, EkomiFeedbackCron::class);
+    /**
+     * Adds cron task in plentymarkets.
+     *
+     * @param CronContainer $container
+     */
+    public function boot(CronContainer $container)
+    {
+        $container->add(CronContainer::EVERY_FIVE_MINUTES, EkomiFeedbackCron::class);
     }
-
 }

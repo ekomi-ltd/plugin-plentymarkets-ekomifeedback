@@ -5,34 +5,60 @@ namespace EkomiFeedback\Helper;
 use Plenty\Plugin\ConfigRepository;
 
 /**
- * Class ConfigHelper
+ * Class ConfigHelper.
  */
-class ConfigHelper {
-
+class ConfigHelper
+{
     /**
      * @var ConfigRepository
      */
     private $config;
 
+    /**
+     * ConfigHelper constructor.
+     *
+     * @param ConfigRepository $config
+     */
     public function __construct(ConfigRepository $config)
     {
         $this->config = $config;
     }
 
+    /**
+     * Gets enabled from plugin configurations.
+     *
+     * @return bool
+     */
     public function getEnabled()
     {
         return $this->config->get('EkomiFeedback.is_active');
     }
 
+    /**
+     * Gets mode from plugin configurations.
+     *
+     * @return string
+     */
     public function getMode()
     {
         return $this->config->get('EkomiFeedback.mode');
     }
+
+    /**
+     * Gets Turnaround time from plugin configurations.
+     *
+     * @return int
+     */
     public function getTurnaroundTime()
     {
         return $this->config->get('EkomiFeedback.turnaround_time');
     }
 
+    /**
+     * Gets Shop Id from plugin configurations.
+     *
+     * @return string|string[]|null
+     */
     public function getShopId()
     {
         $shopId = $this->config->get('EkomiFeedback.shop_id');
@@ -40,21 +66,28 @@ class ConfigHelper {
         return preg_replace('/\s+/', '', $shopId);
     }
 
+    /**
+     * Gets Plenty IDs from plugin configurations.
+     *
+     * @return array|bool
+     */
     public function getPlentyIDs()
     {
-        $plentyIDs = false;
-
-        $IDs = $this->config->get('EkomiFeedback.plenty_IDs');
-
-        $IDs = preg_replace('/\s+/', '', $IDs);
-
-        if (!empty($IDs)) {
-            $plentyIDs = explode(',', $IDs);
+        $plentyIds = false;
+        $ids = $this->config->get('EkomiFeedback.plenty_IDs');
+        $ids = preg_replace('/\s+/', '', $ids);
+        if (!empty($ids)) {
+            $plentyIds = explode(',', $ids);
         }
 
-        return $plentyIDs;
+        return $plentyIds;
     }
 
+    /**
+     * Gets Shop Secret from plugin configurations.
+     *
+     * @return string|string[]|null
+     */
     public function getShopSecret()
     {
         $secret = $this->config->get('EkomiFeedback.shop_secret');
@@ -62,16 +95,21 @@ class ConfigHelper {
         return preg_replace('/\s+/', '', $secret);
     }
 
+    /**
+     * Gets Product Reviews from plugin configurations.
+     *
+     * @return bool
+     */
     public function getProductReviews()
     {
         return $this->config->get('EkomiFeedback.product_reviews');
     }
-    
-    public function getNoReviewTxt()
-    {
-        return $this->config->get('EkomiFeedback.no_review_text');
-    }
 
+    /**
+     * Gets Order Statuses array from plugin configurations.
+     *
+     * @return array
+     */
     public function getOrderStatus()
     {
         $status = $this->config->get('EkomiFeedback.order_status');
@@ -80,6 +118,11 @@ class ConfigHelper {
         return $statusArray;
     }
 
+    /**
+     * Gets Referrer Ids array from plugin configurations.
+     *
+     * @return array
+     */
     public function getReferrerIds()
     {
         $referrerIds = $this->config->get('EkomiFeedback.referrer_id');
@@ -88,28 +131,53 @@ class ConfigHelper {
         return $referrerIds;
     }
 
-	public function getSmartCheck()
-	{
-		return $this->config->get('EkomiFeedback.smart_check');
-	}
+    /**
+     * Gets Smart Check from plugin configurations.
+     *
+     * @return bool
+     */
+    public function getSmartCheck()
+    {
+        return $this->config->get('EkomiFeedback.smart_check');
+    }
 
-	public function getProductIdentifier()
-	{
-		return $this->config->get('EkomiFeedback.product_identifier');
-	}
+    /**
+     * Gets Product Identifier from plugin configurations.
+     *
+     * @return string
+     */
+    public function getProductIdentifier()
+    {
+        return $this->config->get('EkomiFeedback.product_identifier');
+    }
 
-	public function getExcludeProducts()
-	{
-		return $this->config->get('EkomiFeedback.exclude_products');
-	}
+    /**
+     * Gets Exclude Products from plugin configurations.
+     *
+     * @return string
+     */
+    public function getExcludeProducts()
+    {
+        return $this->config->get('EkomiFeedback.exclude_products');
+    }
 
-	public function getShowPrcWidget()
-	{
-		return $this->config->get('EkomiFeedback.show_prc_widget');
-	}
+    /**
+     * Gets Show Widget from plugin configurations.
+     *
+     * @return bool
+     */
+    public function getShowPrcWidget()
+    {
+        return $this->config->get('EkomiFeedback.show_prc_widget');
+    }
 
-	public function getPrcWidgetToken()
-	{
-		return $this->config->get('EkomiFeedback.prc_widget_token');
-	}
+    /**
+     * Gets Widget Token from plugin configurations.
+     *
+     * @return string
+     */
+    public function getPrcWidgetToken()
+    {
+        return $this->config->get('EkomiFeedback.prc_widget_token');
+    }
 }
