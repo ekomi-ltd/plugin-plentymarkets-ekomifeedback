@@ -5,11 +5,13 @@ namespace EkomiFeedback\Helper;
 use EkomiFeedback\Helper\ConfigHelper;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Item\ItemImage\Contracts\ItemImageRepositoryContract;
+use Plenty\Plugin\Log\Loggable;
 
 /**
  * Class EkomiHelper
  */
 class EkomiHelper {
+    use Loggable;
 
     /**
      * @var ConfigRepository
@@ -140,6 +142,8 @@ class EkomiHelper {
         foreach ($orderItems as $key => $product) {
             if (!empty($product['properties'])) {
                 $itemId = $product['id'];
+
+                $this->getLogger(__FUNCTION__)->error('Product-'.$itemId, $product);
 
                 $itemURLs = $this->getItemURLs($itemId, $plentyId);
 
