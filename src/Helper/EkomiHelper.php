@@ -23,6 +23,14 @@ class EkomiHelper {
     private $imagesRepo;
     private $itemVariationRepository;
 
+    /**
+     * EkomiHelper constructor.
+     *
+     * @param WebstoreRepositoryContract         $webStoreRepo
+     * @param \EkomiFeedback\Helper\ConfigHelper $configHelper
+     * @param ItemImageRepositoryContract        $imagesRepo
+     * @param VariationRepositoryContract        $itemVariationRepository
+     */
     public function __construct(
         WebstoreRepositoryContract $webStoreRepo,
         ConfigHelper $configHelper,
@@ -139,7 +147,7 @@ class EkomiHelper {
     }
 
     /**
-     * Gets the products data
+     * Gets the products data.
      * 
      * @return array The products array
      * 
@@ -151,7 +159,6 @@ class EkomiHelper {
         foreach ($orderItems as $key => $product) {
             if (!empty($product['properties'])) {
                 $itemVariation = $this->itemVariationRepository->findById($product['itemVariationId']);
-
                 $itemId = $itemVariation->itemId;
                 $itemURLs = $this->getItemURLs($itemId, $plentyId);
                 if ($this->configHelper->getProductIdentifier() == 'number'){
@@ -161,22 +168,16 @@ class EkomiHelper {
                 }
 
                 $products['product_info'][$itemId] = $product['orderItemName'];
-
                 $productOther = array();
-
                 $productOther['image_url'] = utf8_decode($itemURLs['imgUrl']);
-
                 $productOther['brand_name'] = '';
-
                 $productOther['product_ids'] = array(
                     'gbase' => utf8_decode($itemId)
                 );
-
                 $productOther['links'] = array(
                     array('rel' => 'canonical', 'type' => 'text/html',
                         'href' => utf8_decode($itemURLs['itemUrl']))
                 );
-
                 $products['other'][$itemId]['product_other'] = $productOther;
             }
         }
