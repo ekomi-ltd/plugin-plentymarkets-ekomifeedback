@@ -3,6 +3,10 @@
 namespace EkomiFeedback\Helper;
 
 use EkomiFeedback\Helper\ConfigHelper;
+
+use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
+use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
+use Plenty\Modules\Order\Contracts\OrderItemRepositoryContract;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Item\ItemImage\Contracts\ItemImageRepositoryContract;
 use Plenty\Plugin\Log\Loggable;
@@ -19,11 +23,24 @@ class EkomiHelper {
     private $configHelper;
     private $webStoreRepo;
     private $imagesRepo;
+    private $orderItemRepository;
+    private $itemRepositoryContract;
+    private $itemVariationRepository;
 
-    public function __construct(WebstoreRepositoryContract $webStoreRepo, ConfigHelper $configHelper, ItemImageRepositoryContract $imagesRepo) {
+    public function __construct(
+        WebstoreRepositoryContract $webStoreRepo,
+        ConfigHelper $configHelper,
+        ItemImageRepositoryContract $imagesRepo,
+        OrderItemRepositoryContract $orderItemRepository,
+        ItemRepositoryContract $itemRepositoryContract,
+        VariationRepositoryContract $itemVariationRepository
+    ) {
         $this->configHelper = $configHelper;
         $this->webStoreRepo = $webStoreRepo;
         $this->imagesRepo = $imagesRepo;
+        $this->orderItemRepository = $orderItemRepository;
+        $this->itemRepositoryContract = $itemRepositoryContract;
+        $this->itemVariationRepository = $itemVariationRepository;
     }
 
     /**
@@ -144,6 +161,10 @@ class EkomiHelper {
                 $itemId = $product['id'];
 
                 $this->getLogger(__FUNCTION__)->error('Product-'.$itemId, $product);
+
+                $this->getLogger(__FUNCTION__)->error('orderItem', $this->orderItemRepository->getOrderItem($itemId));
+                $this->getLogger(__FUNCTION__)->error('Item', $this->itemRepositoryContract->show($itemId));
+                $this->getLogger(__FUNCTION__)->error('ItemVariation', $this->itemVariationRepository->findById($product['itemVariationId']));
 
                 $itemURLs = $this->getItemURLs($itemId, $plentyId);
 
