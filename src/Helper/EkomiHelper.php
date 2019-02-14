@@ -4,9 +4,7 @@ namespace EkomiFeedback\Helper;
 
 use EkomiFeedback\Helper\ConfigHelper;
 
-use Plenty\Modules\Item\Item\Contracts\ItemRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
-use Plenty\Modules\Order\Contracts\OrderItemRepositoryContract;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Item\ItemImage\Contracts\ItemImageRepositoryContract;
 use Plenty\Plugin\Log\Loggable;
@@ -23,23 +21,17 @@ class EkomiHelper {
     private $configHelper;
     private $webStoreRepo;
     private $imagesRepo;
-    private $orderItemRepository;
-    private $itemRepositoryContract;
     private $itemVariationRepository;
 
     public function __construct(
         WebstoreRepositoryContract $webStoreRepo,
         ConfigHelper $configHelper,
         ItemImageRepositoryContract $imagesRepo,
-        OrderItemRepositoryContract $orderItemRepository,
-        ItemRepositoryContract $itemRepositoryContract,
         VariationRepositoryContract $itemVariationRepository
     ) {
         $this->configHelper = $configHelper;
         $this->webStoreRepo = $webStoreRepo;
         $this->imagesRepo = $imagesRepo;
-        $this->orderItemRepository = $orderItemRepository;
-        $this->itemRepositoryContract = $itemRepositoryContract;
         $this->itemVariationRepository = $itemVariationRepository;
     }
 
@@ -158,15 +150,20 @@ class EkomiHelper {
         $products = array();
         foreach ($orderItems as $key => $product) {
             if (!empty($product['properties'])) {
-                $itemId = $product['id'];
+                $itemVariation = $this->itemVariationRepository->findById($product['itemVariationId']);
 
-                $this->getLogger(__FUNCTION__)->error('Product-'.$itemId, $product);
+                $this->getLogger(__FUNCTION__)->error('ItemVariation', $itemVariation);
 
-                $this->getLogger(__FUNCTION__)->error('orderItem', $this->orderItemRepository->getOrderItem($itemId));
-                $this->getLogger(__FUNCTION__)->error('Item', $this->itemRepositoryContract->show($itemId));
-                $this->getLogger(__FUNCTION__)->error('ItemVariation', $this->itemVariationRepository->findById($product['itemVariationId']));
 
+                $itemId = $itemVariation->itemId;
                 $itemURLs = $this->getItemURLs($itemId, $plentyId);
+                if ($this->configHelper->getProductIdentifier() == 'number'){
+                    $itemId = $itemVariation->id;
+                } elseif ($this->configHelper->getProductIdentifier() == 'variation'){
+                    $itemId = $itemVariation->number;
+                }
+
+                $this->getLogger(__FUNCTION__)->error('itemIdentifiers', array('id'=>$itemId,'vId'=>$itemVariation->id,'number'=>$itemVariation->number));
 
                 $products['product_info'][$itemId] = $product['orderItemName'];
 
