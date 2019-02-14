@@ -152,18 +152,13 @@ class EkomiHelper {
             if (!empty($product['properties'])) {
                 $itemVariation = $this->itemVariationRepository->findById($product['itemVariationId']);
 
-                $this->getLogger(__FUNCTION__)->error('ItemVariation', $itemVariation);
-
-
                 $itemId = $itemVariation->itemId;
                 $itemURLs = $this->getItemURLs($itemId, $plentyId);
                 if ($this->configHelper->getProductIdentifier() == 'number'){
-                    $itemId = $itemVariation->id;
-                } elseif ($this->configHelper->getProductIdentifier() == 'variation'){
                     $itemId = $itemVariation->number;
+                } elseif ($this->configHelper->getProductIdentifier() == 'variation'){
+                    $itemId = $itemVariation->id;
                 }
-
-                $this->getLogger(__FUNCTION__)->error('itemIdentifiers', array('id'=>$itemId,'vId'=>$itemVariation->id,'number'=>$itemVariation->number));
 
                 $products['product_info'][$itemId] = $product['orderItemName'];
 
