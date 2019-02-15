@@ -52,3 +52,8 @@
 
 - Code optimization.
 - Turnaround time feature.
+
+### v2.2.1 (14-02-2019)
+
+- Fixed item id in order data.
+- Added option to select product identifier.

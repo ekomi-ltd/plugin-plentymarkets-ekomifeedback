@@ -33,6 +33,16 @@ class ConfigHelper {
         return $this->config->get('EkomiFeedback.turnaround_time');
     }
 
+    /**
+     * Gets product identifier.
+     *
+     * @return string
+     */
+    public function getProductIdentifier()
+    {
+        return $this->config->get('EkomiFeedback.product_identifier');
+    }
+
     public function getShopId()
     {
         $shopId = $this->config->get('EkomiFeedback.shop_id');

@@ -63,20 +63,15 @@ class EkomiServices {
     	
         if ($this->configHelper->getEnabled() == 'true') {
             if ($this->validateShop()) {
-
                 $orderStatuses = $this->configHelper->getOrderStatus();
-                $referrerIds   = $this->configHelper->getReferrerIds();
-                $plentyIDs     = $this->configHelper->getPlentyIDs();
+                $referrerIds = $this->configHelper->getReferrerIds();
+                $plentyIDs = $this->configHelper->getPlentyIDs();
                 $turnaroundTime = $this->configHelper->getTurnaroundTime();
-
                 $updatedAtFrom = date('Y-m-d\TH:i:s+00:00',strtotime("-{$turnaroundTime} day"));
                 $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
-
                 $pageNum =1;
                 $filters = ['updatedAtFrom'=>$updatedAtFrom,'updatedAtTo'=>$updatedAtTo];
-
                 $fetchOrders = true;
-
                 while($fetchOrders) {
                     $orders = $this->orderRepository->getOrders($pageNum, $filters);
 
