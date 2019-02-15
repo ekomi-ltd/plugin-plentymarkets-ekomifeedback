@@ -3,7 +3,6 @@
 namespace EkomiFeedback\Helper;
 
 use EkomiFeedback\Helper\ConfigHelper;
-
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Item\ItemImage\Contracts\ItemImageRepositoryContract;
@@ -161,7 +160,6 @@ class EkomiHelper {
      * @access protected
      */
     protected function getProductsData($orderItems, $plentyId) {
-
         $products = array();
         $productIdentifier = $this->configHelper->getProductIdentifier();
         foreach ($orderItems as $key => $product) {
