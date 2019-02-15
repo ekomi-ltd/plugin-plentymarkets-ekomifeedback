@@ -3,6 +3,7 @@
 namespace EkomiFeedback\Helper;
 
 use EkomiFeedback\Helper\ConfigHelper;
+use Plenty\Modules\Helper\Contracts\UrlBuilderRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Item\ItemImage\Contracts\ItemImageRepositoryContract;
@@ -21,6 +22,7 @@ class EkomiHelper {
     private $webStoreRepo;
     private $imagesRepo;
     private $itemVariationRepository;
+    private $urlBuilderRepositoryContract;
 
     /**
      * Product identifiers.
@@ -36,33 +38,37 @@ class EkomiHelper {
      * @param \EkomiFeedback\Helper\ConfigHelper $configHelper
      * @param ItemImageRepositoryContract        $imagesRepo
      * @param VariationRepositoryContract        $itemVariationRepository
+     * @param UrlBuilderRepositoryContract       $urlBuilderRepositoryContract
      */
     public function __construct(
         WebstoreRepositoryContract $webStoreRepo,
         ConfigHelper $configHelper,
         ItemImageRepositoryContract $imagesRepo,
-        VariationRepositoryContract $itemVariationRepository
+        VariationRepositoryContract $itemVariationRepository,
+        UrlBuilderRepositoryContract $urlBuilderRepositoryContract
     ) {
         $this->configHelper = $configHelper;
         $this->webStoreRepo = $webStoreRepo;
         $this->imagesRepo = $imagesRepo;
         $this->itemVariationRepository = $itemVariationRepository;
+        $this->urlBuilderRepositoryContract = $urlBuilderRepositoryContract;
     }
 
     /**
      * Gets the order data and prepare post variables
-     * 
+     *
      * @param array $order Order object as array
-     * 
+     *
      * @return string The comma separated parameters
      */
     function preparePostVars($order) {
         $id = $order['id'];
+        $this->getLogger(__FUNCTION__)->error('order-'.$id, $order);
         $plentyId = $order['plentyId'];
         $createdAt = $order['createdAt'];
 
-        $customerInfo=$order['relations'][1]['contactReceiver'];
-
+        $customerInfo = $order['relations'][1]['contactReceiver'];
+        $billingAddress = $order['addresses'][0];
         $apiMode = $this->getRecipientType($customerInfo['privatePhone']);
 
         $scheduleTime = $this->toMySqlDateTime($createdAt);
@@ -78,9 +84,9 @@ class EkomiHelper {
             'password' => $this->configHelper->getShopSecret(),
             'recipient_type' => $apiMode,
             'salutation' => '',
-            'first_name' => $customerInfo['firstName'],
-            'last_name' => $customerInfo['lastName'],
-            'email' => $customerInfo['email'],
+            'first_name' => (is_null($billingAddress['name2'])) ? $billingAddress['name1'] : $billingAddress['name2'],
+            'last_name' => (is_null($billingAddress['name3'])) ? $billingAddress['name4'] : $billingAddress['name3'],
+            'email' => $billingAddress['options'][0]['value'],
             'transaction_id' => $id,
             'transaction_time' => $scheduleTime,
             'telephone' => $customerInfo['privatePhone'],
@@ -89,15 +95,15 @@ class EkomiHelper {
         );
 
         $fields['client_id'] = $customerInfo['id'];
-        $fields['screen_name'] = $customerInfo['fullName'];
+        $fields['screen_name'] = $fields['first_name'].' '.$fields['last_name'];
 
         if ($this->configHelper->getProductReviews() == 'true') {
-            $fields['has_products'] = 1;
             $productsData = $this->getProductsData($order['orderItems'], $plentyId);
+            $fields['has_products'] = $productsData['has_products'];
             $fields['products_info'] = json_encode($productsData['product_info']);
             $fields['products_other'] = json_encode($productsData['other']);
         }
-
+        $this->getLogger(__FUNCTION__)->error('fields-'.$id, $fields);
         $postVars = '';
         $counter = 1;
         foreach ($fields as $key => $value) {
@@ -111,77 +117,82 @@ class EkomiHelper {
     }
 
     /**
-     * Gets item image url
-     * 
-     * @param type $itemId
+     * Gets item image url.
+     *
+     * @param int    $itemId
+     * @param string $variationId
+     *
      * @return string
      */
-    public function getItemImageUrl($itemId) {
-        $images = $this->imagesRepo->findByItemId($itemId);
-        if (isset($images[0])) {
-            return $images[0]['url'];
+    public function getItemImageUrl($itemId, $variationId) {
+        $variationImage = $this->imagesRepo->findByVariationId($variationId);
+        $itemImage = $this->imagesRepo->findByItemId($itemId);
+        if (isset($variationImage[0])) {
+            return $variationImage[0]['url'];
+        } elseif (isset($itemImage[0])) {
+            return $itemImage[0]['url'];
         }
+
         return '';
     }
 
     /**
-     * Gets Item image url
-     * 
-     * @param int $itemId The item Id
-     *  
-     * @return string The url of image
+     * Gets Item image url.
+     *
+     * @param int    $plentyId
+     * @param int    $itemId
+     * @param string $variationId
+     *
+     * @return array
      */
-    public function getItemURLs($itemId, $plentyId) {
-        $itemUrl = '';
-
-        $imagUrl = $this->getItemImageUrl($itemId);
-
-        if (isset($imagUrl[0])) {
-            if (!empty($imagUrl[0]['url'])) {
-                $temp = explode('/item/', $imagUrl[0]['url']);
-                if (isset($temp[0])) {
-                    $itemUrl = $temp[0];
-                }
-            }
-        }
-        if (empty($itemUrl)) {
+    public function getItemURLs($plentyId, $itemId, $variationId) {
+        $imagUrl = $this->getItemImageUrl($itemId, $variationId);
+        $itemUrl = $this->urlBuilderRepositoryContract->getItemUrl($itemId,$plentyId);
+        if(empty($itemUrl)){
             $itemUrl = $this->getStoreDomain($plentyId);
+            $itemUrl = $itemUrl . '/a-' . $itemId;
         }
-        $itemUrl = $itemUrl . '/a-' . $itemId;
 
         return ['itemUrl'=>$itemUrl,'imgUrl'=>$imagUrl];
     }
 
     /**
      * Gets the products data.
-     * 
-     * @return array The products array
-     * 
-     * @access protected
+     *
+     * @param array $orderItems
+     * @param int   $plentyId
+     *
+     * @return array
      */
     protected function getProductsData($orderItems, $plentyId) {
-        $products = array();
+        $products = array('has_products'=>0);
         $productIdentifier = $this->configHelper->getProductIdentifier();
         foreach ($orderItems as $key => $product) {
-            if (!empty($product['properties'])) {
+            if (isset($product['itemVariationId'])) {
                 $itemVariation = $this->itemVariationRepository->findById($product['itemVariationId']);
-                $itemId = $itemVariation->itemId;
-                $itemURLs = $this->getItemURLs($itemId, $plentyId);
-                if (self::PRODUCT_IDENTIFIER_NUMBER == $productIdentifier){
-                    $itemId = $itemVariation->number;
-                } elseif ( self::PRODUCT_IDENTIFIER_VARIATION == $productIdentifier){
-                    $itemId = $itemVariation->id;
-                }
+                if ($itemVariation) {
+                    $itemId = $itemVariation->itemId;
+                    $itemURLs = $this->getItemURLs($plentyId, $itemId, $product['itemVariationId']);
+                    if (self::PRODUCT_IDENTIFIER_NUMBER == $productIdentifier) {
+                        $itemId = $itemVariation->number;
+                    } elseif (self::PRODUCT_IDENTIFIER_VARIATION == $productIdentifier) {
+                        $itemId = $itemVariation->id;
+                    }
 
-                $products['product_info'][$itemId] = $product['orderItemName'];
-                $productOther = array();
-                $productOther['image_url'] = utf8_decode($itemURLs['imgUrl']);
-                $productOther['brand_name'] = '';
-                $productOther['product_ids'] = array('gbase' => utf8_decode($itemId));
-                $productOther['links'] = array(
-                    array('rel' => 'canonical', 'type' => 'text/html', 'href' => utf8_decode($itemURLs['itemUrl']))
-                );
-                $products['other'][$itemId]['product_other'] = $productOther;
+                    $products['product_info'][$itemId] = $product['orderItemName'];
+                    $productOther = array();
+                    $productOther['image_url'] = utf8_decode($itemURLs['imgUrl']);
+                    $productOther['brand_name'] = '';
+                    $productOther['product_ids'] = array('gbase' => utf8_decode($itemId));
+                    $canonicalUrl = utf8_decode($itemURLs['itemUrl']);
+                    $productOther['links'] = array(
+                        array('rel' => 'canonical', 'type' => 'text/html', 'href' => $canonicalUrl)
+                    );
+
+                    $products['other'][$itemId]['product_canonical_link'] = $canonicalUrl;
+                    $products['other'][$itemId]['product_other'] = $productOther;
+                    $products['has_products'] = 1;
+                }
             }
         }
 
@@ -190,11 +201,11 @@ class EkomiHelper {
 
     /**
      * Gets the recipient type
-     * 
+     *
      * @param string $telephone The phone nu,ber
-     * 
+     *
      * @return string Recipient type
-     * 
+     *
      * @access protected
      */
     protected function getRecipientType($telephone) {
@@ -221,11 +232,11 @@ class EkomiHelper {
 
     /**
      * Validates E164 numbers
-     * 
+     *
      * @param $phone The phone number
      *
      * @return bool Yes if matches False otherwise
-     * 
+     *
      * @access protected
      */
     protected function validateE164($phone) {
@@ -242,9 +253,9 @@ class EkomiHelper {
 
     /**
      * Converts date to Mysql formate
-     * 
+     *
      * @param string $date The date
-     * 
+     *
      * @return string The formatted date
      */
     public function toMySqlDateTime($date) {
@@ -258,9 +269,9 @@ class EkomiHelper {
 
     /**
      * Gets store name
-     * 
+     *
      * @return string
-     * 
+     *
      * @access protected
      */
     protected function getStoreName($plentyId) {
@@ -273,11 +284,11 @@ class EkomiHelper {
 
     /**
      * Gets Store domain Url
-     * 
+     *
      * @param type $plentyId
-     * 
+     *
      * @return string
-     * 
+     *
      * @access protected
      */
     protected function getStoreDomain($plentyId) {
