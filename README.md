@@ -121,6 +121,11 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 - Code optimization.
 - Turnaround time feature.
 
+### v2.2.1 (14-02-2019)
+
+- Fixed item id in order data.
+- Added option to select product identifier.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)

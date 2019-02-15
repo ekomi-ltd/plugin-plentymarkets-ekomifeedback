@@ -48,3 +48,8 @@
 
 - Code-Optimierung.
 - Bearbeitungszeit.
+
+### v2.2.1 (14-02-2019)
+
+- Feste Artikel-ID in den Auftragsdaten.
+- Option hinzugefügt, um die Produktkennung auszuwählen.

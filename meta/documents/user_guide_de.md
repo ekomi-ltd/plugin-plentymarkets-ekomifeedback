@@ -49,6 +49,7 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	- Aktivieren / Deaktivieren von Gruppenbewertungen (falls aktiviert, werden auch Bewertungen von Kindern / Produktvariationen hinzugefügt)
 	- „Modus“ auswählen (für SMS sollte das Mobiltelefonformat gemäß E164 sein)
 	- Geben Sie die Bearbeitungszeit ein (Zeit, bis ein Auftrag abgeschlossen ist)
+	- Produktkennung auswählen (Wie identifizieren Sie das Produkt?)
 	- Fügen Sie „Client Store Plenty IDs“ ein. Durch Kommatrennung können mehrere Plenty IDs hinzugefügt werden (optional)
 	- Wählen Sie „Bestellstatus“ aus, welche Informationen enthalten und an eKomi gesendet werden
 	- Wählen Sie „Referrers Filter (out)“ aus, um die Bestellungen herauszufiltern
