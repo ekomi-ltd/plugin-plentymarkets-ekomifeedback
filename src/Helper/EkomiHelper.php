@@ -63,10 +63,8 @@ class EkomiHelper {
      */
     function preparePostVars($order) {
         $id = $order['id'];
-        $this->getLogger(__FUNCTION__)->error('order-'.$id, $order);
         $plentyId = $order['plentyId'];
         $createdAt = $order['createdAt'];
-
         $customerInfo = $order['relations'][1]['contactReceiver'];
         $billingAddress = $order['addresses'][0];
         $apiMode = $this->getRecipientType($customerInfo['privatePhone']);
@@ -103,7 +101,7 @@ class EkomiHelper {
             $fields['products_info'] = json_encode($productsData['product_info']);
             $fields['products_other'] = json_encode($productsData['other']);
         }
-        $this->getLogger(__FUNCTION__)->error('fields-'.$id, $fields);
+
         $postVars = '';
         $counter = 1;
         foreach ($fields as $key => $value) {
