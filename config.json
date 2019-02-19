@@ -109,22 +109,26 @@
                   }
                 },
                 "product_identifier": {
-                  "type": "selectBox",
-                  "required": true,
-                  "label": "Config.productIdentifierLabel",
-                  "options": {
-                    "defaultValue": "id",
-                    "selectBoxValues": [
-                      {
-                        "value": "id",
-                        "caption": "Config.productIdentifierPossibleValueId"
-                      },
-                      {
-                        "value": "sku",
-                        "caption": "Config.productIdentifierPossibleValueSku"
-                      }
-                    ]
-                  }
+                    "type": "selectBox",
+                    "required": true,
+                    "label": "Config.productIdentifierLabel",
+                    "options": {
+                        "defaultValue": "id",
+                        "selectBoxValues": [
+                            {
+                                "value": "id",
+                                "caption": "Config.productIdentifierPossibleValueItemId"
+                            },
+                            {
+                                "value": "number",
+                                "caption": "Config.productIdentifierPossibleValueItemNumber"
+                            },
+                            {
+                                "value": "variation",
+                                "caption": "Config.productIdentifierPossibleValueVariationId"
+                            }
+                        ]
+                    }
                 },
                 "exclude_products": {
                   "type": "inputText",

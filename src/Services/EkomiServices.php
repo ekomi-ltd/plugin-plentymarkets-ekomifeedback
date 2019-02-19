@@ -36,10 +36,11 @@ class EkomiServices
     const URL_SMART_CHECK_SETTINGS = 'https://srr.ekomi.com/api/v1/shops/setting';
 
     /**
-     * Product Identifiers.
+     * Product identifiers.
      */
-    const PRODUCT_IDENTIFIER_ID = 'id';
-    const PRODUCT_IDENTIFIER_SKU = 'sku';
+    const PRODUCT_IDENTIFIER_ID = 'id"';
+    const PRODUCT_IDENTIFIER_NUMBER = 'number';
+    const PRODUCT_IDENTIFIER_VARIATION = 'variation';
 
     /**
      * @var ConfigRepository
@@ -250,6 +251,8 @@ class EkomiServices
             $header = array('ContentType:multipart/form-data;boundary='.$boundary);
             $postFields = json_encode($orderData);
             $response = $this->doCurl(self::URL_TO_SEND_DATA, 'PUT', $header, $postFields);
+            $this->getLogger(__FUNCTION__)->error('orderData', $orderData);
+            $this->getLogger(__FUNCTION__)->error('postFields', $postFields);
             $this->getLogger(__FUNCTION__)->error('PD-API-Response', $response);
         }
 

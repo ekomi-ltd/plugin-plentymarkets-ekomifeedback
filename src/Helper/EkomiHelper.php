@@ -2,6 +2,8 @@
 
 namespace EkomiFeedback\Helper;
 
+use Plenty\Modules\Helper\Contracts\UrlBuilderRepositoryContract;
+use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Item\ItemImage\Contracts\ItemImageRepositoryContract;
 use Plenty\Modules\Order\Shipping\Countries\Contracts\CountryRepositoryContract;
@@ -33,23 +35,39 @@ class EkomiHelper
     private $countryRepo;
 
     /**
+     * @var VariationRepositoryContract
+     */
+    private $itemVariationRepository;
+
+    /**
+     * @var UrlBuilderRepositoryContract
+     */
+    private $urlBuilderRepositoryContract;
+
+    /**
      * Initializes object variables.
      *
      * @param WebstoreRepositoryContract         $webStoreRepo
      * @param \EkomiFeedback\Helper\ConfigHelper $configHelper
      * @param ItemImageRepositoryContract        $imagesRepo
      * @param CountryRepositoryContract          $countryRepo
+     * @param VariationRepositoryContract        $itemVariationRepository
+     * @param UrlBuilderRepositoryContract       $urlBuilderRepositoryContract
      */
     public function __construct(
         WebstoreRepositoryContract $webStoreRepo,
         ConfigHelper $configHelper,
         ItemImageRepositoryContract $imagesRepo,
-        CountryRepositoryContract $countryRepo
+        CountryRepositoryContract $countryRepo,
+        VariationRepositoryContract $itemVariationRepository,
+        UrlBuilderRepositoryContract $urlBuilderRepositoryContract
     ) {
         $this->configHelper = $configHelper;
         $this->webStoreRepo = $webStoreRepo;
         $this->imagesRepo = $imagesRepo;
         $this->countryRepo = $countryRepo;
+        $this->itemVariationRepository = $itemVariationRepository;
+        $this->urlBuilderRepositoryContract = $urlBuilderRepositoryContract;
     }
 
     /**
@@ -116,14 +134,17 @@ class EkomiHelper
     protected function getProductsData($orderItems, $plentyId)
     {
         $products = array();
-        foreach ($orderItems as $key => $product) {
-            if (!empty($product['properties'])) {
-                $itemURLs = $this->getItemURLs($product['id'], $plentyId);
-
-                $product['image_url'] = utf8_decode($itemURLs['imgUrl']);
-                $product['canonical_url'] = utf8_decode($itemURLs['itemUrl']);
-
-                $products[] = $product;
+        foreach ($orderItems as $key => $item) {
+            if (isset($product['itemVariationId'])) {
+                $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
+                if ($itemVariation) {
+                    $itemId = $itemVariation->itemId;
+                    $item['itemId'] = $itemId;
+                    $item['imageNumber'] = $itemVariation->number;
+                    $item['image_url'] = utf8_decode($this->getItemImageUrl($itemId, $item['itemVariationId']));
+                    $item['canonical_url'] = utf8_decode($this->getItemUrl($plentyId, $itemId));
+                    $products[] = $item;
+                }
             }
         }
 
@@ -133,47 +154,37 @@ class EkomiHelper
     /**
      * Gets Item image url.
      *
-     * @param int $itemId   the item Id
-     * @param int $plentyId
+     * @param int    $plentyId
+     * @param int    $itemId
      *
-     * @return array the url of image
+     * @return array
      */
-    public function getItemURLs($itemId, $plentyId)
-    {
-        $itemUrl = '';
-
-        $imagUrl = $this->getItemImageUrl($itemId);
-
-        if (isset($imagUrl[0])) {
-            if (!empty($imagUrl[0]['url'])) {
-                $temp = explode('/item/', $imagUrl[0]['url']);
-                if (isset($temp[0])) {
-                    $itemUrl = $temp[0];
-                }
-            }
-        }
-        if (empty($itemUrl)) {
+    public function getItemUrl($plentyId, $itemId) {
+        $itemUrl = $this->urlBuilderRepositoryContract->getItemUrl($itemId,$plentyId);
+        if(empty($itemUrl)){
             $itemUrl = $this->getStoreDomain($plentyId);
+            $itemUrl = $itemUrl . '/a-' . $itemId;
         }
-        $itemUrl = $itemUrl.'/a-'.$itemId;
 
-        return ['itemUrl' => $itemUrl, 'imgUrl' => $imagUrl];
+        return $itemUrl;
     }
 
     /**
      * Gets item image url.
      *
-     * @param int $itemId
+     * @param int    $itemId
+     * @param string $variationId
      *
      * @return string
      */
-    public function getItemImageUrl($itemId)
-    {
-        $images = $this->imagesRepo->findByItemId($itemId);
-        if (isset($images[0])) {
-            return $images[0]['url'];
+    public function getItemImageUrl($itemId, $variationId) {
+        $variationImage = $this->imagesRepo->findByVariationId($variationId);
+        $itemImage = $this->imagesRepo->findByItemId($itemId);
+        if (isset($variationImage[0])) {
+            return $variationImage[0]['url'];
+        } elseif (isset($itemImage[0])) {
+            return $itemImage[0]['url'];
         }
-
         return '';
     }
 

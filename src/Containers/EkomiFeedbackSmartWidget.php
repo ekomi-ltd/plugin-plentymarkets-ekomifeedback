@@ -26,8 +26,10 @@ class EkomiFeedbackSmartWidget
             $item = $arg[0];
             if (isset($item['item']['id'])) {
                 $productIdentifier = trim($item['item']['id']);
-                if (EkomiServices::PRODUCT_IDENTIFIER_SKU == $configHelper->getProductIdentifier()) {
+                if (EkomiServices::PRODUCT_IDENTIFIER_VARIATION == $configHelper->getProductIdentifier()) {
                     $productIdentifier = trim($item['variation']['id']);
+                } elseif (EkomiServices::PRODUCT_IDENTIFIER_NUMBER == $configHelper->getProductIdentifier()) {
+                    $productIdentifier = trim($item['variation']['number']);
                 }
 
                 $data = array(
