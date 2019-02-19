@@ -2,6 +2,8 @@
 
 namespace EkomiFeedback\Helper;
 
+use IO\Extensions\Filters\URLFilter;
+use IO\Services\UrlService;
 use Plenty\Modules\Helper\Contracts\UrlBuilderRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
@@ -45,14 +47,20 @@ class EkomiHelper
     private $urlBuilderRepositoryContract;
 
     /**
+     * @var UrlService
+     */
+    private $urlService;
+
+    /**
      * Initializes object variables.
      *
-     * @param WebstoreRepositoryContract         $webStoreRepository
-     * @param ConfigHelper $configHelper
-     * @param ItemImageRepositoryContract        $imagesRepository
-     * @param CountryRepositoryContract          $countryRepository
-     * @param VariationRepositoryContract        $itemVariationRepository
-     * @param UrlBuilderRepositoryContract       $urlBuilderRepositoryContract
+     * @param WebstoreRepositoryContract   $webStoreRepository
+     * @param ConfigHelper                 $configHelper
+     * @param ItemImageRepositoryContract  $imagesRepository
+     * @param CountryRepositoryContract    $countryRepository
+     * @param VariationRepositoryContract  $itemVariationRepository
+     * @param UrlBuilderRepositoryContract $urlBuilderRepositoryContract
+     * @param UrlService                   $urlService
      */
     public function __construct(
         WebstoreRepositoryContract $webStoreRepository,
@@ -60,7 +68,8 @@ class EkomiHelper
         ItemImageRepositoryContract $imagesRepository,
         CountryRepositoryContract $countryRepository,
         VariationRepositoryContract $itemVariationRepository,
-        UrlBuilderRepositoryContract $urlBuilderRepositoryContract
+        UrlBuilderRepositoryContract $urlBuilderRepositoryContract,
+        UrlService $urlService
     ) {
         $this->configHelper = $configHelper;
         $this->webStoreRepository = $webStoreRepository;
@@ -68,6 +77,7 @@ class EkomiHelper
         $this->countryRepository = $countryRepository;
         $this->itemVariationRepository = $itemVariationRepository;
         $this->urlBuilderRepositoryContract = $urlBuilderRepositoryContract;
+        $this->urlService = $urlService;
     }
 
     /**
@@ -141,6 +151,7 @@ class EkomiHelper
                     $item['imageNumber'] = $itemVariation->number;
                     $item['image_url'] = utf8_decode($this->getItemImageUrl($itemId, $item['itemVariationId']));
                     $item['canonical_url'] = utf8_decode($this->getItemUrl($plentyId, $itemId));
+                    $item['temp_canonical_url'] = utf8_decode($this->urlService->getVariationURL($itemId,$itemVariation->id));
                     $products[] = $item;
                 }
             }
