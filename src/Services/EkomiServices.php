@@ -36,13 +36,6 @@ class EkomiServices
     const URL_SMART_CHECK_SETTINGS = 'https://srr.ekomi.com/api/v1/shops/setting';
 
     /**
-     * Product identifiers.
-     */
-    const PRODUCT_IDENTIFIER_ID = 'id"';
-    const PRODUCT_IDENTIFIER_NUMBER = 'number';
-    const PRODUCT_IDENTIFIER_VARIATION = 'variation';
-
-    /**
      * @var ConfigRepository
      */
     private $configHelper;
@@ -68,7 +61,7 @@ class EkomiServices
      */
     public function sendOrdersData()
     {
-        if ('true' !== $this->configHelper->getEnabled()) {
+        if (ConfigHelper::CONFIG_ENABLE_TRUE !== $this->configHelper->getEnabled()) {
             $additionalInfo = 'is_active:'.$this->configHelper->getEnabled();
             $this->getLogger(__FUNCTION__)->error('Plugin not active', $additionalInfo);
         }
@@ -171,7 +164,7 @@ class EkomiServices
             'interface-password: '.$this->configHelper->getShopSecret(),
         );
         $smartCheck = false;
-        if ('true' == $this->configHelper->getSmartCheck() || '1' == $this->configHelper->getSmartCheck()) {
+        if (ConfigHelper::CONFIG_ENABLE_TRUE == $this->configHelper->getSmartCheck()) {
             $smartCheck = true;
         }
 
