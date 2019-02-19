@@ -24,15 +24,15 @@ class EkomiHelper
     /**
      * @var WebstoreRepositoryContract
      */
-    private $webStoreRepo;
+    private $webStoreRepository;
     /**
      * @var ItemImageRepositoryContract
      */
-    private $imagesRepo;
+    private $imagesRepository;
     /**
      * @var CountryRepositoryContract
      */
-    private $countryRepo;
+    private $countryRepository;
 
     /**
      * @var VariationRepositoryContract
@@ -47,25 +47,25 @@ class EkomiHelper
     /**
      * Initializes object variables.
      *
-     * @param WebstoreRepositoryContract         $webStoreRepo
-     * @param \EkomiFeedback\Helper\ConfigHelper $configHelper
-     * @param ItemImageRepositoryContract        $imagesRepo
-     * @param CountryRepositoryContract          $countryRepo
+     * @param WebstoreRepositoryContract         $webStoreRepository
+     * @param ConfigHelper $configHelper
+     * @param ItemImageRepositoryContract        $imagesRepository
+     * @param CountryRepositoryContract          $countryRepository
      * @param VariationRepositoryContract        $itemVariationRepository
      * @param UrlBuilderRepositoryContract       $urlBuilderRepositoryContract
      */
     public function __construct(
-        WebstoreRepositoryContract $webStoreRepo,
+        WebstoreRepositoryContract $webStoreRepository,
         ConfigHelper $configHelper,
-        ItemImageRepositoryContract $imagesRepo,
-        CountryRepositoryContract $countryRepo,
+        ItemImageRepositoryContract $imagesRepository,
+        CountryRepositoryContract $countryRepository,
         VariationRepositoryContract $itemVariationRepository,
         UrlBuilderRepositoryContract $urlBuilderRepositoryContract
     ) {
         $this->configHelper = $configHelper;
-        $this->webStoreRepo = $webStoreRepo;
-        $this->imagesRepo = $imagesRepo;
-        $this->countryRepo = $countryRepo;
+        $this->webStoreRepository = $webStoreRepository;
+        $this->imagesRepository = $imagesRepository;
+        $this->countryRepository = $countryRepository;
         $this->itemVariationRepository = $itemVariationRepository;
         $this->urlBuilderRepositoryContract = $urlBuilderRepositoryContract;
     }
@@ -79,7 +79,6 @@ class EkomiHelper
      */
     public function preparePostVars($order)
     {
-        $id = $order['id'];
         $plentyId = $order['plentyId'];
         $fields = array(
             'shop_id' => $this->configHelper->getShopId(),
@@ -90,11 +89,10 @@ class EkomiHelper
             'product_identifier' => $this->configHelper->getProductIdentifier(),
             'exclude_products' => $this->configHelper->getExcludeProducts(),
         );
-
         $order['senderName'] = $this->getWebStoreName($plentyId);
         $order['senderEmail'] = '';
         foreach ($order['addresses'] as $key => $address) {
-            $countryInfo = $this->countryRepo->getCountryById($address['countryId']);
+            $countryInfo = $this->countryRepository->getCountryById($address['countryId']);
             $order['addresses'][$key]['countryName'] = $countryInfo->name;
             $order['addresses'][$key]['isoCode2'] = $countryInfo->isoCode2;
             $order['addresses'][$key]['isoCode3'] = $countryInfo->isoCode3;
@@ -115,7 +113,7 @@ class EkomiHelper
      */
     protected function getWebStoreName($plentyId)
     {
-        $temp1 = $this->webStoreRepo->findByPlentyId($plentyId)->toArray();
+        $temp1 = $this->webStoreRepository->findByPlentyId($plentyId)->toArray();
         if (isset($temp1['name'])) {
             return $temp1['name'];
         }
@@ -135,7 +133,7 @@ class EkomiHelper
     {
         $products = array();
         foreach ($orderItems as $key => $item) {
-            if (isset($product['itemVariationId'])) {
+            if (isset($item['itemVariationId'])) {
                 $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
                 if ($itemVariation) {
                     $itemId = $itemVariation->itemId;
@@ -178,8 +176,8 @@ class EkomiHelper
      * @return string
      */
     public function getItemImageUrl($itemId, $variationId) {
-        $variationImage = $this->imagesRepo->findByVariationId($variationId);
-        $itemImage = $this->imagesRepo->findByItemId($itemId);
+        $variationImage = $this->imagesRepository->findByVariationId($variationId);
+        $itemImage = $this->imagesRepository->findByItemId($itemId);
         if (isset($variationImage[0])) {
             return $variationImage[0]['url'];
         } elseif (isset($itemImage[0])) {
@@ -197,7 +195,7 @@ class EkomiHelper
      */
     protected function getStoreDomain($plentyId)
     {
-        $temp1 = $this->webStoreRepo->findByPlentyId($plentyId)->toArray();
+        $temp1 = $this->webStoreRepository->findByPlentyId($plentyId)->toArray();
         if (isset($temp1['configuration']['domain'])) {
             return $temp1['configuration']['domain'];
         }
