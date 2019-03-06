@@ -185,29 +185,31 @@ class EkomiHelper {
         $productIdentifier = $this->configHelper->getProductIdentifier();
         foreach ($orderItems as $key => $product) {
             if (isset($product['itemVariationId'])) {
-                $itemVariation = $this->itemVariationRepository->findById($product['itemVariationId']);
-                if ($itemVariation) {
-                    $itemId = $itemVariation->itemId;
-                    $itemURLs = $this->getItemURLs($plentyId, $itemId, $product['itemVariationId']);
-                    if (self::PRODUCT_IDENTIFIER_NUMBER == $productIdentifier) {
-                        $itemId = $itemVariation->number;
-                    } elseif (self::PRODUCT_IDENTIFIER_VARIATION == $productIdentifier) {
-                        $itemId = $itemVariation->id;
+                if ($product['itemVariationId'] > 0) {
+                    $itemVariation = $this->itemVariationRepository->findById($product['itemVariationId']);
+                    if ($itemVariation) {
+                        $itemId = $itemVariation->itemId;
+                        $itemURLs = $this->getItemURLs($plentyId, $itemId, $product['itemVariationId']);
+                        if (self::PRODUCT_IDENTIFIER_NUMBER == $productIdentifier) {
+                            $itemId = $itemVariation->number;
+                        } elseif (self::PRODUCT_IDENTIFIER_VARIATION == $productIdentifier) {
+                            $itemId = $itemVariation->id;
+                        }
+
+                        $products['product_info'][$itemId] = $product['orderItemName'];
+                        $productOther = array();
+                        $productOther['image_url'] = utf8_decode($itemURLs['imgUrl']);
+                        $productOther['brand_name'] = '';
+                        $productOther['product_ids'] = array('gbase' => utf8_decode($itemId));
+                        $canonicalUrl = utf8_decode($itemURLs['itemUrl']);
+                        $productOther['links'] = array(
+                            array('rel' => 'canonical', 'type' => 'text/html', 'href' => $canonicalUrl)
+                        );
+
+                        $products['other'][$itemId]['product_canonical_link'] = $canonicalUrl;
+                        $products['other'][$itemId]['product_other'] = $productOther;
+                        $products['has_products'] = 1;
                     }
-
-                    $products['product_info'][$itemId] = $product['orderItemName'];
-                    $productOther = array();
-                    $productOther['image_url'] = utf8_decode($itemURLs['imgUrl']);
-                    $productOther['brand_name'] = '';
-                    $productOther['product_ids'] = array('gbase' => utf8_decode($itemId));
-                    $canonicalUrl = utf8_decode($itemURLs['itemUrl']);
-                    $productOther['links'] = array(
-                        array('rel' => 'canonical', 'type' => 'text/html', 'href' => $canonicalUrl)
-                    );
-
-                    $products['other'][$itemId]['product_canonical_link'] = $canonicalUrl;
-                    $products['other'][$itemId]['product_other'] = $productOther;
-                    $products['has_products'] = 1;
                 }
             }
         }
