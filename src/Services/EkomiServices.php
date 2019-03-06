@@ -82,6 +82,9 @@ class EkomiServices {
                             $orderId = $order['id'];
                             $plentyID = $order['plentyId'];
                             $referrerId = $order['orderItems'][0]['referrerId'];
+                            $this->getLogger(__FUNCTION__)->error('PlentyOrder', $order);
+                            $this->getLogger(__FUNCTION__)->error('orderStatus-order', $order['statusId']);
+                            $this->getLogger(__FUNCTION__)->error('orderStatus-config', $orderStatuses);
 
                             if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
 
