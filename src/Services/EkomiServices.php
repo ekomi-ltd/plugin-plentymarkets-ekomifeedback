@@ -69,9 +69,10 @@ class EkomiServices {
                 $turnaroundTime = $this->configHelper->getTurnaroundTime();
                 $turnaroundTimeFrom = 90;
                 $turnaroundTimeTO = 120;
-                while ($turnaroundTimeFrom >= 90) {
-                    $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeFrom} day"));
-                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeTO} day"));
+//                while ($turnaroundTimeFrom >= 90) {
+                    $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTime} day"));
+                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
+//                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeTO} day"));
                     $turnaroundTimeFrom = $turnaroundTimeFrom - 30;
                     $turnaroundTimeTO = $turnaroundTimeTO - 30;
                     $pageNum = 1;
@@ -114,7 +115,7 @@ class EkomiServices {
 
                         $pageNum = $pageNum + 1;
                     }
-                }
+//                }
             } else {
                 $this->getLogger(__FUNCTION__)->error('invalid credentials', "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}");
             }
