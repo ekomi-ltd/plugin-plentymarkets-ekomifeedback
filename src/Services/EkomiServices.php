@@ -96,7 +96,7 @@ class EkomiServices {
                                     continue;
                                 }
                                 if (in_array($order['statusId'], $orderStatuses)) {
-                                    $this->getLogger(__FUNCTION__)->error('PlentyOrder-',$orderId, $order);
+                                    $this->getLogger(__FUNCTION__)->error('PlentyOrder-'.$orderId, $order);
                                     $postVars = $this->ekomiHelper->preparePostVars($order);
                                     $this->getLogger(__FUNCTION__)->error('orderData-'.$orderId, $postVars);
                                     // sends order data to eKomi
