@@ -31,11 +31,12 @@ class EkomiFeedbackServiceProvider extends ServiceProvider {
      * @param ReviewsRepository $reviewsRepo
      */
     public function boot(CronContainer $container, ReviewsRepository $reviewsRepo) {
-        if (is_null($reviewsRepo->getReviewById(1))) {
-            $container->add(CronContainer::EVERY_FIFTEEN_MINUTES, EkomiFeedbackCron::class);
-        } else {
-            $container->add(CronContainer::DAILY, EkomiFeedbackCron::class);
-        }
+        $container->add(CronContainer::EVERY_FIFTEEN_MINUTES, EkomiFeedbackCron::class);
+//        if (is_null($reviewsRepo->getReviewById(1))) {
+//            $container->add(CronContainer::EVERY_FIFTEEN_MINUTES, EkomiFeedbackCron::class);
+//        } else {
+//            $container->add(CronContainer::DAILY, EkomiFeedbackCron::class);
+//        }
     }
 
 }
