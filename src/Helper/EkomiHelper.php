@@ -77,6 +77,7 @@ class EkomiHelper {
             $senderName = substr($senderName, 0, 11);
         }
 
+        $customerEmail = $this->getEmailAddress($billingAddress['options']);
         $fields = array(
             'shop_id' => $this->configHelper->getShopId(),
             'password' => $this->configHelper->getShopSecret(),
@@ -84,7 +85,7 @@ class EkomiHelper {
             'salutation' => '',
             'first_name' => (is_null($billingAddress['name2'])) ? $billingAddress['name1'] : $billingAddress['name2'],
             'last_name' => (is_null($billingAddress['name3'])) ? $billingAddress['name4'] : $billingAddress['name3'],
-            'email' => $billingAddress['options'][0]['value'],
+            'email' => (is_null($customerEmail)) ? $customerInfo['email'] : $customerEmail,
             'transaction_id' => $id,
             'transaction_time' => $scheduleTime,
             'telephone' => $customerInfo['privatePhone'],
@@ -112,6 +113,22 @@ class EkomiHelper {
         }
 
         return $postVars;
+    }
+
+    /**
+     * Gets email address from billing address
+     *
+     * @param array $billingAddress
+     * @return null
+     */
+    public function getEmailAddress($billingAddress) {
+        foreach ( $billingAddress['options'] as $key=>$address) {
+            if($address['typeId'] == 5) {
+                return $address['value'];
+            }
+        }
+
+        return null;
     }
 
     /**
