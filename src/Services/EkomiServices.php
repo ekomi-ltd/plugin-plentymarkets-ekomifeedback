@@ -67,14 +67,17 @@ class EkomiServices {
                 $referrerIds = $this->configHelper->getReferrerIds();
                 $plentyIDs = $this->configHelper->getPlentyIDs();
                 $turnaroundTime = $this->configHelper->getTurnaroundTime();
-                $turnaroundTimeFrom = 90;
-                $turnaroundTimeTO = 120;
-//                while ($turnaroundTimeFrom >= 90) {
-                    $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTime} day"));
-                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
-//                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeTO} day"));
-                    $turnaroundTimeFrom = $turnaroundTimeFrom - 30;
-                    $turnaroundTimeTO = $turnaroundTimeTO - 30;
+                $turnaroundTimeFrom = 120;
+                $turnaroundTimeTO = 110;
+                while ($turnaroundTimeTO >= 0) {
+                    $this->getLogger(__FUNCTION__)->error("orders-chuck", 'order chunk');
+//                    $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTime} day"));
+//                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
+
+                    $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeFrom} day"));
+                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeTO} day"));
+                    $turnaroundTimeFrom = $turnaroundTimeFrom - 10;
+                    $turnaroundTimeTO = $turnaroundTimeTO - 10;
                     $pageNum = 1;
                     $filters = ['updatedAtFrom' => $updatedAtFrom, 'updatedAtTo' => $updatedAtTo];
                     $fetchOrders = true;
@@ -115,7 +118,7 @@ class EkomiServices {
 
                         $pageNum = $pageNum + 1;
                     }
-//                }
+                }
             } else {
                 $this->getLogger(__FUNCTION__)->error('invalid credentials', "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}");
             }
@@ -156,7 +159,7 @@ class EkomiServices {
 
                 $decodedResp = json_decode($exec);
 
-                $this->getLogger(__FUNCTION__)->error($logMessage.'|CurlResponse', $exec);
+                //$this->getLogger(__FUNCTION__)->error($logMessage.'|CurlResponse', $exec);
 
                if ($decodedResp && $decodedResp->status == 'error') {
                    $this->getLogger(__FUNCTION__)->error("$logMessage|orderData", $postVars);
