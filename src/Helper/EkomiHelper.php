@@ -95,7 +95,7 @@ class EkomiHelper {
 
         $fields['client_id'] = $customerInfo['id'];
         $fields['screen_name'] = $fields['first_name'].' '.$fields['last_name'];
-
+        $this->getLogger(__FUNCTION__)->error('fields-'.$id, $fields);
         if ($this->configHelper->getProductReviews() == 'true') {
             $productsData = $this->getProductsData($order['orderItems'], $plentyId);
             $fields['has_products'] = $productsData['has_products'];
@@ -103,6 +103,7 @@ class EkomiHelper {
             $fields['products_other'] = json_encode($productsData['other']);
         }
 
+        $this->getLogger(__FUNCTION__)->error('fields-p'.$id, $fields);
         $postVars = '';
         $counter = 1;
         foreach ($fields as $key => $value) {
