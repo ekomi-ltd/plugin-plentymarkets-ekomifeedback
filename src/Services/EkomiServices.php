@@ -99,6 +99,8 @@ class EkomiServices {
                                     $postVars = $this->ekomiHelper->preparePostVars($order);
                                     // sends order data to eKomi
                                     $this->addRecipient($postVars, $orderId);
+                                    $fetchOrders =  false;
+                                    break;
                                 }
                             } else {
                                 $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode(',', $plentyIDs));
