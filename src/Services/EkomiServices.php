@@ -72,6 +72,7 @@ class EkomiServices {
                 $pageNum =1;
                 $filters = ['updatedAtFrom'=>$updatedAtFrom,'updatedAtTo'=>$updatedAtTo];
                 $fetchOrders = true;
+                $orderSender = 0;
                 while($fetchOrders) {
                     $orders = $this->orderRepository->getOrders($pageNum, $filters);
 
@@ -95,16 +96,17 @@ class EkomiServices {
                                     continue;
                                 }
                                 if (in_array($order['statusId'], $orderStatuses)) {
-
-                                    $this->getLogger(__FUNCTION__)->error('PlentyOrder', $order);
-                                    $this->getLogger(__FUNCTION__)->error('status-config', $orderStatuses);
-                                    $this->getLogger(__FUNCTION__)->error('status-order', $order['statusId']);
+                                    $this->getLogger(__FUNCTION__)->error('PlentyOrder-',$orderId, $order);
                                     $postVars = $this->ekomiHelper->preparePostVars($order);
-                                    $this->getLogger(__FUNCTION__)->error('orderData', $postVars);
+                                    $this->getLogger(__FUNCTION__)->error('orderData-'.$orderId, $postVars);
                                     // sends order data to eKomi
                                     $this->addRecipient($postVars, $orderId);
-                                    $fetchOrders =  false;
-                                    break;
+
+                                    $orderSender = $orderSender + 1;
+                                    if($orderSender > 5) {
+                                        $fetchOrders = false;
+                                        break;
+                                    }
                                 }
                             } else {
                                 $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode(',', $plentyIDs));
