@@ -97,7 +97,10 @@ class EkomiServices {
                                 if (in_array($order['statusId'], $orderStatuses)) {
 
                                     $this->getLogger(__FUNCTION__)->error('PlentyOrder', $order);
+                                    $this->getLogger(__FUNCTION__)->error('status-config', $orderStatuses);
+                                    $this->getLogger(__FUNCTION__)->error('status-order', $order['statusId']);
                                     $postVars = $this->ekomiHelper->preparePostVars($order);
+                                    $this->getLogger(__FUNCTION__)->error('orderData', $postVars);
                                     // sends order data to eKomi
                                     $this->addRecipient($postVars, $orderId);
                                     $fetchOrders =  false;
@@ -153,7 +156,6 @@ class EkomiServices {
 
                 $decodedResp = json_decode($exec);
 
-                $this->getLogger(__FUNCTION__)->error('orderData', $postVars);
                 $this->getLogger(__FUNCTION__)->error('CurlResponse', $exec);
 
                if ($decodedResp && $decodedResp->status == 'error') {
