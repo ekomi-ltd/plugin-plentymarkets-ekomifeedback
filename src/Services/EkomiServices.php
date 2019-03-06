@@ -67,54 +67,53 @@ class EkomiServices {
                 $referrerIds = $this->configHelper->getReferrerIds();
                 $plentyIDs = $this->configHelper->getPlentyIDs();
                 $turnaroundTime = $this->configHelper->getTurnaroundTime();
-                $updatedAtFrom = date('Y-m-d\TH:i:s+00:00',strtotime("-{$turnaroundTime} day"));
-                $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
-                $pageNum =1;
-                $filters = ['updatedAtFrom'=>$updatedAtFrom,'updatedAtTo'=>$updatedAtTo];
-                $fetchOrders = true;
-                $orderSender = 0;
-                while($fetchOrders) {
-                    $orders = $this->orderRepository->getOrders($pageNum, $filters);
+                $turnaroundTimeFrom = 90;
+                $turnaroundTimeTO = 120;
+                while ($turnaroundTimeFrom >= 90) {
+                    $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeFrom} day"));
+                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeTO} day"));
+                    $turnaroundTimeFrom = $turnaroundTimeFrom - 30;
+                    $turnaroundTimeTO = $turnaroundTimeTO - 30;
+                    $pageNum = 1;
+                    $filters = ['updatedAtFrom' => $updatedAtFrom, 'updatedAtTo' => $updatedAtTo];
+                    $fetchOrders = true;
+                    while ($fetchOrders) {
+                        $orders = $this->orderRepository->getOrders($pageNum, $filters);
 
-                    $this->getLogger(__FUNCTION__)->error('orders-count-page-' . $pageNum, 'count:' . count($orders));
+                        $this->getLogger(__FUNCTION__)->error('orders-count-page-' . $pageNum, 'count:' . count($orders));
 
-                    if ($orders && count($orders) > 0) {
-                        foreach ($orders as $key => $order) {
-                            $orderId = $order['id'];
-                            $plentyID = $order['plentyId'];
-                            $referrerId = $order['orderItems'][0]['referrerId'];
+                        if ($orders && count($orders) > 0) {
+                            foreach ($orders as $key => $order) {
+                                $orderId = $order['id'];
+                                $plentyID = $order['plentyId'];
+                                $referrerId = $order['orderItems'][0]['referrerId'];
 
-                            if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
+                                if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
 
-                                if (!empty($referrerIds) && in_array((string)$referrerId, $referrerIds)) {
-                                    $this->getLogger(__FUNCTION__)->error(
-                                        "OrderID:{$orderId} ,referrerID:{$referrerId}|Blocked",
-                                        'OrderID:' . $orderId .
-                                        '|ReferrerID:' . $referrerId .
-                                        ' Blocked in plugin configuration.'
-                                    );
-                                    continue;
-                                }
-                                if (in_array($order['statusId'], $orderStatuses)) {
-                                    $postVars = $this->ekomiHelper->preparePostVars($order);
-                                    // sends order data to eKomi
-                                    $this->addRecipient($postVars, $orderId);
-
-                                    $orderSender = $orderSender + 1;
-                                    if($orderSender > 5) {
-                                        $fetchOrders = false;
-                                        break;
+                                    if (!empty($referrerIds) && in_array((string)$referrerId, $referrerIds)) {
+                                        $this->getLogger(__FUNCTION__)->error(
+                                            "OrderID:{$orderId} ,referrerID:{$referrerId}|Blocked",
+                                            'OrderID:' . $orderId .
+                                            '|ReferrerID:' . $referrerId .
+                                            ' Blocked in plugin configuration.'
+                                        );
+                                        continue;
                                     }
+                                    if (in_array($order['statusId'], $orderStatuses)) {
+                                        $postVars = $this->ekomiHelper->preparePostVars($order);
+                                        // sends order data to eKomi
+                                        $this->addRecipient($postVars, $orderId);
+                                    }
+                                } else {
+                                    $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode(',', $plentyIDs));
                                 }
-                            } else {
-                                $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode(',', $plentyIDs));
                             }
+                        } else {
+                            $fetchOrders = false;
                         }
-                    } else{
-                        $fetchOrders = false;
-                    }
 
-                    $pageNum = $pageNum + 1;
+                        $pageNum = $pageNum + 1;
+                    }
                 }
             } else {
                 $this->getLogger(__FUNCTION__)->error('invalid credentials', "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}");
