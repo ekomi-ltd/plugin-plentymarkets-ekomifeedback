@@ -60,64 +60,49 @@ class EkomiServices {
      * Sends orders data to eKomi System
      */
      public function sendOrdersData() {
-    	
         if ($this->configHelper->getEnabled() == 'true') {
             if ($this->validateShop()) {
                 $orderStatuses = $this->configHelper->getOrderStatus();
                 $referrerIds = $this->configHelper->getReferrerIds();
                 $plentyIDs = $this->configHelper->getPlentyIDs();
                 $turnaroundTime = $this->configHelper->getTurnaroundTime();
-                $turnaroundTimeFrom = 120;
-                $turnaroundTimeTO = 110;
-                while ($turnaroundTimeTO >= 0) {
-                    $this->getLogger(__FUNCTION__)->error("orders-chuck{$turnaroundTimeFrom}-{$turnaroundTimeTO}", 'order chunk');
-//                    $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTime} day"));
-//                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
-
-                    $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeFrom} day"));
-                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTimeTO} day"));
-                    $turnaroundTimeFrom = $turnaroundTimeFrom - 10;
-                    $turnaroundTimeTO = $turnaroundTimeTO - 10;
-                    $pageNum = 1;
-                    $filters = ['updatedAtFrom' => $updatedAtFrom, 'updatedAtTo' => $updatedAtTo];
-                    $fetchOrders = true;
-                    while ($fetchOrders) {
-                        $orders = $this->orderRepository->getOrders($pageNum, $filters);
-
-                        $this->getLogger(__FUNCTION__)->error('orders-count-page-' . $pageNum, 'count:' . count($orders));
-
-                        if ($orders && count($orders) > 0) {
-                            foreach ($orders as $key => $order) {
-                                $orderId = $order['id'];
-                                $plentyID = $order['plentyId'];
-                                $referrerId = $order['orderItems'][0]['referrerId'];
-
-                                if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
-
-                                    if (!empty($referrerIds) && in_array((string)$referrerId, $referrerIds)) {
-                                        $this->getLogger(__FUNCTION__)->error(
-                                            "OrderID:{$orderId} ,referrerID:{$referrerId}|Blocked",
-                                            'OrderID:' . $orderId .
-                                            '|ReferrerID:' . $referrerId .
-                                            ' Blocked in plugin configuration.'
-                                        );
-                                        continue;
-                                    }
-                                    if (in_array($order['statusId'], $orderStatuses)) {
-                                        $postVars = $this->ekomiHelper->preparePostVars($order);
-                                        // sends order data to eKomi
-                                        $this->addRecipient($postVars, $orderId);
-                                    }
-                                } else {
-                                    $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode(',', $plentyIDs));
+                $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTime} day"));
+                $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
+                $pageNum = 1;
+                $filters = ['updatedAtFrom' => $updatedAtFrom, 'updatedAtTo' => $updatedAtTo];
+                $fetchOrders = true;
+                while ($fetchOrders) {
+                    $orders = $this->orderRepository->getOrders($pageNum, $filters);
+                    $this->getLogger(__FUNCTION__)->error('orders-count-page-' . $pageNum, 'count:' . count($orders));
+                    if ($orders && count($orders) > 0) {
+                        foreach ($orders as $key => $order) {
+                            $orderId = $order['id'];
+                            $plentyID = $order['plentyId'];
+                            $referrerId = $order['orderItems'][0]['referrerId'];
+                            if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
+                                if (!empty($referrerIds) && in_array((string)$referrerId, $referrerIds)) {
+                                    $this->getLogger(__FUNCTION__)->error(
+                                        "OrderID:{$orderId} ,referrerID:{$referrerId}|Blocked",
+                                        'OrderID:' . $orderId .
+                                        '|ReferrerID:' . $referrerId .
+                                        ' Blocked in plugin configuration.'
+                                    );
+                                    continue;
                                 }
+                                if (in_array($order['statusId'], $orderStatuses)) {
+                                    $postVars = $this->ekomiHelper->preparePostVars($order);
+                                    // sends order data to eKomi
+                                    $this->addRecipient($postVars, $orderId);
+                                }
+                            } else {
+                                $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode(',', $plentyIDs));
                             }
-                        } else {
-                            $fetchOrders = false;
                         }
-
-                        $pageNum = $pageNum + 1;
+                    } else {
+                        $fetchOrders = false;
                     }
+
+                    $pageNum = $pageNum + 1;
                 }
             } else {
                 $this->getLogger(__FUNCTION__)->error('invalid credentials', "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}");
