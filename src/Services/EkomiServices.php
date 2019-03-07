@@ -70,7 +70,7 @@ class EkomiServices {
                 $turnaroundTimeFrom = 120;
                 $turnaroundTimeTO = 110;
                 while ($turnaroundTimeTO >= 0) {
-                    $this->getLogger(__FUNCTION__)->error("orders-chuck", 'order chunk');
+                    $this->getLogger(__FUNCTION__)->error("orders-chuck{$turnaroundTimeFrom}-{$turnaroundTimeTO}", 'order chunk');
 //                    $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTime} day"));
 //                    $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
 
