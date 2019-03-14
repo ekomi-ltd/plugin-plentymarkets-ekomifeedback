@@ -2,7 +2,6 @@
 
 namespace EkomiFeedback\Helper;
 
-use IO\Extensions\Filters\URLFilter;
 use IO\Services\UrlService;
 use Plenty\Modules\Helper\Contracts\UrlBuilderRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
@@ -143,15 +142,14 @@ class EkomiHelper
     {
         $products = array();
         foreach ($orderItems as $key => $item) {
-            if (isset($item['itemVariationId'])) {
+            if (isset($item['itemVariationId']) && $item['itemVariationId'] > 0) {
                 $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
                 if ($itemVariation) {
                     $itemId = $itemVariation->itemId;
                     $item['itemId'] = $itemId;
-                    $item['imageNumber'] = $itemVariation->number;
+                    $item['itemVariationNumber'] = $itemVariation->number;
                     $item['image_url'] = utf8_decode($this->getItemImageUrl($itemId, $item['itemVariationId']));
                     $item['canonical_url'] = utf8_decode($this->getItemUrl($plentyId, $itemId));
-                    $item['temp_canonical_url'] = utf8_decode($this->urlService->getVariationURL($itemId,$itemVariation->id));
                     $products[] = $item;
                 }
             }
@@ -163,8 +161,8 @@ class EkomiHelper
     /**
      * Gets Item image url.
      *
-     * @param int    $plentyId
-     * @param int    $itemId
+     * @param int $plentyId
+     * @param int $itemId
      *
      * @return array
      */
