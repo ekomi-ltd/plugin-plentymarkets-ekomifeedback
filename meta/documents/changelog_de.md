@@ -53,3 +53,7 @@
 
 - Feste Artikel-ID in den Auftragsdaten.
 - Option hinzugefügt, um die Produktkennung auszuwählen.
+
+### v2.2.2 (15-04-2019)
+
+- Aktualisierte Benutzeranleitung.

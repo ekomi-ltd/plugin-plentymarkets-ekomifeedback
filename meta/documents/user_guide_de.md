@@ -33,6 +33,17 @@ Bei weiteren Fragen bezüglich unseres Plugins, treten Sie bitte mit uns in Kont
 ### Sie benötigen ein eKomi-Konto
 Bitte beachten Sie, dass Sie einen eKomi-Account benötigen, um dieses Plugin nutzen zu können. Unsere Standardpakete beginnen bei 49 $ monatlich. Für eine Live-Vorführung unseres Produktes, können Sie sich einen Ihnen passenden Termin aussuchen, oder senden Sie uns einfach eine Email an [support@ekomi.de](support@ekomi.de).
 
+### Kompatibilität
+
+Das Plugin Ekomi Feedback ist für die Verwendung mit dem Ceres-Webshop konzipiert und funktioniert nur mit seiner Logikstruktur oder anderen Template-Plugins, die dieselbe Containerlogik verwenden.
+#### Bedarf
+
+- Plugin Ceres
+- Plugin IO
+
+
+Das Plugin funktioniert nicht für Multistores / zusätzliche Client-Stores, da es auf Plentymarkets ausgegeben wurde.
+
 ### Wie sie das "ekomi Feedback-Plugin" installieren
 Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) vom Plentymarkets Marketplace herunter. Sie können das Plugin über das Menü unter Plugins / Einkäufe. Klicken Sie einfach ganz rechts auf die Schaltfläche "Installieren" für das "eKomiFeedback" plugin.
 

@@ -57,3 +57,7 @@
 
 - Fixed item id in order data.
 - Added option to select product identifier.
+
+### v2.2.2 (15-04-2019)
+
+- Updated user guide
