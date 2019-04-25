@@ -61,3 +61,8 @@
 ### v2.2.2 (15-04-2019)
 
 - Updated user guide
+
+### v2.2.3 (25-04-2019)
+
+- Fixed email and phone number issue in order data.
+- Added Order Statuses in configuration.

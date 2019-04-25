@@ -88,7 +88,7 @@ class EkomiHelper {
             'email' => (is_null($customerEmail)) ? $customerInfo['email'] : $customerEmail,
             'transaction_id' => $id,
             'transaction_time' => $scheduleTime,
-            'telephone' => $customerInfo['privatePhone'],
+            'telephone' => $this->getPhoneNumber($customerInfo, $billingAddress),
             'sender_name' => $senderName,
             'sender_email' => ''
         );
@@ -128,6 +128,12 @@ class EkomiHelper {
         }
 
         return null;
+    }
+
+    public function getPhoneNumber($customerInfo, $billingAddress) {
+        $this->getLogger(__FUNCTION__)->error('phone-customer', $customerInfo);
+        $this->getLogger(__FUNCTION__)->error('phone-billing', $billingAddress);
+        return $customerInfo['privatePhone'];
     }
 
     /**

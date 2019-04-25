@@ -131,6 +131,11 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 
 - Updated user guides.
 
+### v2.2.3 (25-04-2019)
+
+- Fixed email and phone number issue in order data.
+- Added Order Statuses in configuration.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)
