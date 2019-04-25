@@ -60,31 +60,26 @@ class EkomiServices {
      * Sends orders data to eKomi System
      */
      public function sendOrdersData() {
-    	
         if ($this->configHelper->getEnabled() == 'true') {
             if ($this->validateShop()) {
                 $orderStatuses = $this->configHelper->getOrderStatus();
                 $referrerIds = $this->configHelper->getReferrerIds();
                 $plentyIDs = $this->configHelper->getPlentyIDs();
                 $turnaroundTime = $this->configHelper->getTurnaroundTime();
-                $updatedAtFrom = date('Y-m-d\TH:i:s+00:00',strtotime("-{$turnaroundTime} day"));
+                $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTime} day"));
                 $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
-                $pageNum =1;
-                $filters = ['updatedAtFrom'=>$updatedAtFrom,'updatedAtTo'=>$updatedAtTo];
+                $pageNum = 1;
+                $filters = ['updatedAtFrom' => $updatedAtFrom, 'updatedAtTo' => $updatedAtTo];
                 $fetchOrders = true;
-                while($fetchOrders) {
+                while ($fetchOrders) {
                     $orders = $this->orderRepository->getOrders($pageNum, $filters);
-
                     $this->getLogger(__FUNCTION__)->error('orders-count-page-' . $pageNum, 'count:' . count($orders));
-
                     if ($orders && count($orders) > 0) {
                         foreach ($orders as $key => $order) {
                             $orderId = $order['id'];
                             $plentyID = $order['plentyId'];
                             $referrerId = $order['orderItems'][0]['referrerId'];
-
                             if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
-
                                 if (!empty($referrerIds) && in_array((string)$referrerId, $referrerIds)) {
                                     $this->getLogger(__FUNCTION__)->error(
                                         "OrderID:{$orderId} ,referrerID:{$referrerId}|Blocked",
@@ -95,7 +90,6 @@ class EkomiServices {
                                     continue;
                                 }
                                 if (in_array($order['statusId'], $orderStatuses)) {
-
                                     $postVars = $this->ekomiHelper->preparePostVars($order);
                                     // sends order data to eKomi
                                     $this->addRecipient($postVars, $orderId);
@@ -104,7 +98,7 @@ class EkomiServices {
                                 $this->getLogger(__FUNCTION__)->error('PlentyID not matched', 'plentyID(' . $plentyID . ') not matched with PlentyIDs:' . implode(',', $plentyIDs));
                             }
                         }
-                    } else{
+                    } else {
                         $fetchOrders = false;
                     }
 
@@ -149,6 +143,8 @@ class EkomiServices {
                 curl_close($ch);
 
                 $decodedResp = json_decode($exec);
+
+                //$this->getLogger(__FUNCTION__)->error($logMessage.'|CurlResponse', $exec);
 
                if ($decodedResp && $decodedResp->status == 'error') {
                    $this->getLogger(__FUNCTION__)->error("$logMessage|orderData", $postVars);
