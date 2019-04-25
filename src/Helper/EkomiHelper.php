@@ -77,7 +77,7 @@ class EkomiHelper {
             $senderName = substr($senderName, 0, 11);
         }
 
-        $customerEmail = $this->getEmailAddress($billingAddress['options']);
+        $customerContactInfo = $this->getCustomerContactInfo($customerInfo, $billingAddress);
         $fields = array(
             'shop_id' => $this->configHelper->getShopId(),
             'password' => $this->configHelper->getShopSecret(),
@@ -85,10 +85,10 @@ class EkomiHelper {
             'salutation' => '',
             'first_name' => (is_null($billingAddress['name2'])) ? $billingAddress['name1'] : $billingAddress['name2'],
             'last_name' => (is_null($billingAddress['name3'])) ? $billingAddress['name4'] : $billingAddress['name3'],
-            'email' => (is_null($customerEmail)) ? $customerInfo['email'] : $customerEmail,
+            'email' => $customerContactInfo['email'],
             'transaction_id' => $id,
             'transaction_time' => $scheduleTime,
-            'telephone' => $this->getPhoneNumber($customerInfo, $billingAddress),
+            'telephone' => $customerContactInfo['phone'],
             'sender_name' => $senderName,
             'sender_email' => ''
         );
@@ -115,25 +115,23 @@ class EkomiHelper {
     }
 
     /**
-     * Gets email address from billing address
+     * Gets customer contact information.
      *
+     * @param array $customerInfo
      * @param array $billingAddress
      * @return null
      */
-    public function getEmailAddress($billingAddress) {
+    public function getCustomerContactInfo($customerInfo, $billingAddress) {
+        $contactInfo = ['email'=> $customerInfo['email'],'phone' => $customerInfo['privatePhone']];
         foreach ( $billingAddress['options'] as $key=>$address) {
             if($address['typeId'] == 5) {
-                return $address['value'];
+                $contactInfo['email'] = $address['value'];
+            } elseif ($address['typeId'] == 4){
+                $contactInfo['phone'] = $address['value'];
             }
         }
 
-        return null;
-    }
-
-    public function getPhoneNumber($customerInfo, $billingAddress) {
-        $this->getLogger(__FUNCTION__)->error('phone-customer', $customerInfo);
-        $this->getLogger(__FUNCTION__)->error('phone-billing', $billingAddress);
-        return $customerInfo['privatePhone'];
+        return $contactInfo;
     }
 
     /**
