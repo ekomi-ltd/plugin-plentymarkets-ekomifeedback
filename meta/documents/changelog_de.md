@@ -57,3 +57,8 @@
 ### v2.2.2 (15-04-2019)
 
 - Aktualisierte Benutzeranleitung.
+
+### v2.2.3 (25-04-2019)
+
+- Problem mit E-Mail und Telefonnummer in den Bestelldaten behoben.
+- Bestellstatus in der Konfiguration hinzugefügt.

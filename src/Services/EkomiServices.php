@@ -143,9 +143,6 @@ class EkomiServices {
                 curl_close($ch);
 
                 $decodedResp = json_decode($exec);
-
-                //$this->getLogger(__FUNCTION__)->error($logMessage.'|CurlResponse', $exec);
-
                if ($decodedResp && $decodedResp->status == 'error') {
                    $this->getLogger(__FUNCTION__)->error("$logMessage|orderData", $postVars);
                    $this->getLogger(__FUNCTION__)->error("$logMessage|$decodedResp->status", $logMessage .= $exec);

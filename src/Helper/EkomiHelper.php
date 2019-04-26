@@ -32,6 +32,24 @@ class EkomiHelper {
     const PRODUCT_IDENTIFIER_VARIATION = 'variation';
 
     /**
+     * Recipients modes.
+     */
+    const RECIPIENT_MODE_SMS = 'sms';
+    const RECIPIENT_MODE_EMAIL = 'email';
+    const RECIPIENT_MODE_FALLBACK = 'fallback';
+
+    /**
+     * Customer address types.
+     */
+    const ADDRESS_TYPE_PHONE = 4;
+    const ADDRESS_TYPE_EMAIL = 5;
+
+    /**
+     * Sender name length.
+     */
+    const SENDER_NAME_LENGTH = 11;
+
+    /**
      * EkomiHelper constructor.
      *
      * @param WebstoreRepositoryContract         $webStoreRepo
@@ -68,16 +86,13 @@ class EkomiHelper {
         $customerInfo = $order['relations'][1]['contactReceiver'];
         $billingAddress = $order['addresses'][0];
         $apiMode = $this->getRecipientType($customerInfo['privatePhone']);
-
         $scheduleTime = $this->toMySqlDateTime($createdAt);
-
         $senderName = $this->getStoreName($plentyId);
-
-        if ($apiMode == 'sms' && strlen($senderName) > 11) {
-            $senderName = substr($senderName, 0, 11);
+        if (self::RECIPIENT_MODE_SMS == $apiMode && strlen($senderName) > self::SENDER_NAME_LENGTH) {
+            $senderName = substr($senderName, 0, self::SENDER_NAME_LENGTH);
         }
 
-        $customerEmail = $this->getEmailAddress($billingAddress['options']);
+        $customerContactInfo = $this->getCustomerContactInfo($customerInfo, $billingAddress);
         $fields = array(
             'shop_id' => $this->configHelper->getShopId(),
             'password' => $this->configHelper->getShopSecret(),
@@ -85,10 +100,10 @@ class EkomiHelper {
             'salutation' => '',
             'first_name' => (is_null($billingAddress['name2'])) ? $billingAddress['name1'] : $billingAddress['name2'],
             'last_name' => (is_null($billingAddress['name3'])) ? $billingAddress['name4'] : $billingAddress['name3'],
-            'email' => (is_null($customerEmail)) ? $customerInfo['email'] : $customerEmail,
+            'email' => $customerContactInfo['email'],
             'transaction_id' => $id,
             'transaction_time' => $scheduleTime,
-            'telephone' => $customerInfo['privatePhone'],
+            'telephone' => $customerContactInfo['phone'],
             'sender_name' => $senderName,
             'sender_email' => ''
         );
@@ -115,19 +130,23 @@ class EkomiHelper {
     }
 
     /**
-     * Gets email address from billing address
+     * Gets customer contact information.
      *
+     * @param array $customerInfo
      * @param array $billingAddress
      * @return null
      */
-    public function getEmailAddress($billingAddress) {
+    public function getCustomerContactInfo($customerInfo, $billingAddress) {
+        $contactInfo = ['email'=> $customerInfo['email'],'phone' => $customerInfo['privatePhone']];
         foreach ( $billingAddress['options'] as $key=>$address) {
-            if($address['typeId'] == 5) {
-                return $address['value'];
+            if(self::ADDRESS_TYPE_EMAIL == $address['typeId']) {
+                $contactInfo['email'] = $address['value'];
+            } elseif (self::ADDRESS_TYPE_PHONE == $address['typeId']) {
+                $contactInfo['phone'] = $address['value'];
             }
         }
 
-        return null;
+        return $contactInfo;
     }
 
     /**
@@ -216,34 +235,23 @@ class EkomiHelper {
     }
 
     /**
-     * Gets the recipient type
+     * Gets the recipient type.
      *
-     * @param string $telephone The phone nu,ber
+     * @param string $telephone The phone number
      *
      * @return string Recipient type
      *
      * @access protected
      */
     protected function getRecipientType($telephone) {
-
         $reviewMod = $this->configHelper->getMod();
-        $apiMode = 'email';
-        switch ($reviewMod) {
-            case 'sms':
-                $apiMode = 'sms';
-                break;
-            case 'email':
-                $apiMode = 'email';
-                break;
-            case 'fallback':
-                if ($this->validateE164($telephone))
-                    $apiMode = 'sms';
-                else
-                    $apiMode = 'email';
-                break;
+        if (self::RECIPIENT_MODE_SMS == $reviewMod) {
+            return self::RECIPIENT_MODE_SMS;
+        } elseif (self::RECIPIENT_MODE_FALLBACK == $reviewMod && $this->validateE164($telephone)) {
+            return self::RECIPIENT_MODE_SMS;
         }
 
-        return $apiMode;
+        return self::RECIPIENT_MODE_EMAIL;
     }
 
     /**
