@@ -45,6 +45,11 @@ class EkomiHelper {
     const ADDRESS_TYPE_EMAIL = 5;
 
     /**
+     * Sender name length.
+     */
+    const SENDER_NAME_LENGTH = 11;
+
+    /**
      * EkomiHelper constructor.
      *
      * @param WebstoreRepositoryContract         $webStoreRepo
@@ -83,8 +88,8 @@ class EkomiHelper {
         $apiMode = $this->getRecipientType($customerInfo['privatePhone']);
         $scheduleTime = $this->toMySqlDateTime($createdAt);
         $senderName = $this->getStoreName($plentyId);
-        if ($apiMode == 'sms' && strlen($senderName) > 11) {
-            $senderName = substr($senderName, 0, 11);
+        if (self::RECIPIENT_MODE_SMS == $apiMode && strlen($senderName) > self::SENDER_NAME_LENGTH) {
+            $senderName = substr($senderName, 0, self::SENDER_NAME_LENGTH);
         }
 
         $customerContactInfo = $this->getCustomerContactInfo($customerInfo, $billingAddress);
