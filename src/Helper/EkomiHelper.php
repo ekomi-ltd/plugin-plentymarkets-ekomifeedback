@@ -34,9 +34,9 @@ class EkomiHelper {
     /**
      * Recipients modes.
      */
-    const RECIPIENT_MODE_SMS= 'sms';
-    const RECIPIENT_MODE_EMAIL= 'email';
-    const RECIPIENT_MODE_FALLBACK= 'fallback';
+    const RECIPIENT_MODE_SMS = 'sms';
+    const RECIPIENT_MODE_EMAIL = 'email';
+    const RECIPIENT_MODE_FALLBACK = 'fallback';
 
     /**
      * Customer address types.
