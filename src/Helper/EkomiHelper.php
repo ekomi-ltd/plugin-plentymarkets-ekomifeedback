@@ -32,6 +32,19 @@ class EkomiHelper {
     const PRODUCT_IDENTIFIER_VARIATION = 'variation';
 
     /**
+     * Recipients modes.
+     */
+    const RECIPIENT_MODE_SMS= 'sms';
+    const RECIPIENT_MODE_EMAIL= 'email';
+    const RECIPIENT_MODE_FALLBACK= 'fallback';
+
+    /**
+     * Customer address types.
+     */
+    const ADDRESS_TYPE_PHONE = 4;
+    const ADDRESS_TYPE_EMAIL = 5;
+
+    /**
      * EkomiHelper constructor.
      *
      * @param WebstoreRepositoryContract         $webStoreRepo
@@ -121,9 +134,9 @@ class EkomiHelper {
     public function getCustomerContactInfo($customerInfo, $billingAddress) {
         $contactInfo = ['email'=> $customerInfo['email'],'phone' => $customerInfo['privatePhone']];
         foreach ( $billingAddress['options'] as $key=>$address) {
-            if($address['typeId'] == 5) {
+            if(self::ADDRESS_TYPE_EMAIL == $address['typeId']) {
                 $contactInfo['email'] = $address['value'];
-            } elseif ($address['typeId'] == 4) {
+            } elseif (self::ADDRESS_TYPE_PHONE == $address['typeId']) {
                 $contactInfo['phone'] = $address['value'];
             }
         }
@@ -217,34 +230,23 @@ class EkomiHelper {
     }
 
     /**
-     * Gets the recipient type
+     * Gets the recipient type.
      *
-     * @param string $telephone The phone nu,ber
+     * @param string $telephone The phone number
      *
      * @return string Recipient type
      *
      * @access protected
      */
     protected function getRecipientType($telephone) {
-
         $reviewMod = $this->configHelper->getMod();
-        $apiMode = 'email';
-        switch ($reviewMod) {
-            case 'sms':
-                $apiMode = 'sms';
-                break;
-            case 'email':
-                $apiMode = 'email';
-                break;
-            case 'fallback':
-                if ($this->validateE164($telephone))
-                    $apiMode = 'sms';
-                else
-                    $apiMode = 'email';
-                break;
+        if (self::RECIPIENT_MODE_SMS == $reviewMod) {
+            return self::RECIPIENT_MODE_SMS;
+        } elseif (self::RECIPIENT_MODE_FALLBACK == $reviewMod && $this->validateE164($telephone)) {
+            return self::RECIPIENT_MODE_SMS;
         }
 
-        return $apiMode;
+        return self::RECIPIENT_MODE_EMAIL;
     }
 
     /**
