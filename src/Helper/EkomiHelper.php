@@ -68,11 +68,8 @@ class EkomiHelper {
         $customerInfo = $order['relations'][1]['contactReceiver'];
         $billingAddress = $order['addresses'][0];
         $apiMode = $this->getRecipientType($customerInfo['privatePhone']);
-
         $scheduleTime = $this->toMySqlDateTime($createdAt);
-
         $senderName = $this->getStoreName($plentyId);
-
         if ($apiMode == 'sms' && strlen($senderName) > 11) {
             $senderName = substr($senderName, 0, 11);
         }
@@ -126,7 +123,7 @@ class EkomiHelper {
         foreach ( $billingAddress['options'] as $key=>$address) {
             if($address['typeId'] == 5) {
                 $contactInfo['email'] = $address['value'];
-            } elseif ($address['typeId'] == 4){
+            } elseif ($address['typeId'] == 4) {
                 $contactInfo['phone'] = $address['value'];
             }
         }
