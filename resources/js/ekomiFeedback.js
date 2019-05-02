@@ -131,7 +131,7 @@ if (typeof jQuery !== 'undefined') {
                 jQuery('html, body').animate({
                     scrollTop: jQuery(tabsClass).offset().top
                 }, 1800);
-                jQuery(tabsClass + " " + tabsClass+":last li").click();
+                jQuery(tabsClass+" :last").click();
             }
         }
 
