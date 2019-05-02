@@ -62,3 +62,7 @@
 
 - Problem mit E-Mail und Telefonnummer in den Bestelldaten behoben.
 - Bestellstatus in der Konfiguration hinzugefügt.
+
+### v2.2.4 (02-05-2019)
+
+- Es gab ein Problem mit dem Link im Widget Ministars für Bewertungen. Dieser Fehler wurde behoben.

@@ -113,10 +113,17 @@ if (typeof jQuery !== 'undefined') {
 
         jQuery('#ekomi_prc_reviews').on('click', function (e) {
             e.preventDefault();
-            jQuery('html, body').animate({
-                scrollTop: jQuery(".tabs").offset().top
-            }, 1800);
-            jQuery(".tabs .tab:last li").click();
+            if (jQuery('.tabs').length) {
+                jQuery('html, body').animate({
+                    scrollTop: jQuery('.tabs').offset().top
+                }, 1800);
+                jQuery(".tabs .tab:last li").click();
+            } else if(jQuery('.nav-tabs').length) {
+                jQuery('html, body').animate({
+                    scrollTop: jQuery('.nav-tabs').offset().top
+                }, 1800);
+                jQuery(".nav-tabs .nav-tabs:last li").click();
+            }
         });
 
     });

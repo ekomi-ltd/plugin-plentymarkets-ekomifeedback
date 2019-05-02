@@ -136,6 +136,10 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 - Fixed email and phone number issue in order data.
 - Added Order Statuses in configuration.
 
+### v2.2.4 (02-05-2019)
+
+- Fixed issue with the link on the reviews count of ministars widget.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)
