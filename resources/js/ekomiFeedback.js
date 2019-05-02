@@ -113,18 +113,27 @@ if (typeof jQuery !== 'undefined') {
 
         jQuery('#ekomi_prc_reviews').on('click', function (e) {
             e.preventDefault();
+            var tabsClass = '';
             if (jQuery('.tabs').length) {
-                jQuery('html, body').animate({
-                    scrollTop: jQuery('.tabs').offset().top
-                }, 1800);
-                jQuery(".tabs .tab:last li").click();
+                openEkomiReviewsTab('.tabs');
             } else if(jQuery('.nav-tabs').length) {
-                jQuery('html, body').animate({
-                    scrollTop: jQuery('.nav-tabs').offset().top
-                }, 1800);
-                jQuery(".nav-tabs .nav-tabs:last li").click();
+                openEkomiReviewsTab('.nav-tabs');
             }
         });
+
+        /**
+         * Opens the eKomi reviews tab.
+         *
+         * @param string tabsClass
+         */
+        function openEkomiReviewsTab(tabsClass) {
+            if (tabsClass !== '') {
+                jQuery('html, body').animate({
+                    scrollTop: jQuery(tabsClass).offset().top
+                }, 1800);
+                jQuery(tabsClass + " " + tabsClass+":last li").click();
+            }
+        }
 
     });
 }
