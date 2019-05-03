@@ -22,3 +22,7 @@
 .product-list #ekomi_prc_reviews{
     cursor: default !important;
 }
+
+.product-list #ekomi_prc_reviews:hover {
+    color: #67a73d;
+}
