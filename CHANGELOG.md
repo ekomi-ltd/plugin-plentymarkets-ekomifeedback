@@ -70,3 +70,7 @@
 ### v2.2.4 (02-05-2019)
 
 - Fixed issue with the link on the reviews count of ministars widget.
+
+### v2.2.5 (07-05-2019)
+
+- Fixed hover issue with reviews count on product listings.

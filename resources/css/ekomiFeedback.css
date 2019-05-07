@@ -19,10 +19,10 @@
     display:none;
 }
 
-.product-list #ekomi_prc_reviews{
+.cmp-product-thumb #ekomi_prc_reviews{
     cursor: default !important;
 }
 
-.product-list #ekomi_prc_reviews:hover {
+.cmp-product-thumb #ekomi_prc_reviews:hover {
     color: #67a73d;
 }

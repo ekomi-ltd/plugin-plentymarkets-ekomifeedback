@@ -140,6 +140,10 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 
 - Fixed issue with the link on the reviews count of ministars widget.
 
+### v2.2.5 (07-05-2019)
+
+- Fixed hover issue with reviews count on product listings.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)

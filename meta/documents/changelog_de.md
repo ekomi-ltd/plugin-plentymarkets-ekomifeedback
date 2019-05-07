@@ -66,3 +66,7 @@
 ### v2.2.4 (02-05-2019)
 
 - Es gab ein Problem mit dem Link im Widget Ministars für Bewertungen. Dieser Fehler wurde behoben.
+
+### v2.2.5 (07-05-2019)
+
+- Hover-Problem mit der Anzahl der Bewertungen in Produktlisten wurde behoben.
