@@ -119,7 +119,7 @@ class ConfigHelper
      */
     public function getProductReviews()
     {
-        if(self::CONFIG_ENABLE_TRUE == $this->config->get('EkomiFeedback.product_reviews')) {
+        if (self::CONFIG_ENABLE_TRUE == $this->config->get('EkomiFeedback.product_reviews')) {
             return self::VALUE_1;
         }
 
