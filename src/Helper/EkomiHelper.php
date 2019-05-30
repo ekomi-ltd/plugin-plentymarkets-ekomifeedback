@@ -142,16 +142,18 @@ class EkomiHelper
     protected function getProductsData($orderItems, $plentyId)
     {
         $products = array();
-        foreach ($orderItems as $key => $item) {
-            if (isset($item['itemVariationId']) && $item['itemVariationId'] > ConfigHelper::VALUE_NO) {
-                $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
-                if ($itemVariation) {
-                    $itemId = $itemVariation->itemId;
-                    $item['itemId'] = $itemId;
-                    $item['itemVariationNumber'] = $itemVariation->number;
-                    $item['image_url'] = utf8_decode($this->getItemImageUrl($itemId, $item['itemVariationId']));
-                    $item['canonical_url'] = utf8_decode($this->getItemUrl($plentyId, $itemId));
-                    $products[] = $item;
+        if (is_array($orderItems) && !empty($orderItems)) {
+            foreach ($orderItems as $key => $item) {
+                if (isset($item['itemVariationId']) && $item['itemVariationId'] > ConfigHelper::VALUE_NO) {
+                    $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
+                    if ($itemVariation) {
+                        $itemId = $itemVariation->itemId;
+                        $item['itemId'] = $itemId;
+                        $item['itemVariationNumber'] = $itemVariation->number;
+                        $item['image_url'] = utf8_decode($this->getItemImageUrl($itemId, $item['itemVariationId']));
+                        $item['canonical_url'] = utf8_decode($this->getItemUrl($plentyId, $itemId));
+                        $products[] = $item;
+                    }
                 }
             }
         }
