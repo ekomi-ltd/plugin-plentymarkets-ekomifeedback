@@ -36,6 +36,31 @@ class EkomiServices
     const URL_SMART_CHECK_SETTINGS = 'https://srr.ekomi.com/api/v1/shops/setting';
 
     /**
+     * Request methods.
+     */
+    const REQUEST_METHOD_GET = 'GET';
+    const REQUEST_METHOD_PUT = 'PUT';
+
+    /**
+     * Error code types.
+     */
+    const ERROR_CODE_EXCEPTION = 'exception';
+    const ERROR_CODE_INVALID = 'Invalid Credentials';
+    const ERROR_CODE_PD_RESPONSE = 'PD-API-Response';
+    const ERROR_CODE_PLENTY_NOT_MATCHED = 'Plenty ID not matched';
+    const ERROR_CODE_PLUGIN_DISABLED = 'Plugin is not activated';
+    const ERROR_CODE_SEGMENT_STATUS = 'Customer segment status';
+    const ERROR_CODE_ORDER_DATA = 'OrderData';
+    const ERROR_CODE_POST_FIELDS = 'PostFields';
+
+    /**
+     * Static values.
+     */
+    const SERVER_OUTPUT = 'Access denied';
+    const CUSTOMER_SEGMENT = 'Reviews';
+    const PAGE_NUMBER = 1;
+
+    /**
      * @var ConfigRepository
      */
     private $configHelper;
@@ -63,12 +88,12 @@ class EkomiServices
     {
         if (ConfigHelper::CONFIG_ENABLE_TRUE !== $this->configHelper->getEnabled()) {
             $additionalInfo = 'is_active:'.$this->configHelper->getEnabled();
-            $this->getLogger(__FUNCTION__)->error('Plugin not active', $additionalInfo);
+            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_PLUGIN_DISABLED, $additionalInfo);
         }
 
         if (!$this->validateShop()) {
             $additionalInfo = "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}";
-            $this->getLogger(__FUNCTION__)->error('invalid credentials', $additionalInfo);
+            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_INVALID, $additionalInfo);
         }
 
         $this->updateSmartCheck();
@@ -79,12 +104,12 @@ class EkomiServices
         $plentyIDs = $this->configHelper->getPlentyIDs();
         $turnaroundTime = $this->configHelper->getTurnaroundTime();
         $filters = $this->ekomiHelper->prepareFilter($turnaroundTime);
-        $pageNum = 1;
+        $pageNum = self::PAGE_NUMBER;
         $fetchOrders = true;
         while ($fetchOrders) {
             $orders = $this->orderRepository->getOrders($pageNum, $filters);
             $this->getLogger(__FUNCTION__)->error('orders-count-page-'.$pageNum, 'count:'.count($orders));
-            if ($orders && count($orders) > 0) {
+            if ($orders && count($orders) > ConfigHelper::VALUE_NO) {
                 foreach ($orders as $key => $order) {
                     $this->exportOrder($order, $orderStatuses, $referrerIds, $plentyIDs);
                 }
@@ -107,9 +132,9 @@ class EkomiServices
         $apiUrl .= "?auth={$this->configHelper->getShopId()}|{$this->configHelper->getShopSecret()}";
         $apiUrl .= '&version=cust-1.0.0&type=request&charset=iso';
 
-        $response = $this->doCurl($apiUrl, 'GET');
-        if ('Access denied' == $response) {
-            $this->getLogger(__FUNCTION__)->error('invalid credentials', "url:{$apiUrl}");
+        $response = $this->doCurl($apiUrl, self::REQUEST_METHOD_GET);
+        if (self::SERVER_OUTPUT == $response) {
+            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_INVALID, "url:{$apiUrl}");
 
             return false;
         } else {
@@ -148,7 +173,7 @@ class EkomiServices
 
             return $response;
         } catch (\Exception $exception) {
-            $this->getLogger(__FUNCTION__)->error('exception', $exception->getMessage());
+            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_EXCEPTION, $exception->getMessage());
 
             return $exception->getMessage();
         }
@@ -169,7 +194,7 @@ class EkomiServices
         }
 
         $postFields = json_encode(array('smartcheck_on' => $smartCheck));
-        $this->doCurl(self::URL_SMART_CHECK_SETTINGS, 'PUT', $httpHeader, $postFields);
+        $this->doCurl(self::URL_SMART_CHECK_SETTINGS, self::REQUEST_METHOD_PUT, $httpHeader, $postFields);
     }
 
     /**
@@ -182,13 +207,13 @@ class EkomiServices
             'interface-password: '.$this->configHelper->getShopSecret(),
         );
         $apiUrl = self::URL_UPDATE_CUSTOMER_SEGMENT.'?api_key=enable&records_per_page=30';
-        $response = $this->doCurl($apiUrl, 'GET', $httpHeader, '');
+        $response = $this->doCurl($apiUrl, self::REQUEST_METHOD_GET, $httpHeader, '');
         $segments = json_decode($response);
         foreach ($segments->data as $key => $segment) {
-            if ('Reviews' == $segment->name) {
+            if (self::CUSTOMER_SEGMENT == $segment->name) {
                 $apiUrl = self::URL_UPDATE_CUSTOMER_SEGMENT."/{$segment->id}?status=active";
-                $response = $this->doCurl($apiUrl, 'PUT', $httpHeader, '');
-                $this->getLogger(__FUNCTION__)->error('Customer-segment-status', $response);
+                $response = $this->doCurl($apiUrl, self::REQUEST_METHOD_PUT, $httpHeader, '');
+                $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_SEGMENT_STATUS, $response);
                 break;
             }
         }
@@ -223,7 +248,7 @@ class EkomiServices
             }
         } else {
             $additionalInfo = 'plentyID('.$plentyID.') not matched with PlentyIDs:'.implode(',', $plentyIDs);
-            $this->getLogger(__FUNCTION__)->error('PlentyID not matched', $additionalInfo);
+            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_PLENTY_NOT_MATCHED, $additionalInfo);
         }
     }
 
@@ -243,10 +268,10 @@ class EkomiServices
             $boundary = md5(time());
             $header = array('ContentType:multipart/form-data;boundary='.$boundary);
             $postFields = json_encode($orderData);
-            $response = $this->doCurl(self::URL_TO_SEND_DATA, 'PUT', $header, $postFields);
-            $this->getLogger(__FUNCTION__)->error('orderData', $orderData);
-            $this->getLogger(__FUNCTION__)->error('postFields', $postFields);
-            $this->getLogger(__FUNCTION__)->error('PD-API-Response', $response);
+            $response = $this->doCurl(self::URL_TO_SEND_DATA, self::REQUEST_METHOD_PUT, $header, $postFields);
+            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_ORDER_DATA, $orderData);
+            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_POST_FIELDS, $postFields);
+            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_PD_RESPONSE, $response);
         }
 
         return $response;

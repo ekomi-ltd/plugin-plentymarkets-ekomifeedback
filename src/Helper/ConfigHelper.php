@@ -21,6 +21,10 @@ class ConfigHelper
      */
     const CONFIG_ENABLE_TRUE = 'true';
     const CONFIG_ENABLE_FALSE = 'false';
+    const VALUE_1 = '1';
+    const VALUE_0 = '0';
+    const VALUE_YES = 1;
+    const VALUE_NO = 0;
 
     /**
      * @var ConfigRepository
