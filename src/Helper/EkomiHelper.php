@@ -142,7 +142,7 @@ class EkomiHelper
     {
         $products = array();
         foreach ($orderItems as $key => $item) {
-            if (isset($item['itemVariationId']) && $item['itemVariationId'] > 0) {
+            if (isset($item['itemVariationId']) && $item['itemVariationId'] > ConfigHelper::VALUE_NO) {
                 $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
                 if ($itemVariation) {
                     $itemId = $itemVariation->itemId;
