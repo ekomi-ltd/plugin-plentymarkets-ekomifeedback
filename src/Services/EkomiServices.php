@@ -244,8 +244,8 @@ class EkomiServices
 
             if (in_array($order['statusId'], $orderStatuses)) {
                 $this->getLogger(__FUNCTION__)->error('testOrder', $order);
-                $postVars = $this->ekomiHelper->preparePostVars($order);
-                $this->sendData($postVars);
+//                $postVars = $this->ekomiHelper->preparePostVars($order);
+//                $this->sendData($postVars);
             }
         } else {
             $additionalInfo = 'plentyID('.$plentyID.') not matched with PlentyIDs:'.implode(',', $plentyIDs);

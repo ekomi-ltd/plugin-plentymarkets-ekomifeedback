@@ -100,13 +100,12 @@ class EkomiHelper
         );
         $order['senderName'] = $this->getWebStoreName($plentyId);
         $order['senderEmail'] = '';
-
-//        foreach ($order['addresses'] as $key => $address) {
-//            $countryInfo = $this->countryRepository->getCountryById($address['countryId']);
-//            $order['addresses'][$key]['countryName'] = $countryInfo->name;
-//            $order['addresses'][$key]['isoCode2'] = $countryInfo->isoCode2;
-//            $order['addresses'][$key]['isoCode3'] = $countryInfo->isoCode3;
-//        }
+        foreach ($order['addresses'] as $key => $address) {
+            $countryInfo = $this->countryRepository->getCountryById($address['countryId']);
+            $order['addresses'][$key]['countryName'] = $countryInfo->name;
+            $order['addresses'][$key]['isoCode2'] = $countryInfo->isoCode2;
+            $order['addresses'][$key]['isoCode3'] = $countryInfo->isoCode3;
+        }
 
         $order['orderItems'] = $this->getProductsData($order['orderItems'], $plentyId);
         $fields['order_data'] = $order;
@@ -142,18 +141,16 @@ class EkomiHelper
     protected function getProductsData($orderItems, $plentyId)
     {
         $products = array();
-        if (is_array($orderItems) && !empty($orderItems)) {
-            foreach ($orderItems as $key => $item) {
-                if (isset($item['itemVariationId']) && $item['itemVariationId'] > ConfigHelper::VALUE_NO) {
-                    $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
-                    if ($itemVariation) {
-                        $itemId = $itemVariation->itemId;
-                        $item['itemId'] = $itemId;
-                        $item['itemVariationNumber'] = $itemVariation->number;
-                        $item['image_url'] = utf8_decode($this->getItemImageUrl($itemId, $item['itemVariationId']));
-                        $item['canonical_url'] = utf8_decode($this->getItemUrl($plentyId, $itemId));
-                        $products[] = $item;
-                    }
+        foreach ($orderItems as $key => $item) {
+            if (isset($item['itemVariationId']) && $item['itemVariationId'] > ConfigHelper::VALUE_NO) {
+                $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
+                if ($itemVariation) {
+                    $itemId = $itemVariation->itemId;
+                    $item['itemId'] = $itemId;
+                    $item['itemVariationNumber'] = $itemVariation->number;
+                    $item['image_url'] = utf8_decode($this->getItemImageUrl($itemId, $item['itemVariationId']));
+                    $item['canonical_url'] = utf8_decode($this->getItemUrl($plentyId, $itemId));
+                    $products[] = $item;
                 }
             }
         }
