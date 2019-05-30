@@ -100,7 +100,7 @@ class EkomiHelper
         );
         $order['senderName'] = $this->getWebStoreName($plentyId);
         $order['senderEmail'] = '';
-        if (is_array($order['addresses'])) {
+        if (isset($order['addresses'])) {
             foreach ($order['addresses'] as $key => $address) {
                 $countryInfo = $this->countryRepository->getCountryById($address['countryId']);
                 $order['addresses'][$key]['countryName'] = $countryInfo->name;
