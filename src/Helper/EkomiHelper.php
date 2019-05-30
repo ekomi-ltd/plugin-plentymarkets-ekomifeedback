@@ -100,11 +100,13 @@ class EkomiHelper
         );
         $order['senderName'] = $this->getWebStoreName($plentyId);
         $order['senderEmail'] = '';
-        foreach ($order['addresses'] as $key => $address) {
-            $countryInfo = $this->countryRepository->getCountryById($address['countryId']);
-            $order['addresses'][$key]['countryName'] = $countryInfo->name;
-            $order['addresses'][$key]['isoCode2'] = $countryInfo->isoCode2;
-            $order['addresses'][$key]['isoCode3'] = $countryInfo->isoCode3;
+        if (is_array($order['addresses'])) {
+            foreach ($order['addresses'] as $key => $address) {
+                $countryInfo = $this->countryRepository->getCountryById($address['countryId']);
+                $order['addresses'][$key]['countryName'] = $countryInfo->name;
+                $order['addresses'][$key]['isoCode2'] = $countryInfo->isoCode2;
+                $order['addresses'][$key]['isoCode3'] = $countryInfo->isoCode3;
+            }
         }
 
         $order['orderItems'] = $this->getProductsData($order['orderItems'], $plentyId);
