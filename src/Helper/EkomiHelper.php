@@ -100,14 +100,15 @@ class EkomiHelper
         );
         $order['senderName'] = $this->getWebStoreName($plentyId);
         $order['senderEmail'] = '';
-//        foreach ($order['addresses'] as $key => $address) {
-//            $countryInfo = $this->countryRepository->getCountryById($address['countryId']);
-//            $order['addresses'][$key]['countryName'] = $countryInfo->name;
-//            $order['addresses'][$key]['isoCode2'] = $countryInfo->isoCode2;
-//            $order['addresses'][$key]['isoCode3'] = $countryInfo->isoCode3;
-//        }
+        $totalAddress = count($order['addresses']);
+        for ($index = 0; $index < $totalAddress; $index++) {
+            $countryInfo = $this->countryRepository->getCountryById($order['addresses'][$index]['countryId']);
+            $order['addresses'][$index]['countryName'] = $countryInfo->name;
+            $order['addresses'][$index]['isoCode2'] = $countryInfo->isoCode2;
+            $order['addresses'][$index]['isoCode3'] = $countryInfo->isoCode3;
+        }
 
-//        $order['orderItems'] = $this->getProductsData($order['orderItems'], $plentyId);
+        $order['orderItems'] = $this->getProductsData($order['orderItems'], $plentyId);
         $fields['order_data'] = $order;
 
         return $fields;
@@ -141,7 +142,9 @@ class EkomiHelper
     protected function getProductsData($orderItems, $plentyId)
     {
         $products = array();
-        foreach ($orderItems as $key => $item) {
+        $totalItems = count($orderItems);
+        for ($index = 0; $index < $totalItems; $index++) {
+            $item = $orderItems[$index];
             if (isset($item['itemVariationId']) && $item['itemVariationId'] > ConfigHelper::VALUE_NO) {
                 $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
                 if ($itemVariation) {
