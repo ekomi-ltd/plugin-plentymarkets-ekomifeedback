@@ -10,6 +10,23 @@ use Plenty\Plugin\ConfigRepository;
 class ConfigHelper
 {
     /**
+     * Product identifiers.
+     */
+    const PRODUCT_IDENTIFIER_ID = 'id"';
+    const PRODUCT_IDENTIFIER_NUMBER = 'number';
+    const PRODUCT_IDENTIFIER_VARIATION = 'variation';
+
+    /**
+     * Configuration enable/disable values.
+     */
+    const CONFIG_ENABLE_TRUE = 'true';
+    const CONFIG_ENABLE_FALSE = 'false';
+    const VALUE_1 = '1';
+    const VALUE_0 = '0';
+    const VALUE_YES = 1;
+    const VALUE_NO = 0;
+
+    /**
      * @var ConfigRepository
      */
     private $config;
@@ -102,7 +119,11 @@ class ConfigHelper
      */
     public function getProductReviews()
     {
-        return $this->config->get('EkomiFeedback.product_reviews');
+        if (self::CONFIG_ENABLE_TRUE == $this->config->get('EkomiFeedback.product_reviews')) {
+            return self::VALUE_1;
+        }
+
+        return self::VALUE_NO;
     }
 
     /**
@@ -178,6 +199,8 @@ class ConfigHelper
      */
     public function getPrcWidgetToken()
     {
-        return $this->config->get('EkomiFeedback.prc_widget_token');
+        $token = $this->config->get('EkomiFeedback.prc_widget_token');
+
+        return preg_replace('/\s+/', '', $token);
     }
 }

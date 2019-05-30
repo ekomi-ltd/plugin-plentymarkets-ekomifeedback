@@ -14,6 +14,11 @@ class EkomiFeedbackCron extends Cron
     use Loggable;
 
     /**
+     * Error code types.
+     */
+    const ERROR_CODE_CRON = 'CronStatus';
+
+    /**
      * @var
      */
     private $ekomiServices;
@@ -33,7 +38,7 @@ class EkomiFeedbackCron extends Cron
      */
     public function handle()
     {
-        $this->getLogger(__FUNCTION__)->error('CronStatus', 'Cron is running...:)');
+        $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_CRON, 'Cron is running...:)');
 
         $this->ekomiServices->sendOrdersData();
     }

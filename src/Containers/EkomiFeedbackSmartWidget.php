@@ -2,7 +2,6 @@
 
 namespace EkomiFeedback\Containers;
 
-use EkomiFeedback\Services\EkomiServices;
 use Plenty\Plugin\Templates\Twig;
 use EkomiFeedback\Helper\ConfigHelper;
 
@@ -22,12 +21,17 @@ class EkomiFeedbackSmartWidget
     public function call(Twig $twig, $arg)
     {
         $configHelper = pluginApp(ConfigHelper::class);
-        if ('true' == $configHelper->getEnabled() && 'true' == $configHelper->getShowPrcWidget()) {
+        if (ConfigHelper::CONFIG_ENABLE_TRUE == $configHelper->getEnabled() &&
+            ConfigHelper::CONFIG_ENABLE_TRUE == $configHelper->getShowPrcWidget() &&
+            !empty($configHelper->getPrcWidgetToken())
+        ) {
             $item = $arg[0];
             if (isset($item['item']['id'])) {
                 $productIdentifier = trim($item['item']['id']);
-                if (EkomiServices::PRODUCT_IDENTIFIER_SKU == $configHelper->getProductIdentifier()) {
+                if (ConfigHelper::PRODUCT_IDENTIFIER_VARIATION == $configHelper->getProductIdentifier()) {
                     $productIdentifier = trim($item['variation']['id']);
+                } elseif (ConfigHelper::PRODUCT_IDENTIFIER_NUMBER == $configHelper->getProductIdentifier()) {
+                    $productIdentifier = trim($item['variation']['number']);
                 }
 
                 $data = array(
