@@ -29,6 +29,6 @@ class EkomiFeedbackServiceProvider extends ServiceProvider
      */
     public function boot(CronContainer $container)
     {
-        $container->add(CronContainer::EVERY_FIVE_MINUTES, EkomiFeedbackCron::class);
+        $container->add(CronContainer::DAILY, EkomiFeedbackCron::class);
     }
 }
