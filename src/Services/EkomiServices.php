@@ -244,7 +244,7 @@ class EkomiServices
 
             if (in_array($order['statusId'], $orderStatuses)) {
                 $postVars = $this->ekomiHelper->preparePostVars($order);
-                $this->sendData($postVars);
+                $this->sendData($postVars, $orderId);
             }
         } else {
             $additionalInfo = 'plentyID('.$plentyID.') not matched with PlentyIDs:'.implode(',', $plentyIDs);
@@ -256,12 +256,13 @@ class EkomiServices
      * Sends Order data to eKomi Plugins dashboard.
      *
      * @param array $orderData
+     * @param int   $orderId
      *
      * @return string
      *
      * @throws Exception
      */
-    public function sendData($orderData)
+    public function sendData($orderData, $orderId)
     {
         $response = '';
         if (!empty($orderData)) {
@@ -269,7 +270,7 @@ class EkomiServices
             $header = array('ContentType:multipart/form-data;boundary='.$boundary);
             $postFields = json_encode($orderData);
             $response = $this->doCurl(self::URL_TO_SEND_DATA, self::REQUEST_METHOD_PUT, $header, $postFields);
-            $this->getLogger(__FUNCTION__)->error("OrderId:{$orderData['id']}|".self::ERROR_CODE_PD_RESPONSE, $response);
+            $this->getLogger(__FUNCTION__)->error("OrderId:{$orderId}|".self::ERROR_CODE_PD_RESPONSE, $response);
         }
 
         return $response;
