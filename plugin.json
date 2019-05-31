@@ -1,53 +1,48 @@
 {
-    "version": "2.2.5",
-    "name": "EkomiFeedback",
-    "marketplaceName": {
-        "de": "EkomiFeedback",
-        "en": "EkomiFeedback"
+  "version": "3.0.0",
+  "name": "EkomiFeedback",
+  "marketplaceName": {
+    "de": "EkomiFeedback",
+    "en": "EkomiFeedback"
+  },
+  "license": "AGPL-3.0",
+  "pluginIcon": "icon_plugin_xs.png",
+  "price": 0.00,
+  "description": "Ekomi FeedBack allows to read the necessary order details automatically from your shop system database which will enable eKomi to send a review request to your client, determine which order status should trigger the review request, contact your clients via email or SMS, request both seller and product reviews from your clients, display product reviews and ratings automatically on the corresponding product pages through our Product Review Container (PRC). If you have any questions regarding the plugin, please get in touch! Email us at support@ekomi.de, call us on +1 844-356-6487, or fill out our contact form.",
+  "shortDescription": {
+    "de": "Mit unseren offiziellen eKomi Plugins für diverse Shopsysteme können Sie nun unsere eKomi-Review-Technologie nahtlos in Ihr Shop-System und Ihre Website integrieren. Es erfolgt ein automatischer Versand einer Bewertungsanfrage in dem Moment, in dem eine Bestellung einen vordefinierten Status erreicht hat. Mit dem Produkt-Bewertungs-Container können Sie in wenigen Schritten das Anzeigen von Produktbewertungen so einstellen, dass auch diese automatisch in den entsprechenden Produktseiten angezeigt werden. Auf diese Weise werden echte Kundenbewertungen erstellt und angezeigt, während wir Ihre Verkäuferbewertungen gleichzeitig mit Google, Bing und Yahoo syndizieren.",
+    "en": "With our official eKomi Plugin for Plentymarkets, you can now seamlessly integrate our eKomi review collection and display technology with your shop system and website. Automatically trigger the sending of a review request the moment an order has reached a predefined status, and display any product reviews received automatically on the corresponding product pages with our review container. This allows you to generate and display genuine client reviews, all while we syndicate your seller ratings to Google, Bing and Yahoo."
+  },
+  "categories": [
+    "3527"
+  ],
+  "author": "eKomi Ltd",
+  "authorIcon": "icon_author_xs.png",
+  "email": "support@ekomi.zendesk.com",
+  "phone": "+49 3047376382",
+  "keywords": [
+    "plugins",
+    "orders export",
+    "ekomi",
+    "integration",
+    "reviews container",
+    "feedback",
+    "prc"
+  ],
+  "isClosedSource": true,
+  "namespace": "EkomiFeedback",
+  "type": "general",
+  "serviceProvider": "EkomiFeedback\\Providers\\EkomiFeedbackServiceProvider",
+  "dataProviders": [
+    {
+      "key": "EkomiFeedback\\Containers\\EkomiFeedbackSmartWidgetTab",
+      "name": "Smart Widget Tab",
+      "description": "eKomi Smart Widget Tab"
     },
-    "license": "AGPL-3.0",
-    "pluginIcon": "icon_plugin_xs.png",
-    "price": 0.00,
-    "description": "Ekomi FeedBack allows to read the necessary order details automatically from your shop system database which will enable eKomi to send a review request to your client, determine which order status should trigger the review request, contact your clients via email or SMS, request both seller and product reviews from your clients, display product reviews and ratings automatically on the corresponding product pages through our Product Review Container (PRC). If you have any questions regarding the plugin, please get in touch! Email us at support@ekomi.de, call us on +1 844-356-6487, or fill out our contact form.",
-    "shortDescription": {
-        "de": "Mit unseren offiziellen eKomi Plugins für diverse Shopsysteme können Sie nun unsere eKomi-Review-Technologie nahtlos in Ihr Shop-System und Ihre Website integrieren. Es erfolgt ein automatischer Versand einer Bewertungsanfrage in dem Moment, in dem eine Bestellung einen vordefinierten Status erreicht hat. Mit dem Produkt-Bewertungs-Container können Sie in wenigen Schritten das Anzeigen von Produktbewertungen so einstellen, dass auch diese automatisch in den entsprechenden Produktseiten angezeigt werden. Auf diese Weise werden echte Kundenbewertungen erstellt und angezeigt, während wir Ihre Verkäuferbewertungen gleichzeitig mit Google, Bing und Yahoo syndizieren.",
-        "en": "With our official eKomi Plugin for Plentymarkets, you can now seamlessly integrate our eKomi review collection and display technology with your shop system and website. Automatically trigger the sending of a review request the moment an order has reached a predefined status, and display any product reviews received automatically on the corresponding product pages with our review container. This allows you to generate and display genuine client reviews, all while we syndicate your seller ratings to Google, Bing and Yahoo."
-    },
-    "categories": ["3527"],
-    "author": "eKomi Ltd",
-    "authorIcon": "icon_author_xs.png",
-    "email": "support@ekomi.zendesk.com",
-    "phone": "+49 3047376382",
-    "keywords": ["plugins", "orders export", "ekomi", "integration","reviews container","feedback","prc"],
-    "isClosedSource": true,
-    "namespace": "EkomiFeedback",
-    
-    "type": "general",
-    
-    "serviceProvider": "EkomiFeedback\\Providers\\EkomiFeedbackServiceProvider",
-    
-    "runOnBuild":["EkomiFeedback\\Migrations\\CreateReviewsTable"],
-    "dataProviders"         :
-    [
-        {
-            "key"           :"EkomiFeedback\\Containers\\EkomiFeedbackResources",
-            "name"          :"Resources",
-            "description"   :"eKomi Resources"
-        },
-        {
-            "key"           :"EkomiFeedback\\Containers\\EkomiFeedbackMiniStarsCounter",
-            "name"          :"Mini Stars Counter",
-            "description"   :"eKomi Mini Stars Counter"
-        },
-        {
-            "key"           :"EkomiFeedback\\Containers\\EkomiFeedbackReviewsContainerTab",
-            "name"          :"Reviews Container Tab",
-            "description"   :"eKomi Product Review Container Tab"
-        },
-        {
-            "key"           :"EkomiFeedback\\Containers\\EkomiFeedbackReviewsContainer",
-            "name"          :"Reviews Container",
-            "description"   :"eKomi Product Review Container"
-        }
-    ]
+    {
+      "key": "EkomiFeedback\\Containers\\EkomiFeedbackSmartWidget",
+      "name": "Smart Widget",
+      "description": "eKomi Smart Widget"
+    }
+  ]
 }

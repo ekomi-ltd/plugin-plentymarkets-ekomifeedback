@@ -7,30 +7,39 @@ use EkomiFeedback\Services\EkomiServices;
 use Plenty\Plugin\Log\Loggable;
 
 /**
- * Class EkomiFeedbackCron
+ * Class EkomiFeedbackCron.
  */
-class EkomiFeedbackCron extends Cron {
-
+class EkomiFeedbackCron extends Cron
+{
     use Loggable;
 
     /**
-     *
-     * @var $ekomiServices 
+     * Error code types.
+     */
+    const ERROR_CODE_CRON = 'CronStatus';
+
+    /**
+     * @var
      */
     private $ekomiServices;
 
-    public function __construct(EkomiServices $ekomiService) {
+    /**
+     * EkomiFeedbackCron constructor.
+     *
+     * @param EkomiServices $ekomiService
+     */
+    public function __construct(EkomiServices $ekomiService)
+    {
         $this->ekomiServices = $ekomiService;
     }
 
-    public function handle() {
-        $this->getLogger(__FUNCTION__)->error('Cron Running...', 'CronRunning...:');
+    /**
+     * Handles Cron jobs.
+     */
+    public function handle()
+    {
+        $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_CRON, 'Cron is running...:)');
 
         $this->ekomiServices->sendOrdersData();
-        /**
-         * Fetch the product reviews if first time then range=all else range=1w
-         */
-        $this->ekomiServices->fetchProductReviews($range = 'all');
     }
-
 }

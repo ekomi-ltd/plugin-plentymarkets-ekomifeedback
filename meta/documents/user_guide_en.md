@@ -27,16 +27,7 @@ If you have any questions regarding the plugin, please get in touch! Email us at
 
 
 ### Have an eKomi account
-Please note that you will need an eKomi account to use the plugin. For a live demonstration of our product, feel free to book your most convenient time slot here, or alternatively email us at support@ekomi.de
-
-### Compatibility
-The plugin Ekomi Feedback is designed for use with the Ceres webshop and only works with its logic structure or other template plugins that use the same container logic.
-#### Requirements
-
-- Plugin Ceres
-- Plugin IO
-
-The plugin doesn't work for multistores/additional client stores due to issue on Plentymarkets side.
+Please note that you will need an eKomi account to use the plugin, and our standard packages **start at $49 monthly.** For a live demonstration of our product, feel free to book your most convenient time slot here, or alternatively email us at support@ekomi.de
 
 ### Installing the eKomi Feedback plugin
 Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) from the Plentymarkets Marketplace. You can install the plugin from the menu under Plugins / Purchases. Just click the button that says “Install” for the eKomi Feedback plugin on the far right.
@@ -51,27 +42,27 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 	- Enter your Interface ID
 	- Enter your Interface Password
 	- Enable / Disable Product Reviews (if enabled, product attributes will also be sent to eKomi i.e. product id, name, image, and URL)
-	- Enable / Disable Group Reviews (if enabled, Reviews of child/variants products will also be added)
 	- Select Mode. (for SMS, mobile number format should be according to E164)
 	- Enter Turnaround Time (Time it takes for an order to get complete)
-	- Select Product Identifier (How do you identify the product?)
 	- Insert Client Store Plenty IDs. Multiple commas separated Plenty IDs can also be added. (optional)
+	- Enable / Disable Smart Check (Enable this if you have Smart Check widget on order success page)
+    - Select Product Identifier (How do you identify the product?)
+    - Enter Exclude Products (Enter Product IDs/SKUs(comma separated) which should not sent to eKomi)
+    - Enable / Disable Show PRC Widget (Enable this if you want to show PRC widget)
+    - Insert token in PRC Widget Token field. (Extract token from the widget code provided by eKomi and insert here)
 	- Select Order Statuses on which you want to send information to eKomi.
 	- Select Referrers Filter (out) to filter out the orders.
-	- Insert Text when no reviews are found.
 	
 	**Note:** Please make sure, The Shop Id and Shop Password are correct. In the case of invalid credentials, the plugin will not work.
    
 4. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
 
-5. Finally, you have to display the widgets. You can do this via the menu item Plugins / Content. Choose the required client from the drop-down next to save button and select the appropriate containers to display the widgets.
+5. Finally, you have to display smart widget. You can do this via the menu item CMS / Container Links. Choose the required client from the drop-down next to save button and select the appropriate containers to display the widgets.
 	
-	- Find “Resources (EkomiFeedback)” and select **Script loader: Register/load JS** container to load resources.
+	- Go to CMS » Container Links and select the desired client.
 	
-	- To display the mini stars counter widget, find the "Mini Stars Counter (eKomi FeedBack)" and select container where you want to display this.
-	
-		**For example:** select Single Item: Before price to display on item detail pages.
-        
-        And Select **Category item list: After prices container** to display the listing of the items.
-
-	- To display the Review Container widget, find the "Reviews Container (eKomi FeedBack)" and select the container where you want to display this.
+        - Add Smart Widget Tab (EkomiFeedback)   
+          Choose “Single item: Add detail tabs” container to display the tab.
+        - Add Smart Widget (EkomiFeedback)   
+          Choose “Single item: Add content to detail tabs” container to display the smart widget.
+        - Save the Container Links settings.

@@ -2,151 +2,181 @@
 
 namespace EkomiFeedback\Helper;
 
-use EkomiFeedback\Helper\ConfigHelper;
+use IO\Services\UrlService;
 use Plenty\Modules\Helper\Contracts\UrlBuilderRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
 use Plenty\Modules\Item\ItemImage\Contracts\ItemImageRepositoryContract;
-use Plenty\Plugin\Log\Loggable;
+use Plenty\Modules\Order\Shipping\Countries\Contracts\CountryRepositoryContract;
 
 /**
- * Class EkomiHelper
+ * Class EkomiHelper.
  */
-class EkomiHelper {
-    use Loggable;
-
+class EkomiHelper
+{
+    /**
+     * Plugin name in PD.
+     */
+    const PLUGIN_NAME = 'plentymarkets';
     /**
      * @var ConfigRepository
      */
     private $configHelper;
-    private $webStoreRepo;
-    private $imagesRepo;
+    /**
+     * @var WebstoreRepositoryContract
+     */
+    private $webStoreRepository;
+    /**
+     * @var ItemImageRepositoryContract
+     */
+    private $imagesRepository;
+    /**
+     * @var CountryRepositoryContract
+     */
+    private $countryRepository;
+
+    /**
+     * @var VariationRepositoryContract
+     */
     private $itemVariationRepository;
+
+    /**
+     * @var UrlBuilderRepositoryContract
+     */
     private $urlBuilderRepositoryContract;
 
     /**
-     * Product identifiers.
+     * @var UrlService
      */
-    const PRODUCT_IDENTIFIER_ID = 'id"';
-    const PRODUCT_IDENTIFIER_NUMBER = 'number';
-    const PRODUCT_IDENTIFIER_VARIATION = 'variation';
+    private $urlService;
 
     /**
-     * Recipients modes.
-     */
-    const RECIPIENT_MODE_SMS = 'sms';
-    const RECIPIENT_MODE_EMAIL = 'email';
-    const RECIPIENT_MODE_FALLBACK = 'fallback';
-
-    /**
-     * Customer address types.
-     */
-    const ADDRESS_TYPE_PHONE = 4;
-    const ADDRESS_TYPE_EMAIL = 5;
-
-    /**
-     * Sender name length.
-     */
-    const SENDER_NAME_LENGTH = 11;
-
-    /**
-     * EkomiHelper constructor.
+     * Initializes object variables.
      *
-     * @param WebstoreRepositoryContract         $webStoreRepo
-     * @param \EkomiFeedback\Helper\ConfigHelper $configHelper
-     * @param ItemImageRepositoryContract        $imagesRepo
-     * @param VariationRepositoryContract        $itemVariationRepository
-     * @param UrlBuilderRepositoryContract       $urlBuilderRepositoryContract
+     * @param WebstoreRepositoryContract   $webStoreRepository
+     * @param ConfigHelper                 $configHelper
+     * @param ItemImageRepositoryContract  $imagesRepository
+     * @param CountryRepositoryContract    $countryRepository
+     * @param VariationRepositoryContract  $itemVariationRepository
+     * @param UrlBuilderRepositoryContract $urlBuilderRepositoryContract
+     * @param UrlService                   $urlService
      */
     public function __construct(
-        WebstoreRepositoryContract $webStoreRepo,
+        WebstoreRepositoryContract $webStoreRepository,
         ConfigHelper $configHelper,
-        ItemImageRepositoryContract $imagesRepo,
+        ItemImageRepositoryContract $imagesRepository,
+        CountryRepositoryContract $countryRepository,
         VariationRepositoryContract $itemVariationRepository,
-        UrlBuilderRepositoryContract $urlBuilderRepositoryContract
+        UrlBuilderRepositoryContract $urlBuilderRepositoryContract,
+        UrlService $urlService
     ) {
         $this->configHelper = $configHelper;
-        $this->webStoreRepo = $webStoreRepo;
-        $this->imagesRepo = $imagesRepo;
+        $this->webStoreRepository = $webStoreRepository;
+        $this->imagesRepository = $imagesRepository;
+        $this->countryRepository = $countryRepository;
         $this->itemVariationRepository = $itemVariationRepository;
         $this->urlBuilderRepositoryContract = $urlBuilderRepositoryContract;
+        $this->urlService = $urlService;
     }
 
     /**
-     * Gets the order data and prepare post variables
+     * Gets the order data and prepare post variables.
      *
-     * @param array $order Order object as array
+     * @param array $order order object as array
      *
-     * @return string The comma separated parameters
+     * @return array the comma separated parameters
      */
-    function preparePostVars($order) {
-        $id = $order['id'];
+    public function preparePostVars($order)
+    {
         $plentyId = $order['plentyId'];
-        $createdAt = $order['createdAt'];
-        $customerInfo = $order['relations'][1]['contactReceiver'];
-        $billingAddress = $order['addresses'][0];
-        $apiMode = $this->getRecipientType($customerInfo['privatePhone']);
-        $scheduleTime = $this->toMySqlDateTime($createdAt);
-        $senderName = $this->getStoreName($plentyId);
-        if (self::RECIPIENT_MODE_SMS == $apiMode && strlen($senderName) > self::SENDER_NAME_LENGTH) {
-            $senderName = substr($senderName, 0, self::SENDER_NAME_LENGTH);
-        }
-
-        $customerContactInfo = $this->getCustomerContactInfo($customerInfo, $billingAddress);
         $fields = array(
             'shop_id' => $this->configHelper->getShopId(),
-            'password' => $this->configHelper->getShopSecret(),
-            'recipient_type' => $apiMode,
-            'salutation' => '',
-            'first_name' => (is_null($billingAddress['name2'])) ? $billingAddress['name1'] : $billingAddress['name2'],
-            'last_name' => (is_null($billingAddress['name3'])) ? $billingAddress['name4'] : $billingAddress['name3'],
-            'email' => $customerContactInfo['email'],
-            'transaction_id' => $id,
-            'transaction_time' => $scheduleTime,
-            'telephone' => $customerContactInfo['phone'],
-            'sender_name' => $senderName,
-            'sender_email' => ''
+            'interface_password' => $this->configHelper->getShopSecret(),
+            'mode' => $this->configHelper->getMode(),
+            'product_reviews' => $this->configHelper->getProductReviews(),
+            'plugin_name' => self::PLUGIN_NAME,
+            'product_identifier' => $this->configHelper->getProductIdentifier(),
+            'exclude_products' => $this->configHelper->getExcludeProducts(),
         );
-
-        $fields['client_id'] = $customerInfo['id'];
-        $fields['screen_name'] = $fields['first_name'].' '.$fields['last_name'];
-        if ($this->configHelper->getProductReviews() == 'true') {
-            $productsData = $this->getProductsData($order['orderItems'], $plentyId);
-            $fields['has_products'] = $productsData['has_products'];
-            $fields['products_info'] = json_encode($productsData['product_info']);
-            $fields['products_other'] = json_encode($productsData['other']);
+        $order['senderName'] = $this->getWebStoreName($plentyId);
+        $order['senderEmail'] = '';
+        $totalAddress = count($order['addresses']);
+        for ($index = 0; $index < $totalAddress; $index++) {
+            $countryInfo = $this->countryRepository->getCountryById($order['addresses'][$index]['countryId']);
+            $order['addresses'][$index]['countryName'] = $countryInfo->name;
+            $order['addresses'][$index]['isoCode2'] = $countryInfo->isoCode2;
+            $order['addresses'][$index]['isoCode3'] = $countryInfo->isoCode3;
         }
 
-        $postVars = '';
-        $counter = 1;
-        foreach ($fields as $key => $value) {
-            if ($counter > 1)
-                $postVars .= "&";
-            $postVars .= $key . "=" . $value;
-            $counter++;
-        }
+        $order['orderItems'] = $this->getProductsData($order['orderItems'], $plentyId);
+        $fields['order_data'] = $order;
 
-        return $postVars;
+        return $fields;
     }
 
     /**
-     * Gets customer contact information.
+     * Gets web store.
      *
-     * @param array $customerInfo
-     * @param array $billingAddress
-     * @return null
+     * @param int $plentyId
+     *
+     * @return string
      */
-    public function getCustomerContactInfo($customerInfo, $billingAddress) {
-        $contactInfo = ['email'=> $customerInfo['email'],'phone' => $customerInfo['privatePhone']];
-        foreach ( $billingAddress['options'] as $key=>$address) {
-            if(self::ADDRESS_TYPE_EMAIL == $address['typeId']) {
-                $contactInfo['email'] = $address['value'];
-            } elseif (self::ADDRESS_TYPE_PHONE == $address['typeId']) {
-                $contactInfo['phone'] = $address['value'];
+    protected function getWebStoreName($plentyId)
+    {
+        $temp1 = $this->webStoreRepository->findByPlentyId($plentyId)->toArray();
+        if (isset($temp1['name'])) {
+            return $temp1['name'];
+        }
+
+        return '';
+    }
+
+    /**
+     * Gets the products data.
+     *
+     * @param array $orderItems
+     * @param int   $plentyId
+     *
+     * @return array
+     */
+    protected function getProductsData($orderItems, $plentyId)
+    {
+        $products = array();
+        $totalItems = count($orderItems);
+        for ($index = 0; $index < $totalItems; $index++) {
+            $item = $orderItems[$index];
+            if (isset($item['itemVariationId']) && $item['itemVariationId'] > ConfigHelper::VALUE_NO) {
+                $itemVariation = $this->itemVariationRepository->findById($item['itemVariationId']);
+                if ($itemVariation) {
+                    $itemId = $itemVariation->itemId;
+                    $item['itemId'] = $itemId;
+                    $item['itemVariationNumber'] = $itemVariation->number;
+                    $item['image_url'] = utf8_decode($this->getItemImageUrl($itemId, $item['itemVariationId']));
+                    $item['canonical_url'] = utf8_decode($this->getItemUrl($plentyId, $itemId));
+                    $products[] = $item;
+                }
             }
         }
 
-        return $contactInfo;
+        return $products;
+    }
+
+    /**
+     * Gets Item image url.
+     *
+     * @param int $plentyId
+     * @param int $itemId
+     *
+     * @return array
+     */
+    public function getItemUrl($plentyId, $itemId) {
+        $itemUrl = $this->urlBuilderRepositoryContract->getItemUrl($itemId,$plentyId);
+        if(empty($itemUrl)){
+            $itemUrl = $this->getStoreDomain($plentyId);
+            $itemUrl = $itemUrl . '/a-' . $itemId;
+        }
+
+        return $itemUrl;
     }
 
     /**
@@ -158,169 +188,45 @@ class EkomiHelper {
      * @return string
      */
     public function getItemImageUrl($itemId, $variationId) {
-        $variationImage = $this->imagesRepo->findByVariationId($variationId);
-        $itemImage = $this->imagesRepo->findByItemId($itemId);
+        $variationImage = $this->imagesRepository->findByVariationId($variationId);
+        $itemImage = $this->imagesRepository->findByItemId($itemId);
         if (isset($variationImage[0])) {
             return $variationImage[0]['url'];
         } elseif (isset($itemImage[0])) {
             return $itemImage[0]['url'];
         }
-
         return '';
     }
 
     /**
-     * Gets Item image url.
+     * Gets Store domain Url.
      *
-     * @param int    $plentyId
-     * @param int    $itemId
-     * @param string $variationId
-     *
-     * @return array
-     */
-    public function getItemURLs($plentyId, $itemId, $variationId) {
-        $imagUrl = $this->getItemImageUrl($itemId, $variationId);
-        $itemUrl = $this->urlBuilderRepositoryContract->getItemUrl($itemId,$plentyId);
-        if(empty($itemUrl)){
-            $itemUrl = $this->getStoreDomain($plentyId);
-            $itemUrl = $itemUrl . '/a-' . $itemId;
-        }
-
-        return ['itemUrl'=>$itemUrl,'imgUrl'=>$imagUrl];
-    }
-
-    /**
-     * Gets the products data.
-     *
-     * @param array $orderItems
-     * @param int   $plentyId
-     *
-     * @return array
-     */
-    protected function getProductsData($orderItems, $plentyId) {
-        $products = array('has_products'=>0);
-        $productIdentifier = $this->configHelper->getProductIdentifier();
-        foreach ($orderItems as $key => $product) {
-            if (isset($product['itemVariationId'])) {
-                if ($product['itemVariationId'] > 0) {
-                    $itemVariation = $this->itemVariationRepository->findById($product['itemVariationId']);
-                    if ($itemVariation) {
-                        $itemId = $itemVariation->itemId;
-                        $itemURLs = $this->getItemURLs($plentyId, $itemId, $product['itemVariationId']);
-                        if (self::PRODUCT_IDENTIFIER_NUMBER == $productIdentifier) {
-                            $itemId = $itemVariation->number;
-                        } elseif (self::PRODUCT_IDENTIFIER_VARIATION == $productIdentifier) {
-                            $itemId = $itemVariation->id;
-                        }
-
-                        $products['product_info'][$itemId] = str_replace('&', ' ', $product['orderItemName']);
-                        $productOther = array();
-                        $productOther['image_url'] = utf8_decode($itemURLs['imgUrl']);
-                        $productOther['brand_name'] = '';
-                        $productOther['product_ids'] = array('gbase' => utf8_decode($itemId));
-                        $canonicalUrl = utf8_decode($itemURLs['itemUrl']);
-                        $productOther['links'] = array(
-                            array('rel' => 'canonical', 'type' => 'text/html', 'href' => $canonicalUrl)
-                        );
-
-                        $products['other'][$itemId]['product_canonical_link'] = $canonicalUrl;
-                        $products['other'][$itemId]['product_other'] = $productOther;
-                        $products['has_products'] = 1;
-                    }
-                }
-            }
-        }
-
-        return $products;
-    }
-
-    /**
-     * Gets the recipient type.
-     *
-     * @param string $telephone The phone number
-     *
-     * @return string Recipient type
-     *
-     * @access protected
-     */
-    protected function getRecipientType($telephone) {
-        $reviewMod = $this->configHelper->getMod();
-        if (self::RECIPIENT_MODE_SMS == $reviewMod) {
-            return self::RECIPIENT_MODE_SMS;
-        } elseif (self::RECIPIENT_MODE_FALLBACK == $reviewMod && $this->validateE164($telephone)) {
-            return self::RECIPIENT_MODE_SMS;
-        }
-
-        return self::RECIPIENT_MODE_EMAIL;
-    }
-
-    /**
-     * Validates E164 numbers
-     *
-     * @param $phone The phone number
-     *
-     * @return bool Yes if matches False otherwise
-     *
-     * @access protected
-     */
-    protected function validateE164($phone) {
-        $pattern = '/^\+?[1-9]\d{1,14}$/';
-
-        preg_match($pattern, $phone, $matches);
-
-        if (!empty($matches)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Converts date to Mysql formate
-     *
-     * @param string $date The date
-     *
-     * @return string The formatted date
-     */
-    public function toMySqlDateTime($date) {
-        try {
-            return date('d-m-Y H:i:s', strtotime($date));
-        } catch (\Exception $exc) {
-            echo $exc->getTraceAsString();
-            return $date;
-        }
-    }
-
-    /**
-     * Gets store name
+     * @param int $plentyId
      *
      * @return string
-     *
-     * @access protected
      */
-    protected function getStoreName($plentyId) {
-        $temp1 = $this->webStoreRepo->findByPlentyId($plentyId)->toArray();
-        if (isset($temp1['name'])) {
-            return $temp1['name'];
-        }
-        return '';
-    }
-
-    /**
-     * Gets Store domain Url
-     *
-     * @param type $plentyId
-     *
-     * @return string
-     *
-     * @access protected
-     */
-    protected function getStoreDomain($plentyId) {
-        $temp1 = $this->webStoreRepo->findByPlentyId($plentyId)->toArray();
+    protected function getStoreDomain($plentyId)
+    {
+        $temp1 = $this->webStoreRepository->findByPlentyId($plentyId)->toArray();
         if (isset($temp1['configuration']['domain'])) {
             return $temp1['configuration']['domain'];
         }
+
         return '';
     }
 
+    /**
+     * Prepares filter to be applied in fetching orders.
+     *
+     * @param int $turnaroundTime
+     *
+     * @return array
+     */
+    public function prepareFilter($turnaroundTime)
+    {
+        $updatedAtFrom = date('Y-m-d\TH:i:s+00:00', strtotime("-{$turnaroundTime} day"));
+        $updatedAtTo = date('Y-m-d\TH:i:s+00:00');
+
+        return ['updatedAtFrom' => $updatedAtFrom, 'updatedAtTo' => $updatedAtTo];
+    }
 }

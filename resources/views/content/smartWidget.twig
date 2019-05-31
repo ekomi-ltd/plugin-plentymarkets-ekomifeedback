@@ -1,0 +1,25 @@
+<div class="tab-pane" id="ekomi_prc_tab" role="tabpanel">
+    <div id="widget-container" class="data-ekomi-emp ekomi-widget-container ekomi-widget-{{ widgetToken }}"></div>
+    <div id="ekomi-product-widget-identifier" class="prod-data-emp"  style="visibility: hidden">{{ productIdentifier }}</div>
+    <script type="text/javascript">
+        (function (w) {
+            w['_ekomiWidgetsServerUrl'] = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//widgets.ekomi.com';
+            w['_customerId'] = '{{ customerId }}';
+            w['_ekomiDraftMode'] = true;
+            w['_language'] = 'en';
+
+            if(typeof(w['_ekomiWidgetTokens']) !== 'undefined'){
+                w['_ekomiWidgetTokens'][w['_ekomiWidgetTokens'].length] = '{{ widgetToken }}';
+            } else {
+                w['_ekomiWidgetTokens'] = new Array('{{ widgetToken }}');
+            }
+
+            if(typeof(ekomiWidgetJs) == 'undefined') {
+                ekomiWidgetJs = true;
+
+                var scr = document.createElement('script');scr.src = 'https://sw-assets.ekomiapps.de/static_resources/widget.js';
+                var head = document.getElementsByTagName('head')[0];head.appendChild(scr);
+            }
+        })(window);
+    </script>
+</div>

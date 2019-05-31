@@ -49,24 +49,12 @@
 - Code-Optimierung.
 - Bearbeitungszeit.
 
-### v2.2.1 (14-02-2019)
 
-- Feste Artikel-ID in den Auftragsdaten.
-- Option hinzugefügt, um die Produktkennung auszuwählen.
+### v3.0.0 (31-05-2019)
 
-### v2.2.2 (15-04-2019)
-
-- Aktualisierte Benutzeranleitung.
-
-### v2.2.3 (25-04-2019)
-
-- Problem mit E-Mail und Telefonnummer in den Bestelldaten behoben.
-- Bestellstatus in der Konfiguration hinzugefügt.
-
-### v2.2.4 (02-05-2019)
-
-- Es gab ein Problem mit dem Link im Widget Ministars für Bewertungen. Dieser Fehler wurde behoben.
-
-### v2.2.5 (07-05-2019)
-
-- Hover-Problem mit der Anzahl der Bewertungen in Produktlisten wurde behoben.
+- Smart Check-Funktion
+- Option zur Auswahl von ID / Sku
+- Option zum Ausschluss von Produkten
+- Versenden der Produkt- und Bild-URL
+- eKomi Product Reviews Container wurde entfernt
+- Integration von Smart Widget. 

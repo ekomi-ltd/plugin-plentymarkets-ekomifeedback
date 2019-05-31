@@ -33,17 +33,6 @@ Bei weiteren Fragen bezüglich unseres Plugins, treten Sie bitte mit uns in Kont
 ### Sie benötigen ein eKomi-Konto
 Bitte beachten Sie, dass Sie einen eKomi-Account benötigen, um dieses Plugin nutzen zu können. Unsere Standardpakete beginnen bei 49 $ monatlich. Für eine Live-Vorführung unseres Produktes, können Sie sich einen Ihnen passenden Termin aussuchen, oder senden Sie uns einfach eine Email an [support@ekomi.de](support@ekomi.de).
 
-### Kompatibilität
-
-Das Plugin Ekomi Feedback ist für die Verwendung mit dem Ceres-Webshop konzipiert und funktioniert nur mit seiner Logikstruktur oder anderen Template-Plugins, die dieselbe Containerlogik verwenden.
-#### Bedarf
-
-- Plugin Ceres
-- Plugin IO
-
-
-Das Plugin funktioniert nicht für Multistores / zusätzliche Client-Stores, da es auf Plentymarkets ausgegeben wurde.
-
 ### Wie sie das "ekomi Feedback-Plugin" installieren
 Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) vom Plentymarkets Marketplace herunter. Sie können das Plugin über das Menü unter Plugins / Einkäufe. Klicken Sie einfach ganz rechts auf die Schaltfläche "Installieren" für das "eKomiFeedback" plugin.
 
@@ -57,25 +46,24 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	- Fügen Sie Ihre Interface Shop ID ein
 	- Fügen Sie Ihr Interface Shop Passwort ein 
 	- Aktivieren / Deaktivieren Sie Produktbewertungen (falls aktiviert, werden auch Produktattribute an eKomi gesendet, z.B. Produkt-ID, Name, Bild und URL)
-	- Aktivieren / Deaktivieren von Gruppenbewertungen (falls aktiviert, werden auch Bewertungen von Kindern / Produktvariationen hinzugefügt)
 	- „Modus“ auswählen (für SMS sollte das Mobiltelefonformat gemäß E164 sein)
 	- Geben Sie die Bearbeitungszeit ein (Zeit, bis ein Auftrag abgeschlossen ist)
-	- Produktkennung auswählen (Wie identifizieren Sie das Produkt?)
 	- Fügen Sie „Client Store Plenty IDs“ ein. Durch Kommatrennung können mehrere Plenty IDs hinzugefügt werden (optional)
+	- Wählen Sie die Option Smart Check.
+	- Ausschlussprodukte eingeben (Produkt-IDs/SKUs(Komma getrennt) eingeben, die nicht an eKomi gesendet werden sollen)
+	- Geben Sie Ihre Bearbeitungszeit ein (Zeit, die ein Auftrag benötigt, um abgeschlossen zu werden).
+	- Aktivieren / Deaktivieren Sie PRC-Widget Anzeige (wenn ja, wird das Widget auf der Detailseite angezeigt).
+	- PRC Widget-Token eingeben (Token von eKomi)
 	- Wählen Sie „Bestellstatus“ aus, welche Informationen enthalten und an eKomi gesendet werden
 	- Wählen Sie „Referrers Filter (out)“ aus, um die Bestellungen herauszufiltern
-	- Fügen Sie einen Text ein, wenn keine Bewertungen zu finden sind
 	
 	**Hinweis:** Bitte stellen Sie sicher, dass die „Shop ID“ und das „Shop Passwort“ korrekt sind. Bei ungültigen Anmeldedaten funktioniert das Plugin nicht. 
 4. Navigieren Sie zu Plugins / Plugin-Übersicht und aktivieren Sie das Plugin für die gewünschten Mandanten. Aktivieren Sie das Plugin über den ausgegrauten Button "Nicht in Productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
-5. Schließlich müssen Sie die Widgets anzeigen. Dies erreichen Sie über den Menüpunkt „Plugins / Content“. Wählen Sie den gewünschten mandant aus der Dropdown-Liste neben dem Speichern button und Wählen Sie die entsprechenden Container aus, um die Widgets anzuzeigen.	
+5. Schließlich müssen Sie das Smart Widget anzeigen. Dies erreichen Sie über den Menüpunkt CMS / Container Links. Wählen Sie aus der Dropdown-Liste neben den gewünschten Client zum Speichern aus, und wählen Sie die entsprechenden Container aus, um die Widgets anzuzeigen.	
 
-    - Suchen Sie nach „Resources (EkomiFeedback)“ und wählen Sie den **Script loader: Register/load JS** Container um Ressourcen zu laden.
-    
-	- Um das Mini-Sterne-Counter-Widget anzuzeigen, suchen Sie den „Mini Stars-Counter (EkomiFeedback)“ und wählen Sie den Container aus, an dem Sie dies anzeigen möchten.
-	
-	  **Beispiel:** Wählen Sie **Single Item: After price**, der auf den Artikelseiten angezeigt werden soll. 
-
-   	- Und Wählen Sie **Category item list: After prices container**, um die Auflistung der Artikel anzuzeigen.
-      
-    - Um das Widget "Review-Container" anzuzeigen, suchen Sie den Container „Reviews Container (EkomiFeedback)" und wählen Sie den Container aus, in dem Sie diesen anzeigen möchten.
+    - Gehen Sie zu CMS »Container-Verknüpfungen und wählen Sie den gewünschten Client aus.
+    - Hinzufügen Smart Widget Tab (EkomiFeedback)
+        Wählen “Single item: Add detail tabs” Container, um die Registerkarte anzuzeigen.
+    - Hinzufügen Smart Widget (EkomiFeedback)
+        Wählen “Single item: Add content to detail tabs” Container, um das Smart Widget anzuzeigen.
+    - Speichern Sie die Container-Links-Einstellungen.
