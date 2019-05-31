@@ -49,7 +49,7 @@
 - Code optimization.
 - Turnaround time feature.
 
-### v3.0.0 (02-01-2019)
+### v3.0.0 (31-05-2019)
 
 - Smart check feature
 - Option to select id/sku
