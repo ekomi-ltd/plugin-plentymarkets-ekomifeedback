@@ -269,9 +269,10 @@ class EkomiServices
             $header = array('ContentType:multipart/form-data;boundary='.$boundary);
             $postFields = json_encode($orderData);
             $response = $this->doCurl(self::URL_TO_SEND_DATA, self::REQUEST_METHOD_PUT, $header, $postFields);
-            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_ORDER_DATA, $orderData);
-            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_POST_FIELDS, $postFields);
-            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_PD_RESPONSE, $response);
+            if (is_object($response)){
+                $response->orderId = $orderData['id'];
+                $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_PD_RESPONSE, $response);
+            }
         }
 
         return $response;
