@@ -187,19 +187,31 @@ class ConfigHelper
      *
      * @return bool
      */
-    public function getShowPrcWidget()
+    public function getShowWidgets()
     {
-        return $this->config->get('EkomiFeedback.show_prc_widget');
+        return $this->config->get('EkomiFeedback.show_widgets');
     }
 
     /**
-     * Gets Widget Token from plugin configurations.
+     * Gets PRC Widget Token from plugin configurations.
      *
      * @return string
      */
     public function getPrcWidgetToken()
     {
         $token = $this->config->get('EkomiFeedback.prc_widget_token');
+
+        return preg_replace('/\s+/', '', $token);
+    }
+
+    /**
+     * Gets MiniStars Widget Token from plugin configurations.
+     *
+     * @return string
+     */
+    public function getMiniStarsWidgetToken()
+    {
+        $token = $this->config->get('EkomiFeedback.miniStars_widget_token');
 
         return preg_replace('/\s+/', '', $token);
     }

@@ -49,7 +49,6 @@
 - Code-Optimierung.
 - Bearbeitungszeit.
 
-
 ### v3.0.0 (31-05-2019)
 
 - Smart Check-Funktion
@@ -58,3 +57,7 @@
 - Versenden der Produkt- und Bild-URL
 - eKomi Product Reviews Container wurde entfernt
 - Integration von Smart Widget. 
+
+### v3.1.0 (14-06-2019)
+
+- Das MiniStars Smart Widget wurde hinzugefügt.

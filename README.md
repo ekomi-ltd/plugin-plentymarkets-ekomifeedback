@@ -118,6 +118,10 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 - eKomi Product reviews container removed
 - Integration of smart widget. 
 
+### v3.1.0 (14-06-2019)
+
+- Added the MiniStars Smart Widget.
+
 ## Authors
 
 * **eKomi** - [github profile](https://github.com/ekomi-ltd)
