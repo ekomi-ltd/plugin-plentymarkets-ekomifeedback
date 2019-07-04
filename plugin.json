@@ -1,5 +1,5 @@
 {
-  "version": "3.0.0",
+  "version": "3.1.0",
   "name": "EkomiFeedback",
   "marketplaceName": {
     "de": "EkomiFeedback",
@@ -35,14 +35,19 @@
   "serviceProvider": "EkomiFeedback\\Providers\\EkomiFeedbackServiceProvider",
   "dataProviders": [
     {
-      "key": "EkomiFeedback\\Containers\\EkomiFeedbackSmartWidgetTab",
-      "name": "Smart Widget Tab",
+      "key": "EkomiFeedback\\Containers\\EkomiFeedbackMiniStarsWidget",
+      "name": "MiniStars Widget",
+      "description": "eKomi MiniStars Smart Widget"
+    },
+    {
+      "key": "EkomiFeedback\\Containers\\EkomiFeedbackPrcWidgetTab",
+      "name": "PRC Widget Tab",
       "description": "eKomi Smart Widget Tab"
     },
     {
-      "key": "EkomiFeedback\\Containers\\EkomiFeedbackSmartWidget",
-      "name": "Smart Widget",
-      "description": "eKomi Smart Widget"
+      "key": "EkomiFeedback\\Containers\\EkomiFeedbackPrcWidget",
+      "name": "PRC Widget",
+      "description": "eKomi PRC Smart Widget"
     }
   ]
 }

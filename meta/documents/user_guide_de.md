@@ -53,7 +53,8 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	- Ausschlussprodukte eingeben (Produkt-IDs/SKUs(Komma getrennt) eingeben, die nicht an eKomi gesendet werden sollen)
 	- Geben Sie Ihre Bearbeitungszeit ein (Zeit, die ein Auftrag benötigt, um abgeschlossen zu werden).
 	- Aktivieren / Deaktivieren Sie PRC-Widget Anzeige (wenn ja, wird das Widget auf der Detailseite angezeigt).
-	- PRC Widget-Token eingeben (Token von eKomi)
+	- MiniStars Widget-Token eingeben (Token von eKomi)
+	- PRC Widget-Token eingeben (Token von eKomi)   
 	- Wählen Sie „Bestellstatus“ aus, welche Informationen enthalten und an eKomi gesendet werden
 	- Wählen Sie „Referrers Filter (out)“ aus, um die Bestellungen herauszufiltern
 	
@@ -62,8 +63,10 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 5. Schließlich müssen Sie das Smart Widget anzeigen. Dies erreichen Sie über den Menüpunkt CMS / Container Links. Wählen Sie aus der Dropdown-Liste neben den gewünschten Client zum Speichern aus, und wählen Sie die entsprechenden Container aus, um die Widgets anzuzeigen.	
 
     - Gehen Sie zu CMS »Container-Verknüpfungen und wählen Sie den gewünschten Client aus.
-    - Hinzufügen Smart Widget Tab (EkomiFeedback)
+    - Hinzufügen MiniStars Smart Widget (EkomiFeedback)
+        Wählen “Category item list: Before prices container” Container, um das MiniStars Smart Widget anzuzeigen.
+    - Hinzufügen PRC Smart Widget Tab (EkomiFeedback)
         Wählen “Single item: Add detail tabs” Container, um die Registerkarte anzuzeigen.
-    - Hinzufügen Smart Widget (EkomiFeedback)
-        Wählen “Single item: Add content to detail tabs” Container, um das Smart Widget anzuzeigen.
+    - Hinzufügen PRC Smart Widget (EkomiFeedback)
+        Wählen “Single item: Add content to detail tabs” Container, um das PRC Smart Widget anzuzeigen.
     - Speichern Sie die Container-Links-Einstellungen.

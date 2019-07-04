@@ -49,6 +49,7 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
     - Select Product Identifier (How do you identify the product?)
     - Enter Exclude Products (Enter Product IDs/SKUs(comma separated) which should not sent to eKomi)
     - Enable / Disable Show PRC Widget (Enable this if you want to show PRC widget)
+    - Insert token in MiniStars Widget Token field. (Extract token from the widget code provided by eKomi and insert here)
     - Insert token in PRC Widget Token field. (Extract token from the widget code provided by eKomi and insert here)
 	- Select Order Statuses on which you want to send information to eKomi.
 	- Select Referrers Filter (out) to filter out the orders.
@@ -60,9 +61,10 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 5. Finally, you have to display smart widget. You can do this via the menu item CMS / Container Links. Choose the required client from the drop-down next to save button and select the appropriate containers to display the widgets.
 	
 	- Go to CMS » Container Links and select the desired client.
-	
-        - Add Smart Widget Tab (EkomiFeedback)   
+        - Add MiniStars Smart Widget (EkomiFeedback)   
+          Choose “Category item list: Before prices container” container to display the miniStars smart widget.
+        - Add PRC Smart Widget Tab (EkomiFeedback)   
           Choose “Single item: Add detail tabs” container to display the tab.
-        - Add Smart Widget (EkomiFeedback)   
-          Choose “Single item: Add content to detail tabs” container to display the smart widget.
+        - Add PRC Smart Widget (EkomiFeedback)   
+          Choose “Single item: Add content to detail tabs” container to display the PRC smart widget.
         - Save the Container Links settings.

@@ -57,3 +57,7 @@
 - Sending product & image URL
 - eKomi Product reviews container removed
 - Integration of smart widget. 
+
+### v3.1.0 (14-06-2019)
+
+- Added the MiniStars Smart Widget.

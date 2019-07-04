@@ -8,7 +8,7 @@ use EkomiFeedback\Helper\ConfigHelper;
 /**
  * Ekomi Feedback Reviews Container Tab.
  */
-class EkomiFeedbackSmartWidgetTab
+class EkomiFeedbackPrcWidgetTab
 {
     /**
      * Renders HTML code to create new tab on the product page.
@@ -22,12 +22,12 @@ class EkomiFeedbackSmartWidgetTab
     {
         $configHelper = pluginApp(ConfigHelper::class);
         if (ConfigHelper::CONFIG_ENABLE_TRUE == $configHelper->getEnabled() &&
-            ConfigHelper::CONFIG_ENABLE_TRUE == $configHelper->getShowPrcWidget() &&
+            ConfigHelper::CONFIG_ENABLE_TRUE == $configHelper->getShowWidgets() &&
             !empty($configHelper->getPrcWidgetToken())
         ) {
             $templateData = array();
 
-            return $twig->render('EkomiFeedback::content.smartWidgetTab', $templateData);
+            return $twig->render('EkomiFeedback::content.prcWidgetTab', $templateData);
         }
 
         return '';

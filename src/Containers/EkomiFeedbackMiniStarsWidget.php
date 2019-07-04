@@ -8,7 +8,7 @@ use EkomiFeedback\Helper\ConfigHelper;
 /**
  * Ekomi Feedback Reviews Container.
  */
-class EkomiFeedbackSmartWidget
+class EkomiFeedbackMiniStarsWidget
 {
     /**
      * Renders HTML content for newly created tab on the product page.
@@ -22,8 +22,8 @@ class EkomiFeedbackSmartWidget
     {
         $configHelper = pluginApp(ConfigHelper::class);
         if (ConfigHelper::CONFIG_ENABLE_TRUE == $configHelper->getEnabled() &&
-            ConfigHelper::CONFIG_ENABLE_TRUE == $configHelper->getShowPrcWidget() &&
-            !empty($configHelper->getPrcWidgetToken())
+            ConfigHelper::CONFIG_ENABLE_TRUE == $configHelper->getShowWidgets() &&
+            !empty($configHelper->getMiniStarsWidgetToken())
         ) {
             $item = $arg[0];
             if (isset($item['item']['id'])) {
@@ -37,10 +37,10 @@ class EkomiFeedbackSmartWidget
                 $data = array(
                     'productIdentifier' => $productIdentifier,
                     'customerId' => $configHelper->getShopId(),
-                    'widgetToken' => $configHelper->getPrcWidgetToken(),
+                    'widgetToken' => $configHelper->getMiniStarsWidgetToken(),
                 );
 
-                return $twig->render('EkomiFeedback::content.smartWidget', $data);
+                return $twig->render('EkomiFeedback::content.miniStarsWidget', $data);
             }
         }
 
