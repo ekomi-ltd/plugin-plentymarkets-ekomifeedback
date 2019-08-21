@@ -60,7 +60,7 @@
                 },
                 "turnaround_time": {
                     "type": "selectBox",
-                    "required": true,
+                    "required": false,
                     "label": "Config.turnaroundTimeLabel",
                     "options": {
                         "defaultValue": 10,
@@ -102,7 +102,7 @@
                 },
                 "smart_check": {
                   "type": "checkBox",
-                  "required": true,
+                  "required": false,
                   "label": "Config.smartCheckLabel",
                   "options": {
                     "defaultValue": false
@@ -110,7 +110,7 @@
                 },
                 "product_identifier": {
                     "type": "selectBox",
-                    "required": true,
+                    "required": false,
                     "label": "Config.productIdentifierLabel",
                     "options": {
                         "defaultValue": "id",
