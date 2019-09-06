@@ -40,7 +40,7 @@ class EkomiFeedbackMiniStarsWidget
                     'widgetToken' => $configHelper->getMiniStarsWidgetToken(),
                 );
 
-                return $twig->render('EkomiFeedback::content.prcWidget', $data);
+                return $twig->render('EkomiFeedback::content.smartWidget', $data);
             }
         }
 
