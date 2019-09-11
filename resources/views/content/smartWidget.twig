@@ -4,7 +4,7 @@
     (function (w) {
         w['_ekomiWidgetsServerUrl'] = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//widgets.ekomi.com';
         w['_customerId'] = '{{ customerId }}';
-        w['_productId'] = '{{ productIdentifier }}';
+        w['_uniqueId'] = '{{ uniqueId }}';
         w['_ekomiDraftMode'] = true;
         w['_language'] = 'en';
         if(typeof(w['_ekomiWidgetTokens']) !== 'undefined'){

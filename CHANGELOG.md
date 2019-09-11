@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.1.2 (11-09-2019)
+- Fixed issue with miniStars widget on listing pages.
+
 ### v3.1.1 (21-08-2019)
 - Fixed issue in saving plugin configuration form.
 
