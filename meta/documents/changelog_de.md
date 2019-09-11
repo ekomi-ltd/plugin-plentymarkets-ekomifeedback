@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.1.2 (11-09-2019)
+- Problem mit miniStars-Widget beim Auflisten von Seiten behoben.
+
 ### v3.1.1 (21-08-2019)
 - Problem beim Speichern des Plugin-Konfigurationsformulars behoben.
 

@@ -38,9 +38,10 @@ class EkomiFeedbackMiniStarsWidget
                     'productIdentifier' => $productIdentifier,
                     'customerId' => $configHelper->getShopId(),
                     'widgetToken' => $configHelper->getMiniStarsWidgetToken(),
+                    'uniqueId' => uniqid("p{$productIdentifier}_"),
                 );
 
-                return $twig->render('EkomiFeedback::content.miniStarsWidget', $data);
+                return $twig->render('EkomiFeedback::content.smartWidget', $data);
             }
         }
 

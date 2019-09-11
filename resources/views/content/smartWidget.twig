@@ -4,15 +4,14 @@
     (function (w) {
         w['_ekomiWidgetsServerUrl'] = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//widgets.ekomi.com';
         w['_customerId'] = '{{ customerId }}';
+        w['_uniqueId'] = '{{ uniqueId }}';
         w['_ekomiDraftMode'] = true;
         w['_language'] = 'en';
-
         if(typeof(w['_ekomiWidgetTokens']) !== 'undefined'){
             w['_ekomiWidgetTokens'][w['_ekomiWidgetTokens'].length] = '{{ widgetToken }}';
         } else {
             w['_ekomiWidgetTokens'] = new Array('{{ widgetToken }}');
         }
-
         if(typeof(ekomiWidgetJs) == 'undefined') {
             ekomiWidgetJs = true;
             var scr = document.createElement('script');

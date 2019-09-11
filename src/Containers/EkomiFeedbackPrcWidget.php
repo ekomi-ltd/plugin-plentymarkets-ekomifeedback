@@ -38,6 +38,7 @@ class EkomiFeedbackPrcWidget
                     'productIdentifier' => $productIdentifier,
                     'customerId' => $configHelper->getShopId(),
                     'widgetToken' => $configHelper->getPrcWidgetToken(),
+                    'uniqueId' => uniqid("p{$productIdentifier}_"),
                 );
 
                 return $twig->render('EkomiFeedback::content.prcWidget', $data);
