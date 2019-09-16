@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.1.3 (16-09-2019)
+- Removed the auto-enable customer segment functionality.
+
 ### v3.1.2 (11-09-2019)
 - Fixed issue with miniStars widget on listing pages.
 
@@ -47,7 +50,7 @@
 
 ### v1.2.0 (19-01-2018)
 - Added Translations files.
-- Compatibilty issue fixed.
+- Compatibility issue fixed.
 
 ### v1.1.0 (15-12-2017)
 - Added auth Middleware in routes, Changed logs messages, and fixed sendOrdersData method.

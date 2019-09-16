@@ -26,11 +26,6 @@ class EkomiServices
     const URL_TO_SEND_DATA = 'https://plugins-dashboard.ekomiapps.de/api/v1/order';
 
     /**
-     * The SRR URL for Customer segments.
-     */
-    const URL_UPDATE_CUSTOMER_SEGMENT = 'https://srr.ekomi.com/api/v1/customer-segments';
-
-    /**
      * The SRR URL to update the Smart Check Settings.
      */
     const URL_SMART_CHECK_SETTINGS = 'https://srr.ekomi.com/api/v1/shops/setting';
@@ -49,7 +44,6 @@ class EkomiServices
     const ERROR_CODE_PD_RESPONSE = 'PD-Response';
     const ERROR_CODE_PLENTY_NOT_MATCHED = 'Plenty ID not matched';
     const ERROR_CODE_PLUGIN_DISABLED = 'Plugin is not activated';
-    const ERROR_CODE_SEGMENT_STATUS = 'Customer segment status';
     const ERROR_CODE_ORDER_DATA = 'OrderData';
     const ERROR_CODE_POST_FIELDS = 'PostFields';
 
@@ -57,7 +51,6 @@ class EkomiServices
      * Static values.
      */
     const SERVER_OUTPUT = 'Access denied';
-    const CUSTOMER_SEGMENT = 'Reviews';
     const PAGE_NUMBER = 1;
 
     /**
@@ -97,7 +90,6 @@ class EkomiServices
         }
 
         $this->updateSmartCheck();
-        $this->enableDefaultCustomerSegment();
 
         $orderStatuses = $this->configHelper->getOrderStatus();
         $referrerIds = $this->configHelper->getReferrerIds();
@@ -195,28 +187,6 @@ class EkomiServices
 
         $postFields = json_encode(array('smartcheck_on' => $smartCheck));
         $this->doCurl(self::URL_SMART_CHECK_SETTINGS, self::REQUEST_METHOD_PUT, $httpHeader, $postFields);
-    }
-
-    /**
-     * Enables default customer segment in SRR.
-     */
-    public function enableDefaultCustomerSegment()
-    {
-        $httpHeader = array(
-            'shop-id: '.$this->configHelper->getShopId(),
-            'interface-password: '.$this->configHelper->getShopSecret(),
-        );
-        $apiUrl = self::URL_UPDATE_CUSTOMER_SEGMENT.'?api_key=enable&records_per_page=30';
-        $response = $this->doCurl($apiUrl, self::REQUEST_METHOD_GET, $httpHeader, '');
-        $segments = json_decode($response);
-        foreach ($segments->data as $key => $segment) {
-            if (self::CUSTOMER_SEGMENT == $segment->name) {
-                $apiUrl = self::URL_UPDATE_CUSTOMER_SEGMENT."/{$segment->id}?status=active";
-                $response = $this->doCurl($apiUrl, self::REQUEST_METHOD_PUT, $httpHeader, '');
-                $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_SEGMENT_STATUS, $response);
-                break;
-            }
-        }
     }
 
     /**

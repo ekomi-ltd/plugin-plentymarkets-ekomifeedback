@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.1.3 (16-09-2019)
+- Die Funktion zur automatischen Aktivierung des Kundensegments wurde entfernt.
+
 ### v3.1.2 (11-09-2019)
 - Problem mit miniStars-Widget beim Auflisten von Seiten behoben.
 
