@@ -2,6 +2,7 @@
 
 namespace EkomiFeedback\Controllers;
 
+use Plenty\Modules\Authorization\Services\AuthHelper;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Templates\Twig;
 use EkomiFeedback\Services\EkomiServices;
@@ -24,8 +25,14 @@ class ContentController extends Controller
     public function sendOrdersToEkomi(Twig $twig)
     {
         $service = pluginApp(EkomiServices::class);
-
+        $authHelper = pluginApp(AuthHelper::class);
         $service->sendOrdersData();
+        $orders = null;
+        $orders = $authHelper->processUnguarded(
+            function () use ($service, $orders) {
+                return  $service->sendOrdersData();
+            }
+        );
 
         return $twig->render('EkomiFeedback::content.hello');
     }
