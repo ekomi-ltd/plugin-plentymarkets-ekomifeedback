@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.1.4 (15-11-2019)
+- Fixed the urlService deprecation issue.
+
 ### v3.1.3 (16-09-2019)
 - Removed the auto-enable customer segment functionality.
 

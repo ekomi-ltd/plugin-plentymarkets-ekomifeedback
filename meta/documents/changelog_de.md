@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.1.4 (15-11-2019)
+- Behebung des Problems mit der Abschreibung von urlService.
+
 ### v3.1.3 (16-09-2019)
 - Die Funktion zur automatischen Aktivierung des Kundensegments wurde entfernt.
 
