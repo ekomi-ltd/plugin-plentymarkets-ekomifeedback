@@ -2,7 +2,6 @@
 
 namespace EkomiFeedback\Helper;
 
-use IO\Services\UrlService;
 use Plenty\Modules\Helper\Contracts\UrlBuilderRepositoryContract;
 use Plenty\Modules\Item\Variation\Contracts\VariationRepositoryContract;
 use Plenty\Modules\System\Contracts\WebstoreRepositoryContract;
@@ -46,11 +45,6 @@ class EkomiHelper
     private $urlBuilderRepositoryContract;
 
     /**
-     * @var UrlService
-     */
-    private $urlService;
-
-    /**
      * Initializes object variables.
      *
      * @param WebstoreRepositoryContract   $webStoreRepository
@@ -59,7 +53,6 @@ class EkomiHelper
      * @param CountryRepositoryContract    $countryRepository
      * @param VariationRepositoryContract  $itemVariationRepository
      * @param UrlBuilderRepositoryContract $urlBuilderRepositoryContract
-     * @param UrlService                   $urlService
      */
     public function __construct(
         WebstoreRepositoryContract $webStoreRepository,
@@ -67,8 +60,7 @@ class EkomiHelper
         ItemImageRepositoryContract $imagesRepository,
         CountryRepositoryContract $countryRepository,
         VariationRepositoryContract $itemVariationRepository,
-        UrlBuilderRepositoryContract $urlBuilderRepositoryContract,
-        UrlService $urlService
+        UrlBuilderRepositoryContract $urlBuilderRepositoryContract
     ) {
         $this->configHelper = $configHelper;
         $this->webStoreRepository = $webStoreRepository;
@@ -76,7 +68,6 @@ class EkomiHelper
         $this->countryRepository = $countryRepository;
         $this->itemVariationRepository = $itemVariationRepository;
         $this->urlBuilderRepositoryContract = $urlBuilderRepositoryContract;
-        $this->urlService = $urlService;
     }
 
     /**
