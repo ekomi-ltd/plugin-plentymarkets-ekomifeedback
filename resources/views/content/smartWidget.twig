@@ -2,10 +2,9 @@
 <div id="ekomi-product-widget-identifier" class="prod-data-emp"  style="visibility: hidden">{{ productIdentifier }}</div>
 <script type="text/javascript">
     (function (w) {
-        var productIdsKey = '_{{ productIdentifier }}_{{ widgetToken }}';
         w['_ekomiWidgetsServerUrl'] = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//widgets.ekomi.com';
         w['_customerId'] = '{{ customerId }}';
-        w['_{{ productIdentifier }}_{{ widgetToken }}'] = '{{ productIdentifier }}';
+        w['_ProductIds_{{ widgetToken }}'] = '{{ productIdentifier }}';
         w['_uniqueId'] = '{{ uniqueId }}';
         w['_ekomiDraftMode'] = true;
         w['_language'] = 'en';
