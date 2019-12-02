@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.2.0 (02-12-2019)
+- Die Smart Check-Funktion wurde entfernt.
+
 ### v3.1.4 (28-11-2019)
 - Problem mit urlService in der Hilfsklasse behoben.
 
@@ -26,7 +29,6 @@
 ### v2.2.0 (09-06-2018)
 - Code-Optimierung.
 - Bearbeitungszeit.
-
 
 ### v2.1.0 (05-06-2018)
 - Code-Redundanz behoben.
