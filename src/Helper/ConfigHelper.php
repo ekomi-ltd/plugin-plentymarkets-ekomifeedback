@@ -153,16 +153,6 @@ class ConfigHelper
     }
 
     /**
-     * Gets Smart Check from plugin configurations.
-     *
-     * @return bool
-     */
-    public function getSmartCheck()
-    {
-        return $this->config->get('EkomiFeedback.smart_check');
-    }
-
-    /**
      * Gets Product Identifier from plugin configurations.
      *
      * @return string

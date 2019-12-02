@@ -49,7 +49,6 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	- „Modus“ auswählen (für SMS sollte das Mobiltelefonformat gemäß E164 sein)
 	- Geben Sie die Bearbeitungszeit ein (Zeit, bis ein Auftrag abgeschlossen ist)
 	- Fügen Sie „Client Store Plenty IDs“ ein. Durch Kommatrennung können mehrere Plenty IDs hinzugefügt werden (optional)
-	- Wählen Sie die Option Smart Check.
 	- Ausschlussprodukte eingeben (Produkt-IDs/SKUs(Komma getrennt) eingeben, die nicht an eKomi gesendet werden sollen)
 	- Geben Sie Ihre Bearbeitungszeit ein (Zeit, die ein Auftrag benötigt, um abgeschlossen zu werden).
 	- Aktivieren / Deaktivieren Sie PRC-Widget Anzeige (wenn ja, wird das Widget auf der Detailseite angezeigt).

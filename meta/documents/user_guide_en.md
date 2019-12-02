@@ -45,7 +45,6 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 	- Select Mode. (for SMS, mobile number format should be according to E164)
 	- Enter Turnaround Time (Time it takes for an order to get complete)
 	- Insert Client Store Plenty IDs. Multiple commas separated Plenty IDs can also be added. (optional)
-	- Enable / Disable Smart Check (Enable this if you have Smart Check widget on order success page)
     - Select Product Identifier (How do you identify the product?)
     - Enter Exclude Products (Enter Product IDs/SKUs(comma separated) which should not sent to eKomi)
     - Enable / Disable Show PRC Widget (Enable this if you want to show PRC widget)

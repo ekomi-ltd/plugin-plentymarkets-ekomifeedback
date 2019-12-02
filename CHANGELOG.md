@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.2.0 (02-12-2019)
+- Removed the smart check feature.
+
 ### v3.1.4 (28-11-2019)
 - Fixed urlService issue in helper class.
 
