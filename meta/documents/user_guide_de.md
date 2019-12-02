@@ -57,7 +57,10 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	- Wählen Sie „Bestellstatus“ aus, welche Informationen enthalten und an eKomi gesendet werden
 	- Wählen Sie „Referrers Filter (out)“ aus, um die Bestellungen herauszufiltern
 	
-	**Hinweis:** Bitte stellen Sie sicher, dass die „Shop ID“ und das „Shop Passwort“ korrekt sind. Bei ungültigen Anmeldedaten funktioniert das Plugin nicht. 
+	**Hinweis:** Bitte stellen Sie sicher, dass die „Shop ID“ und das „Shop Passwort“ korrekt sind. Bei ungültigen Anmeldedaten funktioniert das Plugin nicht.
+	
+	Bitte wenden Sie sich an support@ekomi.de, wenn Sie eine Opt-In Funktion wünschen.
+	 
 4. Navigieren Sie zu Plugins / Plugin-Übersicht und aktivieren Sie das Plugin für die gewünschten Mandanten. Aktivieren Sie das Plugin über den ausgegrauten Button "Nicht in Productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
 5. Schließlich müssen Sie das Smart Widget anzeigen. Dies erreichen Sie über den Menüpunkt CMS / Container Links. Wählen Sie aus der Dropdown-Liste neben den gewünschten Client zum Speichern aus, und wählen Sie die entsprechenden Container aus, um die Widgets anzuzeigen.	
 

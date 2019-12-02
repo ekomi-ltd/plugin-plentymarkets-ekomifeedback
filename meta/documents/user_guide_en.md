@@ -54,7 +54,9 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 	- Select Referrers Filter (out) to filter out the orders.
 	
 	**Note:** Please make sure, The Shop Id and Shop Password are correct. In the case of invalid credentials, the plugin will not work.
-   
+	
+	Please contact support@ekomi.de if you want an opt-in function.
+	
 4. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
 
 5. Finally, you have to display smart widget. You can do this via the menu item CMS / Container Links. Choose the required client from the drop-down next to save button and select the appropriate containers to display the widgets.
