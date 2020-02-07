@@ -176,7 +176,7 @@ class EkomiServices
     {
         $orderId = $order['id'];
         $plentyID = $order['plentyId'];
-        $referrerId = $order['orderItems'][0]['referrerId'];
+        $referrerId = $order['referrerId'];
         if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
             if (!empty($referrerIds) && in_array((string) $referrerId, $referrerIds)) {
                 $this->getLogger(__FUNCTION__)->error(
@@ -185,11 +185,11 @@ class EkomiServices
                     '|ReferrerID:'.$referrerId.
                     ' Blocked in plugin configuration.'
                 );
-            }
-
-            if (in_array($order['statusId'], $orderStatuses)) {
-                $postVars = $this->ekomiHelper->preparePostVars($order);
-                $this->sendData($postVars, $orderId);
+            } else {
+                if (in_array($order['statusId'], $orderStatuses)) {
+                    $postVars = $this->ekomiHelper->preparePostVars($order);
+                    $this->sendData($postVars, $orderId);
+                }
             }
         } else {
             $additionalInfo = 'plentyID('.$plentyID.') not matched with PlentyIDs:'.implode(',', $plentyIDs);
