@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.2.1 (07-02-2020)
+- Fixed the referrer out issue while sending orders data.
+
 ### v3.2.0 (02-12-2019)
 - Removed the smart check feature.
 

@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.2.1 (07-02-2020)
+- Das Problem mit dem Referrer Out beim Versenden von Auftragsdaten wurde behoben.
+
 ### v3.2.0 (02-12-2019)
 - Die Smart Check-Funktion wurde entfernt.
 
