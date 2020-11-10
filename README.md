@@ -39,13 +39,13 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
    
 3. Browse to Plugins / Plugin overview and activate the plugin for the desired clients. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
 
-4. Finally, you have to display the widgets. You can do this via the menu item Plugins / Content. Select the appropriate containers to display the widgets.
-  - To display the mini stars counter widget, find the Mini Stars Counter   (eKomi FeedBack) and select container where you want to display this.
-  
-    **For example:** select Single Item: Before price to display on item     detail pages.
-        
-        And Select **Category item list: After prices container** to display     the listing of the items.
-  - To display the Review Container widget, find the Reviews Container    (eKomi FeedBack) and select the container where you want to display this. 
+4. Display the Smart Widgets. 
+	- Go to Plugins » Plugin set overview.
+    - Open the plugin set you want to edit.
+    - Open the settings plugin whose containers you want to link.
+    - Click on Container links tab.
+    - Select the containers links in the containers list area.
+    - Save the Container links.
 
 ## Guides
 1. [User Guide](https://ekomi01.atlassian.net/wiki/spaces/PD/pages/101450083/Documentation+-+eKomi+Feedback+Plugin+-+Plentymarkets)

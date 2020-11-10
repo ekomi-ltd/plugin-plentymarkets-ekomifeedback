@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.3.0 (11-11-2020)
+- Added default container links.
+
 ### v3.2.1 (07-02-2020)
 - Fixed the referrer out issue while sending orders data.
 

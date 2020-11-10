@@ -62,13 +62,11 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	Bitte wenden Sie sich an support@ekomi.de, wenn Sie eine Opt-In Funktion wünschen.
 	 
 4. Navigieren Sie zu Plugins / Plugin-Übersicht und aktivieren Sie das Plugin für die gewünschten Mandanten. Aktivieren Sie das Plugin über den ausgegrauten Button "Nicht in Productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
-5. Schließlich müssen Sie das Smart Widget anzeigen. Dies erreichen Sie über den Menüpunkt CMS / Container Links. Wählen Sie aus der Dropdown-Liste neben den gewünschten Client zum Speichern aus, und wählen Sie die entsprechenden Container aus, um die Widgets anzuzeigen.	
 
-    - Gehen Sie zu CMS »Container-Verknüpfungen und wählen Sie den gewünschten Client aus.
-    - Hinzufügen MiniStars Smart Widget (EkomiFeedback)
-        Wählen “Category item list: Before prices container” Container, um das MiniStars Smart Widget anzuzeigen.
-    - Hinzufügen PRC Smart Widget Tab (EkomiFeedback)
-        Wählen “Single item: Add detail tabs” Container, um die Registerkarte anzuzeigen.
-    - Hinzufügen PRC Smart Widget (EkomiFeedback)
-        Wählen “Single item: Add content to detail tabs” Container, um das PRC Smart Widget anzuzeigen.
-    - Speichern Sie die Container-Links-Einstellungen.
+5. Zeigen Sie die Smart Widgets an. 
+    - Gehen Sie zu Plugins »Plugin Set Übersicht.
+    - Öffnen Sie das Plugin-Set, das Sie bearbeiten möchten.
+    - Öffnen Sie das Einstellungs-Plugin, dessen Container Sie verknüpfen möchten.
+    - Klicken Sie auf die Registerkarte Container-Links.
+    - Wählen Sie die Container-Links im Container-Listenbereich aus.
+    - Speichern Sie die Container-Links.

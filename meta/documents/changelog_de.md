@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.3.0 (11-11-2020)
+- Standard-Container-Links hinzugefügt.
+
 ### v3.2.1 (07-02-2020)
 - Das Problem mit dem Referrer Out beim Versenden von Auftragsdaten wurde behoben.
 
