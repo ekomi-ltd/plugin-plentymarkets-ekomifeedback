@@ -45,7 +45,7 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
     - Open the settings plugin whose containers you want to link.
     - Click on Container links tab.
     - Select the containers links in the containers list area.
-    - Save the Container links.
+    - Save the Container links. 
 
 ## Guides
 1. [User Guide](https://ekomi01.atlassian.net/wiki/spaces/PD/pages/101450083/Documentation+-+eKomi+Feedback+Plugin+-+Plentymarkets)

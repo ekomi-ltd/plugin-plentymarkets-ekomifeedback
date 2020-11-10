@@ -57,7 +57,7 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.co
 	
 	Please contact support@ekomi.de if you want an opt-in function.
 	
-4. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
+4. Activate the plugin "in productive" and click on the icon “Deploy Plugins Set”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
 
 5. Display the Smart Widgets. 
     - Go to Plugins » Plugin set overview.

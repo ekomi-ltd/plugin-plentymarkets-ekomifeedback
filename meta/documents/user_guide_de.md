@@ -37,7 +37,7 @@ Bitte beachten Sie, dass Sie einen eKomi-Account benötigen, um dieses Plugin nu
 Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) vom Plentymarkets Marketplace herunter. Sie können das Plugin über das Menü unter Plugins / Einkäufe. Klicken Sie einfach ganz rechts auf die Schaltfläche "Installieren" für das "eKomiFeedback" plugin.
 
 ### Das ekomi Feedback Plugin konfigurieren
-1. Unter Plugins / Plugin-Übersicht das Plugin erscheinen. Dies ist ein Hinweis darauf, dass das Plugin erfolgreich installiert wurde.
+1. Unter Plugins » Plugin-Set-Übersicht das Plugin erscheinen. Dies ist ein Hinweis darauf, dass das Plugin erfolgreich installiert wurde.
 
 2. Wählen Sie den gewünschten mandant aus dem Dropdown-Menü "MANDANT"
 
@@ -61,10 +61,10 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	
 	Bitte wenden Sie sich an support@ekomi.de, wenn Sie eine Opt-In Funktion wünschen.
 	 
-4. Navigieren Sie zu Plugins / Plugin-Übersicht und aktivieren Sie das Plugin für die gewünschten Mandanten. Aktivieren Sie das Plugin über den ausgegrauten Button "Nicht in Productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
+4. Navigieren Sie zu Plugins » Plugin-Set-Übersicht  und aktivieren Sie das Plugin für die gewünschten Mandanten. Aktivieren Sie das Plugin über den ausgegrauten Button "Nicht in Productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
 
 5. Zeigen Sie die Smart Widgets an. 
-    - Gehen Sie zu Plugins »Plugin Set Übersicht.
+    - Gehen Sie zu Plugins » Plugin-Set-Übersicht .
     - Öffnen Sie das Plugin-Set, das Sie bearbeiten möchten.
     - Öffnen Sie das Einstellungs-Plugin, dessen Container Sie verknüpfen möchten.
     - Klicken Sie auf die Registerkarte Container-Links.
