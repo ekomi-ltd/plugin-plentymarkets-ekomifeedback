@@ -37,17 +37,20 @@
     {
       "key": "EkomiFeedback\\Containers\\EkomiFeedbackMiniStarsWidget",
       "name": "MiniStars Widget",
-      "description": "eKomi MiniStars Smart Widget"
+      "description": "eKomi MiniStars Smart Widget",
+      "defaultLayoutContainer": "Ceres::CategoryItem.BeforePrices"
     },
     {
       "key": "EkomiFeedback\\Containers\\EkomiFeedbackPrcWidgetTab",
       "name": "PRC Widget Tab",
-      "description": "eKomi Smart Widget Tab"
+      "description": "eKomi Smart Widget Tab",
+      "defaultLayoutContainer": "Ceres::SingleItem.AddDetailTabs"
     },
     {
       "key": "EkomiFeedback\\Containers\\EkomiFeedbackPrcWidget",
       "name": "PRC Widget",
-      "description": "eKomi PRC Smart Widget"
+      "description": "eKomi PRC Smart Widget",
+      "defaultLayoutContainer": "Ceres::SingleItem.AddDetailTabsContent"
     }
   ]
 }
