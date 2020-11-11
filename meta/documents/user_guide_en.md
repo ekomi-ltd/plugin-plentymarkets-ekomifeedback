@@ -33,7 +33,7 @@ Please note that you will need an eKomi account to use the plugin, and our stand
 Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) from the Plentymarkets Marketplace. You can install the plugin from the menu under Plugins / Purchases. Just click the button that says “Install” for the eKomi Feedback plugin on the far right.
 
 ### Configuring the eKomi Feedback plugin
-1. Under Plugins » Plugin set overview , the plugin should appear. This is an indication that the plugin has been installed successfully.
+1. Got to Plugins » Plugin set overview.
 
 2. Select the Plugin set from the list.
 
@@ -62,7 +62,7 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.co
 5. Display the Smart Widgets. 
     - Go to Plugins » Plugin set overview.
     - Open the plugin set you want to edit.
-    - Open the settings plugin whose containers you want to link.
+    - Open the settings of the plugin whose containers you want to link.
     - Click on the Container links tab.
     - Select the containers links in the containers list area.
     - Save the Container links.

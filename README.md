@@ -30,20 +30,40 @@ If you have any questions regarding the plugin, please get in touch! Email us at
 Please note that you will need an eKomi account to use the plugin, and our standard packages **start at $49 monthly.** For a live demonstration of our product, feel free to book your most convenient time slot here, or alternatively email us at support@ekomi.de
 
 ### Installing the eKomi Feedback plugin
-Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) from the Plentymarkets Marketplace. You can install the plugin from the menu under Plugins / Purchases. Just click the button that says “Install” for the eKomi Feedback plugin on the far right.
+Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) from the Plentymarkets Marketplace. You can install the plugin from the menu under Plugins / Purchases. Just click the button that says “Install” for the eKomi Feedback plugin on the far right.
 
 ### Configuring the eKomi Feedback plugin
-1. Under Plugins / Plugin overview, the plugin should appear. This is an indication that the plugin has been installed successfully.
+1. Got to Plugins » Plugin set overview.
 
-2. Click on the name of the plugin, eKomi FeedBack, to get access to the plugin. There you find the "configuration" of your plugin.
-   
-3. Browse to Plugins / Plugin overview and activate the plugin for the desired clients. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
+2. Select the Plugin set from the list.
 
-4. Display the Smart Widgets. 
-	- Go to Plugins » Plugin set overview.
+3. Click on the name of the plugin, eKomi FeedBack, to get access to the plugin. There you find the "configuration" of your plugin.
+   	- Enable the Plugin
+   	- Enter your Interface ID
+   	- Enter your Interface Password
+   	- Enable / Disable Product Reviews (if enabled, product attributes will also be sent to eKomi i.e. product id, name, image, and URL)
+   	- Select Mode. (for SMS, mobile number format should be according to E164)
+   	- Enter Turnaround Time (Time it takes for an order to get complete)
+   	- Insert Client Store Plenty IDs. Multiple commas separated Plenty IDs can also be added. (optional)
+       - Select Product Identifier (How do you identify the product?)
+       - Enter Exclude Products (Enter Product IDs/SKUs(comma separated) which should not sent to eKomi)
+       - Enable / Disable Show PRC Widget (Enable this if you want to show PRC widget)
+       - Insert token in MiniStars Widget Token field. (Extract token from the widget code provided by eKomi and insert here)
+       - Insert token in PRC Widget Token field. (Extract token from the widget code provided by eKomi and insert here)
+   	- Select Order Statuses on which you want to send information to eKomi.
+   	- Select Referrers Filter (out) to filter out the orders.
+   	
+   	**Note:** Please make sure, The Shop Id and Shop Password are correct. In the case of invalid credentials, the plugin will not work.
+   	
+   	Please contact support@ekomi.de if you want an opt-in function.
+   	
+4. Browse to Plugins / Plugin set overview and activate the plugin for the desired clients. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
+
+5. Display the Smart Widgets. 
+    - Go to Plugins » Plugin set overview.
     - Open the plugin set you want to edit.
-    - Open the settings plugin whose containers you want to link.
-    - Click on Container links tab.
+    - Open the settings of the plugin whose containers you want to link.
+    - Click on the Container links tab.
     - Select the containers links in the containers list area.
     - Save the Container links. 
 
