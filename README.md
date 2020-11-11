@@ -30,22 +30,42 @@ If you have any questions regarding the plugin, please get in touch! Email us at
 Please note that you will need an eKomi account to use the plugin, and our standard packages **start at $49 monthly.** For a live demonstration of our product, feel free to book your most convenient time slot here, or alternatively email us at support@ekomi.de
 
 ### Installing the eKomi Feedback plugin
-Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) from the Plentymarkets Marketplace. You can install the plugin from the menu under Plugins / Purchases. Just click the button that says “Install” for the eKomi Feedback plugin on the far right.
+Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) from the Plentymarkets Marketplace. You can install the plugin from the menu under Plugins / Purchases. Just click the button that says “Install” for the eKomi Feedback plugin on the far right.
 
 ### Configuring the eKomi Feedback plugin
-1. Under Plugins / Plugin overview, the plugin should appear. This is an indication that the plugin has been installed successfully.
+1. Got to Plugins » Plugin set overview.
 
-2. Click on the name of the plugin, eKomi FeedBack, to get access to the plugin. There you find the "configuration" of your plugin.
-   
-3. Browse to Plugins / Plugin overview and activate the plugin for the desired clients. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
+2. Select the Plugin set from the list.
 
-4. Finally, you have to display the widgets. You can do this via the menu item Plugins / Content. Select the appropriate containers to display the widgets.
-  - To display the mini stars counter widget, find the Mini Stars Counter   (eKomi FeedBack) and select container where you want to display this.
-  
-    **For example:** select Single Item: Before price to display on item     detail pages.
-        
-        And Select **Category item list: After prices container** to display     the listing of the items.
-  - To display the Review Container widget, find the Reviews Container    (eKomi FeedBack) and select the container where you want to display this. 
+3. Click on the name of the plugin, eKomi FeedBack, to get access to the plugin. There you find the "configuration" of your plugin.
+   	- Enable the Plugin
+   	- Enter your Interface ID
+   	- Enter your Interface Password
+   	- Enable / Disable Product Reviews (if enabled, product attributes will also be sent to eKomi i.e. product id, name, image, and URL)
+   	- Select Mode. (for SMS, mobile number format should be according to E164)
+   	- Enter Turnaround Time (Time it takes for an order to get complete)
+   	- Insert Client Store Plenty IDs. Multiple commas separated Plenty IDs can also be added. (optional)
+       - Select Product Identifier (How do you identify the product?)
+       - Enter Exclude Products (Enter Product IDs/SKUs(comma separated) which should not sent to eKomi)
+       - Enable / Disable Show PRC Widget (Enable this if you want to show PRC widget)
+       - Insert token in MiniStars Widget Token field. (Extract token from the widget code provided by eKomi and insert here)
+       - Insert token in PRC Widget Token field. (Extract token from the widget code provided by eKomi and insert here)
+   	- Select Order Statuses on which you want to send information to eKomi.
+   	- Select Referrers Filter (out) to filter out the orders.
+   	
+   	**Note:** Please make sure, The Shop Id and Shop Password are correct. In the case of invalid credentials, the plugin will not work.
+   	
+   	Please contact support@ekomi.de if you want an opt-in function.
+   	
+4. Browse to Plugins / Plugin set overview and activate the plugin for the desired clients. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
+
+5. Display the Smart Widgets. 
+    - Go to Plugins » Plugin set overview.
+    - Open the plugin set you want to edit.
+    - Open the settings of the plugin whose containers you want to link.
+    - Click on the Container links tab.
+    - Select the containers links in the containers list area.
+    - Save the Container links. 
 
 ## Guides
 1. [User Guide](https://ekomi01.atlassian.net/wiki/spaces/PD/pages/101450083/Documentation+-+eKomi+Feedback+Plugin+-+Plentymarkets)
@@ -55,6 +75,15 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.c
 * plentymarkets stable 7 framework
 
 ## Versioning
+
+### v3.2.1 (07-02-2020)
+- Fixed the referrer out issue while sending orders data.
+
+### v3.2.0 (02-12-2019)
+- Removed the smart check feature.
+
+### v3.1.4 (28-11-2019)
+- Fixed urlService issue in helper class.
 
 ### v3.1.3 (16-09-2019)
 - Removed the auto-enable customer segment functionality.

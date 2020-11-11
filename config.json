@@ -100,14 +100,6 @@
                         "defaultValue": ""
                     }
                 },
-                "smart_check": {
-                  "type": "checkBox",
-                  "required": false,
-                  "label": "Config.smartCheckLabel",
-                  "options": {
-                    "defaultValue": false
-                  }
-                },
                 "product_identifier": {
                     "type": "selectBox",
                     "required": false,

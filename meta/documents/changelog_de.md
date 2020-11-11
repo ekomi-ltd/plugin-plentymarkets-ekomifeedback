@@ -1,5 +1,17 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.3.0 (11-11-2020)
+- Standard-Container-Links hinzugefügt.
+
+### v3.2.1 (07-02-2020)
+- Das Problem mit dem Referrer Out beim Versenden von Auftragsdaten wurde behoben.
+
+### v3.2.0 (02-12-2019)
+- Die Smart Check-Funktion wurde entfernt.
+
+### v3.1.4 (28-11-2019)
+- Problem mit urlService in der Hilfsklasse behoben.
+
 ### v3.1.3 (16-09-2019)
 - Die Funktion zur automatischen Aktivierung des Kundensegments wurde entfernt.
 
@@ -23,7 +35,6 @@
 ### v2.2.0 (09-06-2018)
 - Code-Optimierung.
 - Bearbeitungszeit.
-
 
 ### v2.1.0 (05-06-2018)
 - Code-Redundanz behoben.

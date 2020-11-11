@@ -26,11 +26,6 @@ class EkomiServices
     const URL_TO_SEND_DATA = 'https://plugins-dashboard.ekomiapps.de/api/v1/order';
 
     /**
-     * The SRR URL to update the Smart Check Settings.
-     */
-    const URL_SMART_CHECK_SETTINGS = 'https://srr.ekomi.com/api/v1/shops/setting';
-
-    /**
      * Request methods.
      */
     const REQUEST_METHOD_GET = 'GET';
@@ -88,8 +83,6 @@ class EkomiServices
             $additionalInfo = "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}";
             $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_INVALID, $additionalInfo);
         }
-
-        $this->updateSmartCheck();
 
         $orderStatuses = $this->configHelper->getOrderStatus();
         $referrerIds = $this->configHelper->getReferrerIds();
@@ -172,24 +165,6 @@ class EkomiServices
     }
 
     /**
-     * Updates the smart check in SRR.
-     */
-    public function updateSmartCheck()
-    {
-        $httpHeader = array(
-            'shop-id: '.$this->configHelper->getShopId(),
-            'interface-password: '.$this->configHelper->getShopSecret(),
-        );
-        $smartCheck = false;
-        if (ConfigHelper::CONFIG_ENABLE_TRUE == $this->configHelper->getSmartCheck()) {
-            $smartCheck = true;
-        }
-
-        $postFields = json_encode(array('smartcheck_on' => $smartCheck));
-        $this->doCurl(self::URL_SMART_CHECK_SETTINGS, self::REQUEST_METHOD_PUT, $httpHeader, $postFields);
-    }
-
-    /**
      * Exports order data.
      *
      * @param array  $order
@@ -201,7 +176,7 @@ class EkomiServices
     {
         $orderId = $order['id'];
         $plentyID = $order['plentyId'];
-        $referrerId = $order['orderItems'][0]['referrerId'];
+        $referrerId = $order['referrerId'];
         if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
             if (!empty($referrerIds) && in_array((string) $referrerId, $referrerIds)) {
                 $this->getLogger(__FUNCTION__)->error(
@@ -210,11 +185,11 @@ class EkomiServices
                     '|ReferrerID:'.$referrerId.
                     ' Blocked in plugin configuration.'
                 );
-            }
-
-            if (in_array($order['statusId'], $orderStatuses)) {
-                $postVars = $this->ekomiHelper->preparePostVars($order);
-                $this->sendData($postVars, $orderId);
+            } else {
+                if (in_array($order['statusId'], $orderStatuses)) {
+                    $postVars = $this->ekomiHelper->preparePostVars($order);
+                    $this->sendData($postVars, $orderId);
+                }
             }
         } else {
             $additionalInfo = 'plentyID('.$plentyID.') not matched with PlentyIDs:'.implode(',', $plentyIDs);
