@@ -38,7 +38,7 @@
       "key": "EkomiFeedback\\Containers\\EkomiFeedbackMiniStarsWidget",
       "name": "MiniStars Widget",
       "description": "eKomi MiniStars Smart Widget",
-      "defaultLayoutContainer": "Ceres::CategoryItem.BeforePrices"
+      "defaultLayoutContainer": "Ceres::SingleItem.BeforePrice"
     },
     {
       "key": "EkomiFeedback\\Containers\\EkomiFeedbackPrcWidgetTab",
