@@ -93,7 +93,7 @@ class EkomiServices
         $fetchOrders = true;
         while ($fetchOrders) {
             $orders = $this->orderRepository->getOrders($pageNum, $filters);
-            $this->getLogger(__FUNCTION__)->error('orders-count-page-'.$pageNum, 'count:'.count($orders));
+            $this->getLogger(__FUNCTION__)->info('orders-count-page-'.$pageNum, 'count:'.count($orders));
             if ($orders && count($orders) > ConfigHelper::VALUE_NO) {
                 foreach ($orders as $key => $order) {
                     $this->exportOrder($order, $orderStatuses, $referrerIds, $plentyIDs);
@@ -215,7 +215,7 @@ class EkomiServices
             $header = array('ContentType:multipart/form-data;boundary='.$boundary);
             $postFields = json_encode($orderData);
             $response = $this->doCurl(self::URL_TO_SEND_DATA, self::REQUEST_METHOD_PUT, $header, $postFields);
-            $this->getLogger(__FUNCTION__)->error("OrderId:{$orderId}|".self::ERROR_CODE_PD_RESPONSE, $response);
+            $this->getLogger(__FUNCTION__)->info("OrderId:{$orderId}|".self::ERROR_CODE_PD_RESPONSE, $response);
         }
 
         return $response;
