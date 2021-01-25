@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.3.1 (25-01-2021)
+- Fix log messages.
+
 ### v3.3.0 (11-11-2020)
 - Added default container links.
 

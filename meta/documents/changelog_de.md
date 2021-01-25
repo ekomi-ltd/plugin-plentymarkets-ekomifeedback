@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.3.1 (25-01-2021)
+- Korrigieren Sie Protokollnachrichten.
+
 ### v3.3.0 (11-11-2020)
 - Standard-Container-Links hinzugefügt.
 

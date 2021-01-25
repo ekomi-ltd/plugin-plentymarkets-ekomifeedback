@@ -76,6 +76,9 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.co
 
 ## Versioning
 
+### v3.3.1 (25-01-2021)
+- Fix log messages.
+
 ### v3.2.1 (07-02-2020)
 - Fixed the referrer out issue while sending orders data.
 

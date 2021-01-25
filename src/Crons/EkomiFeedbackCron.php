@@ -38,7 +38,7 @@ class EkomiFeedbackCron extends Cron
      */
     public function handle()
     {
-        $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_CRON, 'Cron is running...:)');
+        $this->getLogger(__FUNCTION__)->info(self::ERROR_CODE_CRON, 'Cron is running...:)');
 
         $this->ekomiServices->sendOrdersData();
     }
