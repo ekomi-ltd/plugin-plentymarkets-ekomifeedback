@@ -43,6 +43,7 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 
 3. Klicken Sie auf den Namen des Plugins, „eKomiFeedBack“, um auf das Plugin zuzugreifen. Dort finden Sie die "Konfiguration" Ihres Plugins.
 	- Aktivieren / Deaktivieren Sie das Plugin
+	- Akzeptieren Sie die Allgemeinen Geschäftsbedingungen von Ekomi
 	- Fügen Sie Ihre Interface Shop ID ein
 	- Fügen Sie Ihr Interface Shop Passwort ein 
 	- Aktivieren / Deaktivieren Sie Produktbewertungen (falls aktiviert, werden auch Produktattribute an eKomi gesendet, z.B. Produkt-ID, Name, Bild und URL)
