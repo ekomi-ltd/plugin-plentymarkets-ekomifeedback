@@ -52,6 +52,16 @@ class ConfigHelper
     }
 
     /**
+     * Gets Terms and conditions from plugin configurations.
+     *
+     * @return string
+     */
+    public function getTermsAndConditions()
+    {
+        return $this->config->get('EkomiFeedback.terms_and_conditions');
+    }
+
+    /**
      * Gets mode from plugin configurations.
      *
      * @return string

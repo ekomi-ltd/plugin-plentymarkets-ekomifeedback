@@ -79,6 +79,15 @@ class EkomiServices
             $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_PLUGIN_DISABLED, $additionalInfo);
         }
 
+        /**
+         * Send data if only terms and conditions are accepted.
+         */
+        if (!$this->configHelper->getTermsAndConditions()) {
+            $additionalInfo = 'terms_and_conditions_accepted:'.$this->configHelper->getTermsAndConditions();
+            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_PLUGIN_DISABLED, $additionalInfo);
+            return;
+        }
+
         if (!$this->validateShop()) {
             $additionalInfo = "shopId:{$this->configHelper->getShopId()},shopSecret:{$this->configHelper->getShopSecret()}";
             $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_INVALID, $additionalInfo);

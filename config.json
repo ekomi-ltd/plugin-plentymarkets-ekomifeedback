@@ -12,6 +12,14 @@
                         "defaultValue": false
                     }
                 },
+                "terms_and_conditions": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.termsAndConditions",
+                    "options": {
+                        "defaultValue": false
+                    }
+                },
                 "shop_id": {
                     "type": "inputText",
                     "required": false,

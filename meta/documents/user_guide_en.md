@@ -39,6 +39,7 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.co
 
 3. Click on the name of the plugin, eKomi FeedBack, to get access to the plugin. There you find the "configuration" of your plugin.
 	- Enable the Plugin
+    - Accept Terms and Conditions of Ekomi
 	- Enter your Interface ID
 	- Enter your Interface Password
 	- Enable / Disable Product Reviews (if enabled, product attributes will also be sent to eKomi i.e. product id, name, image, and URL)

@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.4.0 (16-03-2021)
+- Adding Terms and Conditions Field
+
 ### v3.3.1 (25-01-2021)
 - Fix log messages.
 
