@@ -27,11 +27,11 @@ eKomi ist der führende Bewertungsdienstleister, der sich auf die Sammlung, das 
 
 eKomi ist auf Englisch und Deutsch.
 
-Bei weiteren Fragen bezüglich unseres Plugins, treten Sie bitte mit uns in Kontakt: Schreiben Sie uns eine E-Mail an [support@ekomi.de](support@ekomi.de), rufen uns unter +49 (0)30 2000 444 999 an oder nutzen unser [Kontaktformular](http://www.ekomi.de/de/contact-us/).
+Bei weiteren Fragen bezüglich unseres Plugins, treten Sie bitte mit uns in Kontakt: Schreiben Sie uns eine E-Mail an [support@ekomi-group.com](support@ekomi-group.com), rufen uns unter +49 (0)30 2000 444 999 an oder nutzen unser [Kontaktformular](http://www.ekomi.de/de/contact-us/).
 
 
 ### Sie benötigen ein eKomi-Konto
-Bitte beachten Sie, dass Sie einen eKomi-Account benötigen, um dieses Plugin nutzen zu können. Unsere Standardpakete beginnen bei 49 $ monatlich. Für eine Live-Vorführung unseres Produktes, können Sie sich einen Ihnen passenden Termin aussuchen, oder senden Sie uns einfach eine Email an [support@ekomi.de](support@ekomi.de).
+Bitte beachten Sie, dass Sie einen eKomi-Account benötigen, um dieses Plugin nutzen zu können. Unsere Standardpakete beginnen bei 49 $ monatlich. Für eine Live-Vorführung unseres Produktes, können Sie sich einen Ihnen passenden Termin aussuchen, oder senden Sie uns einfach eine Email an [support@ekomi-group.com](support@ekomi-group.com).
 
 ### Wie sie das "ekomi Feedback-Plugin" installieren
 Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) vom Plentymarkets Marketplace herunter. Sie können das Plugin über das Menü unter Plugins / Einkäufe. Klicken Sie einfach ganz rechts auf die Schaltfläche "Installieren" für das "eKomiFeedback" plugin.
@@ -59,7 +59,7 @@ Bitte laden Sie sich das [eKomi Feedback Plugin](https://marketplace.plentymarke
 	
 	**Hinweis:** Bitte stellen Sie sicher, dass die „Shop ID“ und das „Shop Passwort“ korrekt sind. Bei ungültigen Anmeldedaten funktioniert das Plugin nicht.
 	
-	Bitte wenden Sie sich an support@ekomi.de, wenn Sie eine Opt-In Funktion wünschen.
+	Bitte wenden Sie sich an support@ekomi-group.com, wenn Sie eine Opt-In Funktion wünschen.
 	 
 4. Navigieren Sie zu Plugins » Plugin-Set-Übersicht  und aktivieren Sie das Plugin für die gewünschten Mandanten. Aktivieren Sie das Plugin über den ausgegrauten Button "Nicht in Productive aktiv" und klicken Sie auf das Icon "Plugins in Productive bereitstellen". Die Bereitstellung kann einige Minuten dauern. Wenn die Bereitstellung erfolgreich war, wird das Feld neben der Schaltfläche „Bereitstellen“ in Grün angezeigt. Sollte dies nicht der Fall sein, wenden Sie sich bitte an einen Support-Mitarbeiter.
 
