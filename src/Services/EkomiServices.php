@@ -115,7 +115,7 @@ class EkomiServices
     {
         $apiUrl = self::URL_GET_SETTINGS;
         $apiUrl .= "?auth={$this->configHelper->getShopId()}|{$this->configHelper->getShopSecret()}";
-        $apiUrl .= '&version=cust-1.0.0&type=request&charset=iso';
+        $apiUrl .= '&version=cust-1.0.0&type=request&charset=iso&app=PD-plentymarket';
 
         $response = $this->doCurl($apiUrl, self::REQUEST_METHOD_GET);
         if (self::SERVER_OUTPUT == $response) {
