@@ -23,11 +23,11 @@ eKomi is the leading third-party review service, specializing in the collection,
 
 eKomi is available in English and German.
 
-If you have any questions regarding the plugin, please get in touch! Email us at support@ekomi.de, call us on +1 844-356-6487, or fill out our contact form.
+If you have any questions regarding the plugin, please get in touch! Email us at support@ekomi-group.com, call us on +1 844-356-6487, or fill out our contact form.
 
 
 ### Have an eKomi account
-Please note that you will need an eKomi account to use the plugin, and our standard packages **start at $49 monthly.** For a live demonstration of our product, feel free to book your most convenient time slot here, or alternatively email us at support@ekomi.de
+Please note that you will need an eKomi account to use the plugin, and our standard packages **start at $49 monthly.** For a live demonstration of our product, feel free to book your most convenient time slot here, or alternatively email us at support@ekomi-group.com
 
 ### Installing the eKomi Feedback plugin
 Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.com/plugins/integration/EkomiFeedback_5253) from the Plentymarkets Marketplace. You can install the plugin from the menu under Plugins / Purchases. Just click the button that says “Install” for the eKomi Feedback plugin on the far right.
@@ -55,7 +55,7 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.co
    	
    	**Note:** Please make sure, The Shop Id and Shop Password are correct. In the case of invalid credentials, the plugin will not work.
    	
-   	Please contact support@ekomi.de if you want an opt-in function.
+   	Please contact support@ekomi-group.com if you want an opt-in function.
    	
 4. Browse to Plugins / Plugin set overview and activate the plugin for the desired clients. Activate the plugin "in productive" and click on the icon “Deploy Plugins in Productive”. Deployment can take several minutes. If the deployment has been successful, the field next to the Deploy button is shown in green. If this is not the case, please contact your support representative.
 
@@ -75,6 +75,10 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.co
 * plentymarkets stable 7 framework
 
 ## Versioning
+
+### v3.3.2 (10-01-2022)
+- Add param into core Api.
+- Update support email
 
 ### v3.3.1 (25-01-2021)
 - Fix log messages.

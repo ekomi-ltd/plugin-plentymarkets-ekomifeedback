@@ -1,5 +1,9 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.3.2 (10-01-2022)
+- Parameter zur Kern-API hinzufügen.
+- Support-E-Mail aktualisieren
+
 ### v3.3.1 (25-01-2021)
 - Korrigieren Sie Protokollnachrichten.
 
