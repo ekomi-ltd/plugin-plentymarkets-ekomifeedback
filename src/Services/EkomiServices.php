@@ -191,9 +191,6 @@ class EkomiServices
                     $this->sendData($postVars, $orderId);
                 }
             }
-        } else {
-            $additionalInfo = 'plentyID('.$plentyID.') not matched with PlentyIDs:'.implode(',', $plentyIDs);
-            $this->getLogger(__FUNCTION__)->error(self::ERROR_CODE_PLENTY_NOT_MATCHED, $additionalInfo);
         }
     }
 

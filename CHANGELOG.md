@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.3.3 (18-01-2022)
+- Fixed extra error logging for plenty id.
+
 ### v3.3.2 (10-01-2022)
 - Add param into core Api.
 - Update support email
