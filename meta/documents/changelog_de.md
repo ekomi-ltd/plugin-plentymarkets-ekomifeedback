@@ -1,7 +1,7 @@
 # Versionshinweise für EkomiFeedback
 
 ### v3.3.3 (18-01-2022)
-- aste extra foutregistratie voor veel id.
+- Zusätzliche Fehlerprotokollierung für plenty id behoben.
 
 ### v3.3.2 (10-01-2022)
 - Parameter zur Kern-API hinzufügen.
