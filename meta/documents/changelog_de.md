@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.3.4 (21-02-2022)
+- Plugin-Version aktualisieren
+
 ### v3.3.3 (18-01-2022)
 - Zusätzliche Fehlerprotokollierung für plenty id behoben.
 

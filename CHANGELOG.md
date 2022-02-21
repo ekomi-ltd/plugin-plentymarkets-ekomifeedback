@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.3.4 (21-02-2022)
+- Update plugin version.
+
 ### v3.3.3 (18-01-2022)
 - Fixed extra error logging for plenty id.
 
