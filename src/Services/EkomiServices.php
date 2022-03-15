@@ -179,7 +179,7 @@ class EkomiServices
         $referrerId = $order['referrerId'];
         if (!$plentyIDs || in_array($plentyID, $plentyIDs)) {
             if (!empty($referrerIds) && in_array((string) $referrerId, $referrerIds)) {
-                $this->getLogger(__FUNCTION__)->error(
+                $this->getLogger(__FUNCTION__)->info(
                     "OrderID:{$orderId} ,referrerID:{$referrerId}|Blocked",
                     'OrderID:'.$orderId.
                     '|ReferrerID:'.$referrerId.
