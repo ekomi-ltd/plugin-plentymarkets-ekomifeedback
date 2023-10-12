@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.3.5 (15-03-2022)
+- Fixed extra error logging for order id.
+
 ### v3.3.4 (21-02-2022)
 - Update plugin version.
 
