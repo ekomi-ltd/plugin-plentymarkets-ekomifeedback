@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.3.6 (20-02-2024)
+- Cron-Zeit auf 1 Stunde aktualisieren
+
 ### v3.3.5 (15-03-2022)
 - Zusätzliche Fehlerprotokollierung für Bestell-ID behoben
 
