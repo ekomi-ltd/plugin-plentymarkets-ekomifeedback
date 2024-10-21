@@ -1,5 +1,8 @@
 # Versionshinweise für EkomiFeedback
 
+### v3.3.7 (21-10-2024)
+- „Fressnapf AC“ zur Liste möglicher Referrer-Ausschlüsse hinzugefügt.
+
 ### v3.3.0 (11-11-2020)
 - Standard-Container-Links hinzugefügt.
 

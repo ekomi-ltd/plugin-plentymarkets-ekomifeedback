@@ -76,6 +76,9 @@ Please download the [eKomi FeedBack plugin](https://marketplace.plentymarkets.co
 
 ## Versioning
 
+### v3.3.7 (21-10-2024)
+- Added 'Fressnapf AC' to list of possible referrer exclusions.
+
 ### v3.2.1 (07-02-2020)
 - Fixed the referrer out issue while sending orders data.
 
