@@ -1,5 +1,8 @@
 # Release Notes for EkomiFeedback
 
+### v3.3.7 (21-10-2024)
+- Added 'Fressnapf AC' to list of possible referrer exclusions.
+
 ### v3.3.6 (20-02-2024)
 - Update cron time to 1 hour
 
