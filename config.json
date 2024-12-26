@@ -744,6 +744,10 @@
                                 "caption": "Config.referrerIdPossibleValue152"
                             },
                             {
+                                "value": "153",
+                                "caption": "Config.referrerIdPossibleValue153"
+                            },
+                            {
                                 "value": "2.01",
                                 "caption": "Config.referrerIdPossibleValue201"
                             },
