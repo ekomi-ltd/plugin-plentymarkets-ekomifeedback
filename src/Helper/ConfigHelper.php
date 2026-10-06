@@ -182,18 +182,6 @@ class ConfigHelper
     }
 
     /**
-     * Validates the Exclude Products value against the 255-character limit.
-     *
-     * @return bool True if valid, false if over the limit.
-     */
-    public function isExcludeProductsValid()
-    {
-        $value = (string) $this->config->get('EkomiFeedback.exclude_products');
-
-        return strlen($value) <= self::EXCLUDE_PRODUCTS_MAX_LENGTH;
-    }
-
-    /**
      * Gets Show Widget from plugin configurations.
      *
      * @return bool
