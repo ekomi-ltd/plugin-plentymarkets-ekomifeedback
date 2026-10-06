@@ -163,13 +163,22 @@ class ConfigHelper
     }
 
     /**
+     * Maximum allowed length for the Exclude Products field.
+     * Matches the plugins-dashboard database column limit (VARCHAR 255).
+     */
+    const EXCLUDE_PRODUCTS_MAX_LENGTH = 255;
+
+    /**
      * Gets Exclude Products from plugin configurations.
+     * Returns at most 255 characters to respect the plugins-dashboard DB limit.
      *
      * @return string
      */
     public function getExcludeProducts()
     {
-        return $this->config->get('EkomiFeedback.exclude_products');
+        $value = (string) $this->config->get('EkomiFeedback.exclude_products');
+
+        return substr($value, 0, self::EXCLUDE_PRODUCTS_MAX_LENGTH);
     }
 
     /**
