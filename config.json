@@ -127,7 +127,8 @@
                   "required": false,
                   "label": "Config.excludeProductsLabel",
                   "options": {
-                    "defaultValue": ""
+                    "defaultValue": "",
+                    "maxLength": 255
                   }
                 },
                 "show_widgets": {
